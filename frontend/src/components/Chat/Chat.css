@@ -1,0 +1,74 @@
+.ce-chat-engine ::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.ce-chat-engine {
+  flex-grow: 1;
+  background: #ede7f6;
+}
+
+#msg-textarea {
+  flex-grow: 0;
+}
+
+.ce-chat-list,
+.ce-chat-form,
+.ce-chat-settings,
+.ce-dropdown-label,
+.ce-danger-button,
+.ce-their-message-body,
+.ce-default-button {
+  background-color: #ede7f6 !important;
+}
+
+.ce-autocomplete-input,
+.ce-default-button {
+  border-color: #673ab7 !important;
+}
+
+.ce-chat-header-title,
+.ce-chat-header-subtitle,
+.ce-default-button,
+.ce-my-message-timestamp,
+.ce-their-message-sender-username,
+.ce-chat-form-title,
+.ce-chat-settings,
+.ce-chat-card-title {
+  color: #673ab7 !important;
+}
+
+.ce-my-message-body,
+.ce-chat-card-unread,
+#ce-send-message-button {
+  background-color: #673ab7 !important;
+}
+
+.ce-their-message-timestamp,
+.ce-message-date-text,
+.ce-chat-card-subtitle,
+.ce-chat-card-time-stamp,
+.ce-ice-breaker-text {
+  color: #9575cd !important;
+}
+
+.ce-active-chat-card {
+  background-color: #d1c4e9 !important;
+}
+
+.ce-message-form-input {
+  width: calc((100% - 40px) - 56px) !important;
+}
+
+.ce-chat-settings {
+  z-index: 2 !important;
+}
+
+.ce-dropdown-children > div > div:not(.ce-avatar) {
+  overflow: hidden !important;
+  height: 20px;
+}
+
+.ce-add-member-option {
+  height: 40px !important;
+}

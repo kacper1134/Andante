@@ -1,0 +1,29 @@
+@media only screen and (max-width: 30em) {
+  body {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 30em) and (max-width: 48em) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 48em) and (max-width: 62em) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 62em) and (max-width: 80em) {
+  body {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 80em) {
+  body {
+    font-size: 20px;
+  }
+}

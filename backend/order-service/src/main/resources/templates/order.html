@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:remove="all">Andante Order</title>
+    <style type="text/css">
+        body {
+            width: fit-content;
+        }
+        #header {
+            width: inherit;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            height: fit-content;
+        }
+        #logo {
+            margin: auto;
+        }
+        #title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        #warning {
+            font-style: italic;
+            font-size: 16px;
+            font-weight: 300;
+            color: #616161;
+        }
+        .content {
+            font-size: 16px;
+        }
+        .footer {
+            font-size: 14px;
+        }
+        .name {
+            font-size: 14px;
+        }
+        #email {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="logo" src='cid:logo'>
+    </div>
+    <hr>
+    <p id="title">Order confirmation</p>
+    <p class="content">Thank you for placing your order!</p>
+    <p class="content">Your order have received a tracking number of [[${id}]].</p>
+    <p class="content">Consult the attached invoice for more details.</p>
+    <p id="warning">If the order is not paid within 3 days it will be automatically canceled.</p>
+    <p class="footer">Respectfully,</p>
+    <p class="name">Andante online store support</p>
+    <a th:href="'mailto:' + ${sender}" id="email">[[${sender}]]</a>
+</body>
+</html>

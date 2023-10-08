@@ -1,0 +1,332 @@
+{
+  "attributes": [
+    {
+      "name": "username",
+      "displayName": "${username}",
+      "validations": {
+        "length": {
+          "min": 3,
+          "max": 255
+        },
+        "username-prohibited-characters": {}
+      },
+      "permissions": {
+        "view": [],
+        "edit": []
+      },
+      "selector": {
+        "scopes": []
+      },
+      "group": "accountdetails"
+    },
+    {
+      "name": "firstName",
+      "displayName": "${firstName}",
+      "required": {
+        "roles": [
+          "user"
+        ],
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "validations": {
+        "length": {
+          "trim-disabled": "",
+          "min": "2",
+          "max": "100"
+        },
+        "person-name-prohibited-characters": {}
+      },
+      "selector": {
+        "scopes": []
+      },
+      "group": "personaldetails"
+    },
+    {
+      "name": "lastName",
+      "displayName": "${lastName}",
+      "required": {
+        "roles": [
+          "user"
+        ],
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "validations": {
+        "length": {
+          "max": 255
+        },
+        "person-name-prohibited-characters": {}
+      },
+      "selector": {
+        "scopes": []
+      },
+      "group": "personaldetails"
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "dateOfBirth",
+      "displayName": "Date of Birth",
+      "group": "personaldetails",
+      "required": {
+        "roles": [
+          "user"
+        ],
+        "scopes": []
+      },
+      "validations": {},
+      "annotations": {
+        "inputType": "html5-date"
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "gender",
+      "displayName": "Gender",
+      "group": "personaldetails",
+      "validations": {
+        "options": {
+          "options": [
+            "Male",
+            "Female"
+          ]
+        }
+      },
+      "annotations": {
+        "inputType": "select"
+      },
+      "required": {
+        "roles": [],
+        "scopes": []
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "required": {
+        "roles": [],
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "admin"
+        ]
+      },
+      "name": "description",
+      "displayName": "Description",
+      "group": "personaldetails",
+      "annotations": {
+        "inputType": "textarea"
+      }
+    },
+    {
+      "name": "email",
+      "displayName": "Email address",
+      "validations": {
+        "email": {},
+        "length": {
+          "max": 255
+        }
+      },
+      "permissions": {
+        "view": [],
+        "edit": []
+      },
+      "selector": {
+        "scopes": []
+      },
+      "group": "contactdetails",
+      "annotations": {
+        "inputType": "html5-email"
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "phonenumber",
+      "displayName": "Phone number",
+      "group": "contactdetails",
+      "required": {
+        "roles": [],
+        "scopes": []
+      },
+      "validations": {
+        "pattern": {
+          "pattern": "^[0-9]{9}"
+        }
+      },
+      "annotations": {
+        "inputType": "html5-tel",
+        "inputTypePlaceholder": "999999999"
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "country",
+      "displayName": "Country",
+      "group": "deliverydetails",
+      "required": {
+        "roles": [],
+        "scopes": []
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "city",
+      "displayName": "City",
+      "group": "deliverydetails",
+      "validations": {
+        "length": {
+          "trim-disabled": "",
+          "min": "1",
+          "max": "100"
+        }
+      },
+      "required": {
+        "roles": [],
+        "scopes": []
+      }
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "street",
+      "displayName": "Street",
+      "group": "deliverydetails"
+    },
+    {
+      "selector": {
+        "scopes": []
+      },
+      "permissions": {
+        "view": [
+          "user",
+          "admin"
+        ],
+        "edit": [
+          "user",
+          "admin"
+        ]
+      },
+      "name": "postalcode",
+      "displayName": "Postal code",
+      "group": "deliverydetails"
+    }
+  ],
+  "groups": [
+    {
+      "name": "personaldetails",
+      "displayHeader": "Personal details"
+    },
+    {
+      "name": "contactdetails",
+      "displayHeader": "Contact"
+    },
+    {
+      "name": "deliverydetails",
+      "displayHeader": "Delivery",
+      "displayDescription": ""
+    },
+    {
+      "name": "paymentdetails",
+      "displayHeader": "Payment"
+    },
+    {
+      "name": "accountdetails",
+      "displayHeader": "Account credentials"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+declare module "recombee-js-api-client";

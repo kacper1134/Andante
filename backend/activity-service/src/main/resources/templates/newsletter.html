@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:remove="all">Andante Newsletter Subscription</title>
+    <style type="text/css">
+        #header {
+            width: inherit;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            height: fit-content;
+        }
+        #logo {
+            margin: auto;
+        }
+        #title {
+            font-size: 20px;
+            color: #673AB7;
+            font-weight: 300;
+        }
+        .content {
+            font-size: 16px;
+            font-style: italic;
+            color: #616161;
+        }
+        #email {
+            color: #673AB7;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="logo" src="cid:logo" alt="logo">
+    </div>
+    <hr>
+    <p id="title">Greetings, Melomaniac!</p>
+    <p class="content">Thanks so much for joining our mailing list!</p>
+    <p class="content">Now that you're an official subscriber, you'll get early access to exclusive offers, helpful tips and early access to Andante deals.</p>
+    <p class="content">We'll be sending weekly roundup of posts that you might have missed and products we think you would like.</p>
+    <p class="content">Feel free to contact us if you have any questions!</p>
+    <p class="content">Best regards,</p>
+    <a th:href="'mailto:' + ${sender}" id="email">Andante Team</a>
+</body>
+</html>

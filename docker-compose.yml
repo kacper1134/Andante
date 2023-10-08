@@ -1,0 +1,273 @@
+version: '3.8'
+services:
+  zookeeper:
+    container_name: 'zookeeper'
+    image: 'bitnami/zookeeper:latest'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: 'yes'
+  kafka:
+    container_name: 'kafka'
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9093:9093'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_CFG_LISTENERS: INNER://kafka:9092, OUTER://127.0.0.1:9093
+      KAFKA_CFG_ADVERTISED_LISTENERS: INNER://kafka:9092, OUTER://127.0.0.1:9093
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: INNER:PLAINTEXT,OUTER:PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INNER
+      ALLOW_PLAINTEXT_LISTENER: 'yes'
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+        reservations:
+          memory: 512MB
+    depends_on:
+      - zookeeper
+    volumes:
+      - kafka:/var/lib/bitnami/kafka
+  postgres:
+    container_name: auth
+    image: postgres:latest
+    ports:
+      - "15432:5432"
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: Xfc3UsneuC0seHWeE26W
+    volumes:
+      - auth:/var/lib/postgresql/data
+    restart: always
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak:latest
+    environment:
+      KEYCLOAK_USER: keycloak_admin
+      KEYCLOAK_PASSWORD: wUUtmdYfzV0PTlf1TPHY
+      KEYCLOAK_IMPORT: /tmp/config/keycloak/realms/andante.json
+      KEYCLOAK_DEFAULT_THEME: andante
+      DB_VENDOR: postgres
+      DB_ADDR: auth
+      DB_DATABASE: keycloak
+      DB_PORT: 5432
+      DB_SCHEMA: public
+      DB_USER: keycloak
+      DB_PASSWORD: Xfc3UsneuC0seHWeE26W
+      JAVA_OPTS_APPEND: "-Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.profile.feature.declarative_user_profile=enabled"
+    deploy:
+      resources:
+        limits:
+          memory: 1024MB
+        reservations:
+          memory: 768MB
+    ports:
+      - '9864:8080'
+    volumes:
+      - type: bind
+        source: ./config/keycloak/realms
+        target: /tmp/config/keycloak/realms
+      - type: bind
+        source: ./config/keycloak/themes/andante
+        target: /opt/jboss/keycloak/themes/andante
+      # - type: bind
+      #  source: ./config/keycloak/certs
+      #  target: /etc/x509/https
+    depends_on:
+      - postgres
+    restart: always
+  eureka:
+    container_name: eureka
+    image: eureka
+    build:
+      context: ./backend/eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 192MB
+    depends_on:
+      - keycloak
+    restart: always
+  productdb:
+    container_name: productdb
+    image: postgres:latest
+    ports:
+      - "7123:5432"
+    environment:
+      POSTGRES_DB: product
+      POSTGRES_USER: product_admin
+      POSTGRES_PASSWORD: JsnVaFXeKW0kvdOC8TjR
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    volumes:
+      - product:/var/lib/postgresql/data
+    restart: always
+  product:
+    container_name: product
+    image: spring-product
+    build:
+      context: ./backend/product-service
+      dockerfile: Dockerfile
+    depends_on:
+      - productdb
+      - eureka
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    restart: always
+  forumdb:
+    container_name: forumdb
+    image: postgres:latest
+    ports:
+      - "7564:5432"
+    environment:
+      POSTGRES_DB: forum
+      POSTGRES_USER: forum_admin
+      POSTGRES_PASSWORD: QLGfRjjzNJBHGmcOIrBV
+    volumes:
+      - forum:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    restart: always
+  forum:
+    container_name: forum
+    image: spring-forum
+    build:
+      context: ./backend/forum-service
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    depends_on:
+      - eureka
+      - forumdb
+    restart: always
+  ordersdb:
+    container_name: ordersdb
+    image: postgres:latest
+    ports:
+      - "8901:5432"
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders_admin
+      POSTGRES_PASSWORD: QRMWVSCv1yWhxCoDHrqu
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    volumes:
+      - order:/var/lib/postgresql/data
+    restart: always
+  order:
+    container_name: order
+    image: spring-order
+    build:
+      context: ./backend/order-service
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    depends_on:
+      - eureka
+      - ordersdb
+    restart: always
+  activitydb:
+    container_name: activitydb
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: activity
+      POSTGRES_USER: activity_admin
+      POSTGRES_PASSWORD: TEWYbEzwq3VI6wPrfAki
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    ports:
+      - "7835:5432"
+    volumes:
+      - activity:/var/lib/postgresql/data
+    restart: always
+  activity:
+    container_name: activity
+    image: spring-activity
+    build:
+      context: ./backend/activity-service
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+        reservations:
+          memory: 256MB
+    depends_on:
+      - eureka
+      - activitydb
+    restart: always
+  gateway:
+    container_name: gateway
+    image: gateway
+    build:
+      context: ./backend/gateway
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 384MB
+    ports:
+      - "4561:4561"  
+    depends_on:
+      - kafka
+      - activity
+      - order
+      - forum
+      - product
+      - keycloak
+    restart: always
+volumes:
+  auth:
+    driver: local
+  forum:
+    driver: local
+  order:
+    driver: local
+  kafka:
+    driver: local
+  product:
+    driver: local
+  activity:
+    driver: local
