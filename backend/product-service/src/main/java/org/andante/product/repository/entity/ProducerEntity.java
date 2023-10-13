@@ -27,7 +27,7 @@ public class ProducerEntity {
     @Column(nullable = false, name="image_url", length = 200)
     private String imageUrl;
 
-    @OneToMany(mappedBy = "producer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "producer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ProductEntity> products;
 
     public Producer toModel() {

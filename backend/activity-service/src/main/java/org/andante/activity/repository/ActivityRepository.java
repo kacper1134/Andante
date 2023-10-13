@@ -16,6 +16,6 @@ public interface ActivityRepository extends JpaRepository<ActivityEntity, String
     Page<ActivityEntity> findAllByAffectedUsersContainingOrAffectsAllTrue(@Param("user") String user, Pageable pageable);
     @Query("SELECT a FROM ActivityEntity a JOIN a.acknowledgedUsers u WHERE u = :user")
     Page<ActivityEntity> findAllByAcknowledgedUsersContaining(@Param("user") String user, Pageable pageable);
-    @Query("SELECT a FROM ActivityEntity a WHERE a NOT IN (SELECT i FROM ActivityEntity i JOIN i.acknowledgedUsers u WHERE u = :user)")
+    @Query("SELECT a FROM ActivityEntity a LEFT JOIN a.affectedUsers u WHERE (u = :user OR a.affectsAll = true) AND a NOT IN (SELECT i FROM ActivityEntity i JOIN i.acknowledgedUsers u WHERE u = :user)")
     Page<ActivityEntity> findAllByAcknowledgedUsersNotContaining(@Param("user") String user, Pageable pageable);
 }

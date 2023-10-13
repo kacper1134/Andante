@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -30,10 +30,10 @@ public class KafkaSpeakersProducer {
     }
 
     private String buildSpeakersEventKey(SpeakersEvent speakersEvent) {
-        return speakersEvent.getSpeakers().getId() + SEPARATOR + speakersEvent.getSpeakers().getModificationTimestamp();
+        return speakersEvent.getSpeakers().getId() + SEPARATOR + UUID.randomUUID();
     }
 
     private String buildSpeakersVariantEventKey(SpeakersVariantEvent speakersVariantEvent) {
-        return speakersVariantEvent.getSpeakersVariant().getId() + SEPARATOR + LocalDateTime.now();
+        return speakersVariantEvent.getSpeakersVariant().getId() + SEPARATOR + UUID.randomUUID();
     }
 }

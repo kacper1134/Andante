@@ -14,8 +14,9 @@ import org.andante.subwoofers.enums.SubwooferType;
 import org.andante.subwoofers.logic.model.SubwoofersOutput;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,11 +38,11 @@ public class SubwoofersEntity extends ProductEntity {
     private SubwooferType type;
 
     @OneToMany(mappedBy="subwoofers", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<SubwoofersVariantEntity> variants;
+    private List<SubwoofersVariantEntity> variants;
 
     @Override
-    public Set<ProductVariantEntity> getVariants() {
-        return new HashSet<>(variants);
+    public List<ProductVariantEntity> getVariants() {
+        return new ArrayList<>(variants);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SubwoofersEntity extends ProductEntity {
         if (areAllVariantsSubwoofers((variants))) {
             this.variants = variants.stream()
                     .map(SubwoofersVariantEntity.class::cast)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         }
     }
 
@@ -63,7 +64,7 @@ public class SubwoofersEntity extends ProductEntity {
                 .basePrice(getBasePrice())
                 .minimumFrequency(getMinimumFrequency())
                 .maximumFrequency(getMaximumFrequency())
-                .productType(ProductType.AMPLIFIERS)
+                .productType(ProductType.SUBWOOFERS)
                 .creationTimestamp(getCreationTimestamp())
                 .modificationTimestamp(getModificationTimestamp())
                 .comments(getComments().stream()
@@ -76,7 +77,7 @@ public class SubwoofersEntity extends ProductEntity {
                 .type(type)
                 .variants(variants.stream()
                         .map(SubwoofersVariantEntity::toModel)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

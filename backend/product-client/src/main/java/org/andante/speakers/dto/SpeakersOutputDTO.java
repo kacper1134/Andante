@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.andante.product.dto.ProductOutputDTO;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @SuperBuilder
 @Data
@@ -19,7 +19,7 @@ public class SpeakersOutputDTO extends ProductOutputDTO {
 
     private Boolean wireless;
     private Float bluetoothStandard;
-    private Set<SpeakersVariantOutputDTO> variants;
+    private List<SpeakersVariantOutputDTO> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);

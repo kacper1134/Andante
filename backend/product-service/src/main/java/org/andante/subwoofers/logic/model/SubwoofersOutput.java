@@ -8,7 +8,7 @@ import org.andante.product.logic.model.ProductOutput;
 import org.andante.subwoofers.dto.SubwoofersOutputDTO;
 import org.andante.subwoofers.enums.SubwooferType;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -18,7 +18,7 @@ public class SubwoofersOutput extends ProductOutput {
 
     private Float power;
     private SubwooferType type;
-    private Set<SubwoofersVariantOutput> variants;
+    private List<SubwoofersVariantOutput> variants;
 
     @Override
     public SubwoofersOutputDTO toDTO() {
@@ -49,7 +49,7 @@ public class SubwoofersOutput extends ProductOutput {
                 .type(type)
                 .variants(variants.stream()
                         .map(SubwoofersVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

@@ -9,8 +9,8 @@ import org.andante.headphones.enums.ConstructionType;
 import org.andante.headphones.enums.DriverType;
 import org.andante.product.dto.ProductOutputDTO;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @SuperBuilder
 @Data
@@ -23,7 +23,7 @@ public class HeadphonesOutputDTO extends ProductOutputDTO {
     private DriverType driverType;
     private Boolean wireless;
     private Float bluetoothStandard;
-    private Set<HeadphonesVariantOutputDTO> variants;
+    private List<HeadphonesVariantOutputDTO> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);

@@ -17,6 +17,10 @@ const ShopMainPage: React.FC<ShopMainPageProps> = ({menuHeight}) => {
   const offset = result.pageable.offset;
   const resultRange = `${offset + 1} to ${offset + result.numberOfElements}`;
   const totalCount = result.totalElements;
+  const isMobile = useBreakpointValue({
+    base: true,
+    sm: false,
+  });
 
   const filterMenuWidth = useBreakpointValue({
     base: "200px",
@@ -30,7 +34,7 @@ const ShopMainPage: React.FC<ShopMainPageProps> = ({menuHeight}) => {
     <>
       <ResultsBar setSortingOrder={setSortingOrder} resultRange={resultRange} totalCount={totalCount} />
       <Flex position="relative">
-        <FilterMenu width={filterMenuWidth!} hasBoxShadow={false} shouldFillAvailableSpace={false} menuHeight={menuHeight} />
+        {!isMobile && <FilterMenu width={filterMenuWidth!} hasBoxShadow={false} shouldFillAvailableSpace={false} menuHeight={menuHeight} />}
         <VStack w="100%" alignItems="start" pl="32px">
           <Results products={result.content} />
           <Spacer />

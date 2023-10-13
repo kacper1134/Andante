@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 import org.andante.product.dto.ProductOutputDTO;
 import org.andante.subwoofers.enums.SubwooferType;
 
-import java.util.Set;
+import java.util.List;
 
 @SuperBuilder
 @Data
@@ -19,5 +19,5 @@ public class SubwoofersOutputDTO extends ProductOutputDTO {
 
     private Float power;
     private SubwooferType type;
-    private Set<SubwoofersVariantOutputDTO> variants;
+    private List<SubwoofersVariantOutputDTO> variants;
 }

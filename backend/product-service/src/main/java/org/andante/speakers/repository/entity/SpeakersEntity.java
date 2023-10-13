@@ -13,8 +13,9 @@ import org.andante.product.repository.entity.ProductVariantEntity;
 import org.andante.speakers.logic.model.SpeakersOutput;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,11 +35,11 @@ public class SpeakersEntity extends ProductEntity {
     private Float bluetoothStandard;
 
     @OneToMany(mappedBy="speakers", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<SpeakersVariantEntity> variants;
+    private List<SpeakersVariantEntity> variants;
 
     @Override
-    public Set<ProductVariantEntity> getVariants() {
-        return new HashSet<>(variants);
+    public List<ProductVariantEntity> getVariants() {
+        return new ArrayList<>(variants);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SpeakersEntity extends ProductEntity {
         if (areAllVariantsSpeakers(variants)) {
             this.variants = variants.stream()
                     .map(SpeakersVariantEntity.class::cast)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         }
     }
 
@@ -60,7 +61,7 @@ public class SpeakersEntity extends ProductEntity {
                 .basePrice(getBasePrice())
                 .minimumFrequency(getMinimumFrequency())
                 .maximumFrequency(getMaximumFrequency())
-                .productType(ProductType.AMPLIFIERS)
+                .productType(ProductType.SPEAKERS)
                 .creationTimestamp(getCreationTimestamp())
                 .modificationTimestamp(getModificationTimestamp())
                 .comments(getComments().stream()
@@ -73,7 +74,7 @@ public class SpeakersEntity extends ProductEntity {
                 .bluetoothStandard(bluetoothStandard)
                 .variants(variants.stream()
                         .map(SpeakersVariantEntity::toModel)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

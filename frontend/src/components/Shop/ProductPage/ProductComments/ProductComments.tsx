@@ -147,7 +147,7 @@ const ProductComments = ({
           />
         ))}
       {numberOfPages > 0 ? <PageChanger page={page} setPage={setPage} numberOfPages={numberOfPages} /> : 
-      <Text textStyle="h2" fontSize={fontSize} color="primary.500" textAlign="start" px="16px">It appears that that noone have placed a comment yet. Be first to start a discussion.</Text>}
+      <Text textStyle="h2" fontSize={fontSize} color="primary.500" textAlign="start" px="16px">It appears that noone have placed a comment yet. Be first to start a discussion.</Text>}
     </VStack>
   );
 };

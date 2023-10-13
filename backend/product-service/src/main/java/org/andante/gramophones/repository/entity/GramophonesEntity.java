@@ -18,8 +18,9 @@ import org.andante.product.repository.entity.ProductVariantEntity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,11 +54,11 @@ public class GramophonesEntity extends ProductEntity {
     private Integer maximumRotationalSpeed;
 
     @OneToMany(mappedBy = "gramophones", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<GramophonesVariantEntity> variants;
+    private List<GramophonesVariantEntity> variants;
 
     @Override
-    public Set<ProductVariantEntity> getVariants() {
-        return new HashSet<>(variants);
+    public List<ProductVariantEntity> getVariants() {
+        return new ArrayList<>(variants);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class GramophonesEntity extends ProductEntity {
         if (allAreVariantsGramophones(variants)) {
             this.variants = variants.stream()
                     .map(GramophonesVariantEntity.class::cast)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         }
     }
 
@@ -79,7 +80,7 @@ public class GramophonesEntity extends ProductEntity {
                 .basePrice(getBasePrice())
                 .minimumFrequency(getMinimumFrequency())
                 .maximumFrequency(getMaximumFrequency())
-                .productType(ProductType.AMPLIFIERS)
+                .productType(ProductType.GRAMOPHONES)
                 .creationTimestamp(getCreationTimestamp())
                 .modificationTimestamp(getModificationTimestamp())
                 .comments(getComments().stream()
@@ -95,7 +96,7 @@ public class GramophonesEntity extends ProductEntity {
                 .maximumRotationalSpeed(maximumRotationalSpeed)
                 .variants(variants.stream()
                         .map(GramophonesVariantEntity::toModel)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

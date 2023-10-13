@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -87,7 +88,7 @@ public class GramophonesTestUtils {
                 .motorType(gramophones.getMotorType())
                 .powerSource(gramophones.getPowerSource())
                 .maximumRotationalSpeed(gramophones.getMaximumRotationalSpeed())
-                .variantsIds(Optional.ofNullable(gramophones.getVariants()).orElse(Set.of()).stream()
+                .variantsIds(Optional.ofNullable(gramophones.getVariants()).orElse(List.of()).stream()
                         .map(ProductVariantEntity::getId)
                         .collect(Collectors.toSet()))
                 .build();
@@ -123,7 +124,7 @@ public class GramophonesTestUtils {
                 .motorType(gramophones.getMotorType())
                 .powerSource(gramophones.getPowerSource())
                 .maximumRotationalSpeed(gramophones.getMaximumRotationalSpeed())
-                .variantsIds(Optional.ofNullable(gramophones.getVariants()).orElse(Set.of()).stream()
+                .variantsIds(Optional.ofNullable(gramophones.getVariants()).orElse(List.of()).stream()
                         .map(ProductVariantEntity::getId)
                         .collect(Collectors.toSet()))
                 .build();

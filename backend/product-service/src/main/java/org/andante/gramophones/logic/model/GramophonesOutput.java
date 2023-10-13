@@ -11,7 +11,7 @@ import org.andante.gramophones.enums.TurntableMaterial;
 import org.andante.product.logic.model.Comment;
 import org.andante.product.logic.model.ProductOutput;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -24,7 +24,7 @@ public class GramophonesOutput extends ProductOutput {
     private MotorType motorType;
     private PowerSource powerSource;
     private Integer maximumRotationalSpeed;
-    private Set<GramophonesVariantOutput> variants;
+    private List<GramophonesVariantOutput> variants;
 
     @Override
     public GramophonesOutputDTO toDTO() {
@@ -58,7 +58,7 @@ public class GramophonesOutput extends ProductOutput {
                 .maximumRotationalSpeed(maximumRotationalSpeed)
                 .variants(variants.stream()
                         .map(GramophonesVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

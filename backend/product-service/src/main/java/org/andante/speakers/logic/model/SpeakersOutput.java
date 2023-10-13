@@ -7,8 +7,8 @@ import org.andante.product.logic.model.Comment;
 import org.andante.product.logic.model.ProductOutput;
 import org.andante.speakers.dto.SpeakersOutputDTO;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -18,7 +18,7 @@ public class SpeakersOutput extends ProductOutput {
 
     private Boolean wireless;
     private Float bluetoothStandard;
-    private Set<SpeakersVariantOutput> variants;
+    private List<SpeakersVariantOutput> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);
@@ -53,7 +53,7 @@ public class SpeakersOutput extends ProductOutput {
                 .bluetoothStandard(bluetoothStandard)
                 .variants(variants.stream()
                         .map(SpeakersVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

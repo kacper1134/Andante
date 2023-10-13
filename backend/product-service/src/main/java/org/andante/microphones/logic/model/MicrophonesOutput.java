@@ -8,8 +8,8 @@ import org.andante.microphones.enums.MicrophoneType;
 import org.andante.product.logic.model.Comment;
 import org.andante.product.logic.model.ProductOutput;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -20,7 +20,7 @@ public class MicrophonesOutput extends ProductOutput {
     private Boolean wireless;
     private Float bluetoothStandard;
     private MicrophoneType type;
-    private Set<MicrophonesVariantOutput> variants;
+    private List<MicrophonesVariantOutput> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);
@@ -56,7 +56,7 @@ public class MicrophonesOutput extends ProductOutput {
                 .type(type)
                 .variants(variants.stream()
                         .map(MicrophonesVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

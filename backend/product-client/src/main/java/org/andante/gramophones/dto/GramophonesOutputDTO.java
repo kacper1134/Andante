@@ -11,7 +11,7 @@ import org.andante.gramophones.enums.PowerSource;
 import org.andante.gramophones.enums.TurntableMaterial;
 import org.andante.product.dto.ProductOutputDTO;
 
-import java.util.Set;
+import java.util.List;
 
 @SuperBuilder
 @Data
@@ -25,5 +25,5 @@ public class GramophonesOutputDTO extends ProductOutputDTO {
     private MotorType motorType;
     private PowerSource powerSource;
     private Integer maximumRotationalSpeed;
-    private Set<GramophonesVariantOutputDTO> variants;
+    private List<GramophonesVariantOutputDTO> variants;
 }

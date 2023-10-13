@@ -158,7 +158,7 @@ const BillDetails: React.FC<BillDetailsProps> = ({headingSize, deliveryDetails, 
     }
 
     return <VStack w={userDetailsWidth} alignSelf="start">
-        <Heading textStyle="h3" alignSelf="start" fontSize={headingSize} color="primary.400">Bill Details</Heading>
+        <Heading textStyle="h3" alignSelf="start" fontSize={headingSize} color="primary.400">Billing Details</Heading>
         <VStack border="1px solid black" w="inherit" p="16px">
             <CartInput placeholder="Country*" value={deliveryDetails.country} onChange={handleCountryInput} isRequired disabled={false} />
             <CartInput placeholder="City*" value={deliveryDetails.city} onChange={handleCityInput} isRequired disabled={false} />

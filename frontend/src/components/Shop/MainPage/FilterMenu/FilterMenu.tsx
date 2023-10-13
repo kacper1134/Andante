@@ -81,7 +81,6 @@ const FilterMenu = ({ width, hasBoxShadow, shouldFillAvailableSpace, menuHeight 
         priceRange={priceRange}
         setPriceRange={setPriceRange}
       />
-      <ProductStateFilter />
       {shouldFillAvailableSpace && <Spacer />}
       {hasBoxShadow && <Button
         mt="12px"

@@ -104,8 +104,8 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
     const primary400 = useToken("colors", "primary.400");
     const gray300 = useToken("colors", "gray.300");
     const orderCardWidth = useBreakpointValue({
-        base: "450px",
-        md: "600px",
+        base: "350px",
+        md: "450px",
         lg: "700px",
         xl: "800px",
         '2xl': "1000px",    
@@ -120,7 +120,7 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
             <Text textStyle="h3" color="primary.400" fontSize="20px" noOfLines={2}>{data.orderTitle}</Text>
         </HStack>
         <Divider borderColor="gray.400"/>
-        <HStack alignSelf="start" px="24px" spacing={{base: "48px", lg: "80px"}}>
+        <HStack alignSelf="start" px="24px" spacing={{base: "24px", lg: "80px"}}>
             <VStack spacing={0}>
                 <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Order #</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{data.orderId}</Text>
@@ -164,7 +164,7 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
         { (data.orderStatus === OrderStatus.NEW) && <>
         <Divider borderColor="gray.400" />
         <HStack userSelect="none">
-            {data.paymentMethod === "PayU" && <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer"onClick={() => navigate(`../../cart/payment?orderId=${data.orderId}`)}>PAY NOW</Text>}
+            {data.paymentMethod === "PayU" && <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => navigate(`../../cart/payment?orderId=${data.orderId}`)}>PAY NOW</Text>}
             {data.paymentMethod === "PayU" && <Icon as={BsDot} boxSize="14px" color="gray.500" />}
             <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => generateInvoice(data, true)}>INVOICE</Text>
             <Icon as={BsDot} boxSize="14px" color="gray.500" />

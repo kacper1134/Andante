@@ -9,8 +9,8 @@ import org.andante.headphones.enums.DriverType;
 import org.andante.product.logic.model.Comment;
 import org.andante.product.logic.model.ProductOutput;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -22,7 +22,7 @@ public class HeadphonesOutput extends ProductOutput {
     private DriverType driverType;
     private Boolean wireless;
     private Float bluetoothStandard;
-    private Set<HeadphonesVariantOutput> variants;
+    private List<HeadphonesVariantOutput> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);
@@ -59,7 +59,7 @@ public class HeadphonesOutput extends ProductOutput {
                 .bluetoothStandard(bluetoothStandard)
                 .variants(variants.stream()
                         .map(HeadphonesVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

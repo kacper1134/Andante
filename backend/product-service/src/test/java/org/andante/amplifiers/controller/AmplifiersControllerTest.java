@@ -162,7 +162,7 @@ public class AmplifiersControllerTest {
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding(StandardCharsets.UTF_8)
                     .content(serializedInput))
-                    .andExpect(status().isBadRequest());
+                    .andExpect(status().isPreconditionFailed());
         }
 
         @Test
@@ -236,7 +236,7 @@ public class AmplifiersControllerTest {
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding(StandardCharsets.UTF_8)
                     .content(serializedInput))
-                    .andExpect(status().isBadRequest());
+                    .andExpect(status().isPreconditionFailed());
         }
 
         @Test

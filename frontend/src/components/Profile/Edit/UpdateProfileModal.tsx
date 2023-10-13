@@ -79,7 +79,7 @@ const UpdateProfileModal = ({
         setSaving(false);
         return;
       }
-      if (currentImageProfilePath !== "") {
+      if (currentImageProfilePath != undefined && currentImageProfilePath !== "") {
         await deleteImage(currentImageProfilePath!);
       }
     } else {

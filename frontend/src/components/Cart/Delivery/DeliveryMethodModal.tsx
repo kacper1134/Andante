@@ -32,7 +32,7 @@ const initMap = (
     : null;
   if (document.getElementById("bpWidget")) {
     (window as any).BPWidget.init(document.getElementById("bpWidget"), {
-      googleMapApiKey: "AIzaSyCBte9RCEqpFfJLF5pxaLRPDLJ_rc_PmlU",
+      googleMapApiKey: "AIzaSyCUyydNCGhxGi5GIt5z5I-X6hofzptsRjE",
       callback: function (point: any) {
         let [street, streetNumber] = point.street
           .split(/(\d+)/g)

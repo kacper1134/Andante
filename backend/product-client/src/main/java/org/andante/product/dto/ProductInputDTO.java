@@ -1,18 +1,10 @@
 package org.andante.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.andante.amplifiers.dto.AmplifiersInputDTO;
-import org.andante.gramophones.dto.GramophonesInputDTO;
-import org.andante.headphones.dto.HeadphonesInputDTO;
-import org.andante.microphones.dto.MicrophonesInputDTO;
 import org.andante.product.constraint.ProductInputConstraint;
-import org.andante.speakers.dto.SpeakersInputDTO;
-import org.andante.subwoofers.dto.SubwoofersInputDTO;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -22,15 +14,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes({
-        @JsonSubTypes.Type(AmplifiersInputDTO.class),
-        @JsonSubTypes.Type(GramophonesInputDTO.class),
-        @JsonSubTypes.Type(HeadphonesInputDTO.class),
-        @JsonSubTypes.Type(MicrophonesInputDTO.class),
-        @JsonSubTypes.Type(SpeakersInputDTO.class),
-        @JsonSubTypes.Type(SubwoofersInputDTO.class)
-})
 @ProductInputConstraint
 public abstract class ProductInputDTO {
 

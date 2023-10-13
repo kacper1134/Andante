@@ -8,8 +8,8 @@ import lombok.experimental.SuperBuilder;
 import org.andante.microphones.enums.MicrophoneType;
 import org.andante.product.dto.ProductOutputDTO;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @SuperBuilder
 @Data
@@ -21,7 +21,7 @@ public class MicrophonesOutputDTO extends ProductOutputDTO {
     private Boolean wireless;
     private Float bluetoothStandard;
     private MicrophoneType type;
-    private Set<MicrophonesVariantOutputDTO> variants;
+    private List<MicrophonesVariantOutputDTO> variants;
 
     public Optional<Float> getBluetoothStandard() {
         return Optional.ofNullable(bluetoothStandard);

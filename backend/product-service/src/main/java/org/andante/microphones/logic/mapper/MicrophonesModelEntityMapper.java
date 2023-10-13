@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -42,7 +43,7 @@ public class MicrophonesModelEntityMapper {
         Set<Long> commentsIds = microphonesInput.getCommentsIds();
 
         Set<CommentEntity> comments = new HashSet<>(commentRepository.findAllById(commentsIds));
-        Set<MicrophonesVariantEntity> microphonesVariants = new HashSet<>(microphonesVariantRepository.findAllById(variantsIds));
+        List<MicrophonesVariantEntity> microphonesVariants = microphonesVariantRepository.findAllById(variantsIds);
 
         return MicrophonesEntity.builder()
                 .id(microphonesInput.getId())

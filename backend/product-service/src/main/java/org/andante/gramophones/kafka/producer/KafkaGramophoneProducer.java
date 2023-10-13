@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -30,10 +30,10 @@ public class KafkaGramophoneProducer {
     }
 
     private String buildGramophoneEventKey(GramophoneEvent gramophoneEvent) {
-        return gramophoneEvent.getGramophone().getId() + SEPARATOR + gramophoneEvent.getGramophone().getModificationTimestamp();
+        return gramophoneEvent.getGramophone().getId() + SEPARATOR + UUID.randomUUID();
     }
 
     private String buildGramophoneVariantEventKey(GramophoneVariantEvent gramophoneVariantEvent) {
-        return gramophoneVariantEvent.getGramophoneVariant().getId() + SEPARATOR + LocalDateTime.now();
+        return gramophoneVariantEvent.getGramophoneVariant().getId() + SEPARATOR + UUID.randomUUID();
     }
 }

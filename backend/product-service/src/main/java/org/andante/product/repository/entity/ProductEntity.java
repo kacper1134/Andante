@@ -15,6 +15,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -78,7 +79,7 @@ public abstract class ProductEntity {
     @Column(name = "producer_name", nullable = false, insertable = false, updatable = false)
     private String producerName;
 
-    public abstract Set<ProductVariantEntity> getVariants();
+    public abstract List<ProductVariantEntity> getVariants();
     public abstract void setVariants(Set<ProductVariantEntity> variants);
 
     public abstract ProductOutput toModel();
@@ -90,6 +91,18 @@ public abstract class ProductEntity {
                     .orElse(new HashSet<>());
 
             producerProducts.add(this);
+
+            producer.setProducts(producerProducts);
+        }
+    }
+
+    @PreRemove
+    public void preRemove() {
+        if (producer != null) {
+            Set<ProductEntity> producerProducts = Optional.ofNullable(producer.getProducts())
+                    .orElse(new HashSet<>());
+
+            producerProducts.remove(this);
 
             producer.setProducts(producerProducts);
         }

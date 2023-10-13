@@ -21,6 +21,7 @@ public class MicrophonesVariantDTOModelMapper {
                 .imageUrl(microphonesVariantDTO.getImageUrl())
                 .thumbnailUrl(microphonesVariantDTO.getThumbnailUrl())
                 .color(microphonesVariantDTO.getColor())
+                .microphoneId(microphonesVariantDTO.getMicrophoneId())
                 .build();
     }
 }

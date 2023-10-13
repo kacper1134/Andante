@@ -8,7 +8,7 @@ import org.andante.amplifiers.enums.AmplifierType;
 import org.andante.product.logic.model.Comment;
 import org.andante.product.logic.model.ProductOutput;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @SuperBuilder
@@ -18,7 +18,7 @@ public class AmplifiersOutput extends ProductOutput {
 
     private Float power;
     private AmplifierType amplifierType;
-    private Set<AmplifiersVariantOutput> variants;
+    private List<AmplifiersVariantOutput> variants;
 
     @Override
     public AmplifiersOutputDTO toDTO() {
@@ -49,7 +49,7 @@ public class AmplifiersOutput extends ProductOutput {
                 .amplifierType(amplifierType)
                 .variants(variants.stream()
                         .map(AmplifiersVariantOutput::toDTO)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

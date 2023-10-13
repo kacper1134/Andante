@@ -15,8 +15,9 @@ import org.andante.product.repository.entity.ProductEntity;
 import org.andante.product.repository.entity.ProductVariantEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,11 +45,11 @@ public class HeadphonesEntity extends ProductEntity {
     private Float bluetoothStandard;
 
     @OneToMany(mappedBy="headphones", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<HeadphonesVariantEntity> variants;
+    private List<HeadphonesVariantEntity> variants;
 
     @Override
-    public Set<ProductVariantEntity> getVariants() {
-        return new HashSet<>(variants);
+    public List<ProductVariantEntity> getVariants() {
+        return new ArrayList<>(variants);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class HeadphonesEntity extends ProductEntity {
         if (areAllVariantsHeadphones(variants)) {
             this.variants = variants.stream()
                     .map(HeadphonesVariantEntity.class::cast)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         }
     }
 
@@ -86,7 +87,7 @@ public class HeadphonesEntity extends ProductEntity {
                 .bluetoothStandard(bluetoothStandard)
                 .variants(variants.stream()
                         .map(HeadphonesVariantEntity::toModel)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

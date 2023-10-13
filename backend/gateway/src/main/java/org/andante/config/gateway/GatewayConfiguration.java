@@ -32,6 +32,9 @@ public class GatewayConfiguration {
                 .route(r -> r.path("/profile/**")
                         .filters(f -> f.filter(filterFactory.apply()))
                         .uri("lb://ACTIVITY"))
+                .route(r -> r.path("/order")
+                        .filters(f -> f.filter(filterFactory.apply()))
+                        .uri("lb://ORDERS"))
                 .build();
     }
 }

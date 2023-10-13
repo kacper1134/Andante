@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
     const fillColor = useToken("colors", "gray.400");
     const iconSize = "32px";
     const productImage = useFirebase(data.variants.length > 0 ? data.variants[0].imageUrl : noimage, noimage);
-    const productUrl = "https://" + window.location.host + `/shop/product/${data.id}`;
+    const productUrl = "http://" + window.location.host + `/shop/product/${data.id}`;
 
 
     const breadcrumbs: Link[] = [

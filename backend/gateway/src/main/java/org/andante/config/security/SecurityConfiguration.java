@@ -32,7 +32,9 @@ public class SecurityConfiguration {
     private final List<String> allowedHeaders = List.of("Authorization", "Requestor-Type", "Content-Type");
     private final List<String> exposedHeaders = List.of("X-Get-Header");
     private final List<String> disabledSecurityEndpoints = List.of("/product/query", "/product/rating", "/product/bulk", "/product/popular",
-            "/order/payment/webhook", "/activity/general", "/profile/image", "/activity/newsletter/subscribe", "/product/producer/top", "/product/comment/query");
+            "/order/payment/webhook", "/activity/general", "/profile/image", "/activity/newsletter/subscribe", "/product/producer/top", "/product/comment/query", "/product/amplifier/query",
+            "/product/headphones/query", "/product/subwoofer/query", "/product/speakers/query", "/product/gramophones/query", "/product/microphone/query", "/activity/prometheus", "/forum/prometheus",
+            "/product/prometheus", "/order/prometheus");
 
     private final KeycloakRealmRoleConverter keycloakRealmRoleConverter;
 

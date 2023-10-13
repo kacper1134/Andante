@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -42,7 +43,7 @@ public class AmplifiersModelEntityMapper {
         Set<Long> commentsIds = amplifiersInput.getCommentsIds();
 
         Set<CommentEntity> comments = new HashSet<>(commentRepository.findAllById(commentsIds));
-        Set<AmplifiersVariantEntity> amplifierVariants = new HashSet<>(amplifiersVariantRepository.findAllById(variantsIds));
+        List<AmplifiersVariantEntity> amplifierVariants = amplifiersVariantRepository.findAllById(variantsIds);
 
         return AmplifiersEntity.builder()
                 .id(amplifiersInput.getId())

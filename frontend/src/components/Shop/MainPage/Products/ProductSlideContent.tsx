@@ -1,4 +1,4 @@
-import { Box, Text, VStack, HStack, Button, useToast } from "@chakra-ui/react";
+import { Box, Text, VStack, HStack, Button, useToast, Spacer } from "@chakra-ui/react";
 import { motion, useAnimationControls, Variants } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -84,6 +84,22 @@ const ProductSlideContent = ({ product, isDragOn }: ProductSlideContentProps) =>
 
   const canAddToCart = product.variants[0]?.availableQuantity > 0;
 
+  const width = {
+    base: "120px",
+    sm: "150px",
+    md: "180px",
+    lg: "210px",
+    xl: "240px",
+  };
+
+  const height = {
+    base: "90px",
+    sm: "112px",
+    md: "135px",
+    lg: "160px",
+    xl: "180px",
+  };
+
   return (
     <>
       <Box
@@ -91,37 +107,39 @@ const ProductSlideContent = ({ product, isDragOn }: ProductSlideContentProps) =>
         bgRepeat="no-repeat"
         bgSize="cover"
         bgPosition="center"
-        width="50%"
-        height="50%"
-        m="5"
+        width={width}
+        height={height}
+        m="50px 5px 5px 5px"
       ></Box>
-      <VStack spacing={{base: 3, md: 4}} width="100%" pl="15px">
+      <VStack spacing={{base: 3, md: 4}} width="100%" px="15px" flexGrow={1}>
         <Text
           as={Link}
           to={`product/${product.id}`}
           color="primary.200"
           width="100%"
           fontSize={{
-            base: "16px",
-            sm: "19px",
-            md: "22px",
-            lg: "26px",
-            xl: "30px",
+            base: "14px",
+            sm: "16px",
+            md: "18px",
+            lg: "19px",
+            xl: "20px",
           }}
           textStyle="p"
+          noOfLines={2}
         >
           {product.name}
         </Text>
-        <HStack color="white" alignSelf="flex-start" fontSize={fontSize}>
+        <Spacer />
+        <HStack color="white" alignSelf="flex-start" fontSize={fontSize} justifyContent="space-between" w="inherit" pb="10px">
           <Text pr="10%" textStyle="p">${product.price}</Text>
-        </HStack>
-        {keycloak.authenticated && <Button
+          {keycloak.authenticated && <Button
           alignSelf="flex-start"
           color="white"
           colorScheme="purple"
           fontSize={fontSize}
           size="xs"
           rounded="xl"
+          p="12px"
           as={motion.button}
           animate={controls}
           variants={variants}
@@ -133,6 +151,7 @@ const ProductSlideContent = ({ product, isDragOn }: ProductSlideContentProps) =>
         >
           Add to cart
         </Button>}
+        </HStack>
       </VStack>
     </>
   );

@@ -51,6 +51,16 @@
             <artifactId>easy-random-core</artifactId>
             <version>${jeasy.version}</version>
         </dependency>
+        <!-- Observability dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!-- Internal dependencies -->
         <dependency>
             <groupId>org.andante</groupId>

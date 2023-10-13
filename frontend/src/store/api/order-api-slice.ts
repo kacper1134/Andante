@@ -56,7 +56,7 @@ const orderApiSlice = createApi({
     }),
     createOrder: builder.mutation<number, OrderType>({
       query: (order) => ({
-        url: "/order",
+        url: "/order/create",
         method: "POST",
         body: order,
       }),

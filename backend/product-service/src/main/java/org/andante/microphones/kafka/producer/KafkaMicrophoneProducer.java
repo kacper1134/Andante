@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
@@ -30,10 +30,10 @@ public class KafkaMicrophoneProducer {
     }
 
     private String buildMicrophoneEventKey(MicrophoneEvent microphoneEvent) {
-        return microphoneEvent.getMicrophone().getId() + SEPARATOR + microphoneEvent.getMicrophone().getModificationTimestamp();
+        return microphoneEvent.getMicrophone().getId() + SEPARATOR + UUID.randomUUID();
     }
 
     private String buildMicrophoneVariantEventKey(MicrophoneVariantEvent microphoneVariantEvent) {
-        return microphoneVariantEvent.getMicrophoneVariant().getId() + SEPARATOR + LocalDateTime.now();
+        return microphoneVariantEvent.getMicrophoneVariant().getId() + SEPARATOR + UUID.randomUUID();
     }
 }

@@ -29,6 +29,10 @@ const Notifications = () => {
     setNumberOfPages(result.totalPages);
   }, [result]);
 
+  useEffect(() => {
+    setPage(0);
+  }, [filterOption]);
+
   return (
     <VStack
       w={notificationWidth}

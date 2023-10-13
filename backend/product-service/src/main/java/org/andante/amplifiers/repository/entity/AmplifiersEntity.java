@@ -11,10 +11,7 @@ import org.andante.product.repository.entity.ProductEntity;
 import org.andante.product.repository.entity.ProductVariantEntity;
 
 import javax.persistence.*;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -36,12 +33,12 @@ public class AmplifiersEntity extends ProductEntity {
     private AmplifierType type;
 
     @OneToMany(mappedBy="amplifiers", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<AmplifiersVariantEntity> variants;
+    private List<AmplifiersVariantEntity> variants;
 
     @Override
-    public Set<ProductVariantEntity> getVariants() {
-        return new HashSet<>(Optional.ofNullable(variants)
-                .orElse(Set.of()));
+    public List<ProductVariantEntity> getVariants() {
+        return new ArrayList<>(Optional.ofNullable(variants)
+                .orElse(List.of()));
     }
 
     @Override
@@ -49,7 +46,7 @@ public class AmplifiersEntity extends ProductEntity {
         if (areAllVariantsAmplifiers(variants)) {
             this.variants = variants.stream()
                     .map(AmplifiersVariantEntity.class::cast)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         }
     }
 
@@ -76,7 +73,7 @@ public class AmplifiersEntity extends ProductEntity {
                 .amplifierType(type)
                 .variants(variants.stream()
                         .map(AmplifiersVariantEntity::toModel)
-                        .collect(Collectors.toSet()))
+                        .collect(Collectors.toList()))
                 .build();
     }
 

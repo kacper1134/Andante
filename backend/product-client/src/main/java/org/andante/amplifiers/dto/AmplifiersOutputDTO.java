@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 import org.andante.amplifiers.enums.AmplifierType;
 import org.andante.product.dto.ProductOutputDTO;
 
-import java.util.Set;
+import java.util.List;
 
 @SuperBuilder
 @Data
@@ -19,5 +19,5 @@ public class AmplifiersOutputDTO extends ProductOutputDTO {
 
     private Float power;
     private AmplifierType amplifierType;
-    private Set<AmplifiersVariantOutputDTO> variants;
+    private List<AmplifiersVariantOutputDTO> variants;
 }

@@ -32,6 +32,7 @@ public class GramophonesDTOModelMapper {
                 .motorType(gramophonesDTO.getMotorType())
                 .powerSource(gramophonesDTO.getPowerSource())
                 .maximumFrequency(gramophonesDTO.getMaximumFrequency())
+                .maximumRotationalSpeed(gramophonesDTO.getMaximumRotationalSpeed())
                 .variantsIds(gramophonesDTO.getVariantsIds())
                 .build();
     }

@@ -95,7 +95,7 @@ public class OrderController {
         return ResponseEntity.ok(clientOrders);
     }
 
-    @PostMapping
+    @PostMapping(path = "/create")
     public ResponseEntity<Long> create(@Valid @RequestBody OrderInputDTO ordersToCreate) {
         OrderInput model = orderDTOModelMapper.toModel(ordersToCreate);
         OrderOutput serviceResponse = orderService.create(model);

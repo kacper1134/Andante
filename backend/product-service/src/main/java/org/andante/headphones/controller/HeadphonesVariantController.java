@@ -78,7 +78,7 @@ public class HeadphonesVariantController {
     @PutMapping
     public ResponseEntity<OperationStatus> modify(@Valid @RequestBody HeadphonesVariantInputDTO headphonesVariantDTO) {
         HeadphonesVariantInput headphonesVariant = headphonesVariantDTOModelMapper.toModel(headphonesVariantDTO);
-        HeadphonesVariantOutput serviceResponse = headphonesVariantService.create(headphonesVariant);
+        HeadphonesVariantOutput serviceResponse = headphonesVariantService.modify(headphonesVariant);
         HeadphonesVariantOutputDTO variantDTO = headphonesVariantDTOModelMapper.toDTO(serviceResponse);
 
         kafkaHeadphonesProducer.publish(HeadphonesVariantEvent.builder()

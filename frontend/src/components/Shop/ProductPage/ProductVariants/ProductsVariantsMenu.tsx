@@ -37,6 +37,7 @@ const ProductsVariantsStack: React.FC<ProductsVariantsStackProps> = ({variantGro
         name: variantGroup.name,
         defaultValue: variantGroup.options[0],
         onChange: variantGroup.setSelectedOption,
+        value: variantGroup.selectedOption,
     });
 
     const group = getRootProps();

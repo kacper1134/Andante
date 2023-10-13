@@ -195,6 +195,11 @@ function extractGramophonesFeatures(gramophones: GramophonesOutputDTO): ProductF
 function useGramophonesVariantGroup(product: ProductOutputDTO): VariantSelectorResults {
     const [selectedColor, setSelectedColor] = useState<string>("");    
 
+    useEffect(() => {
+        if (product.variants.length > 0 && isGramophonesVariantOutputDTOArray(product.variants)) {
+            setSelectedColor(product.variants[0].color);
+        }
+    }, [product]);
     if (isGramophonesVariantOutputDTOArray(product.variants)) {
         const allColors = product.variants.map(variant => variant.color)
             .filter((variant, index, array) => array.indexOf(variant) === index);
@@ -443,6 +448,11 @@ function extractSubwoofersVariantFeatures(subwoofersVariant: SubwoofersVariantOu
 function useSubwoofersVariantsGroup(product: ProductOutputDTO): VariantSelectorResults {
     const [color, setColor] = useState<string>("");
 
+    useEffect(() => {
+        if (product.variants.length > 0 && isSubwoofersVariantOutputDTOArray(product.variants)) {
+            setColor(product.variants[0].color);
+        }
+    }, [product]);
     if (isSubwoofersVariantOutputDTOArray(product.variants)) {
         const allColors = product.variants.map(variant => variant.color)
             .filter((variant, index, array) => array.indexOf(variant) === index);

@@ -26,7 +26,7 @@ import { RootState } from "../../../../store";
 import { useEffect, useState } from "react";
 
 export interface Link {
-  icon: As<any>;
+  icon: As;
   text: string;
   path: string;
 }

@@ -85,7 +85,16 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
         duration: 5000,
         isClosable: true,
       });
-    } else {
+    } else if (!isPostalCodeValid(orderData.orderDetails.location.postalCode)) {
+      toast({
+        title: "Invalid Postal Code",
+        description: "Provided postal code does not match required pattern of two digits followed by hyphen and three digits",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      })
+    } 
+    else {
       setIsModalOpen(true);
     }
   }
@@ -107,6 +116,12 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
       orderDetails.location.buildingNumber.length < 1 ||
       orderDetails.location.postalCode.length < 1
     );
+  }
+
+  function isPostalCodeValid(postalCode: string) {
+    let postalCodeRegex = /^[0-9]{2}-[0-9]{3}$/;
+
+    return postalCodeRegex.test(postalCode);
   }
 
   return (

@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 public class DefaultActivityService implements ActivityService {
 
     private static final String ACTIVITY_NOT_FOUND_EXCEPTION_MESSAGE = "Activity with identifier %s was not found";
-    private static final String ACTIVITY_CONFLICT_EXCEPTION_MESSAGE = "Activity with identifier %s does not exist";
+    private static final String ACTIVITY_CONFLICT_EXCEPTION_MESSAGE = "Activity with identifier %s already exists";
     private static final String USER_NOT_AFFECTED_EXCEPTION_MESSAGE = "%s is not one of observing users of activity %s";
 
     private final ActivityRepository activityRepository;
