@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { KeycloakTokenParsed } from "keycloak-js";
 import { getUserDetails, UserDetails } from "../../utils/KeycloakUtils";
 
-const authInititalState: AuthSliceState = { isAuthenticated: false, shouldLogout: false};
+const authInititalState: AuthSliceState = { isAuthenticated: false, shouldLogout: false, alternativeVersionOfInterface: false};
 
 export interface AuthSliceState {
   isAuthenticated: boolean,
@@ -10,6 +10,7 @@ export interface AuthSliceState {
   tokenParsed?: KeycloakTokenParsed,
   userDetails?: UserDetails,
   shouldLogout: boolean,
+  alternativeVersionOfInterface: boolean,
 }
 
 const authSlice = createSlice({
@@ -31,6 +32,9 @@ const authSlice = createSlice({
     },
     queueLogout: (state) => {
       state.shouldLogout = true;
+    },
+    changeInterfaceVersion: (state) => {
+      state.alternativeVersionOfInterface = !state.alternativeVersionOfInterface;
     }
   },
 });

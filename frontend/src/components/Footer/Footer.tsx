@@ -1,6 +1,7 @@
-import { HStack, Spacer } from "@chakra-ui/react";
+import { HStack, Spacer, useBreakpointValue } from "@chakra-ui/react";
 import Copyright from "./Copyright";
 import SocialMediaIcons from "./SocialMediaIcons";
+import AlternativeVersionSwitch from "./AlternativeVersionSwitch";
 
 const Footer = () => {
   const footerHeight = {
@@ -10,6 +11,12 @@ const Footer = () => {
     lg: "64px",
     xl: "72px",
   };
+
+  const showSwitch = useBreakpointValue({
+    base: false,
+    lg: true,
+  })
+
   return (
     <HStack
       w="100%"
@@ -20,6 +27,7 @@ const Footer = () => {
     >
       <Copyright />
       <Spacer />
+      {showSwitch && <AlternativeVersionSwitch />}
       <SocialMediaIcons />
     </HStack>
   );
