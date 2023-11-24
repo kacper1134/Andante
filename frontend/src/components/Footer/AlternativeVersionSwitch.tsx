@@ -8,7 +8,7 @@ const switchFontSize = {
 };
 
 const AlternativeVersionSwitch = () => {
-  const isAuthenticated = useSelector(
+  const alternativeVersionOfInterface = useSelector(
     (state: RootState) => state.auth.alternativeVersionOfInterface
   );
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const AlternativeVersionSwitch = () => {
       </FormLabel>
       <Switch
         id="email-alerts"
-        isChecked={isAuthenticated}
+        isChecked={alternativeVersionOfInterface}
         onChange={changeAppVersion}
       />
     </FormControl>
