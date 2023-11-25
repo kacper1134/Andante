@@ -17,6 +17,7 @@ import {
   profileLinkVariants,
 } from "./ProfileLinkVariants";
 import { AiFillEdit } from "react-icons/ai";
+import { FaShoppingBag } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
 import { authActions } from "../../../../store/auth/auth-slice";
 import { cartActions } from "../../../../store/cart/cartSlice";
@@ -46,7 +47,11 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
   const dispatch = useDispatch();
   const { keycloak } = useKeycloak();
   const userDetails = useSelector((state: RootState) => state.auth.userDetails);
-  const [communityPath, setCommunityPath] = useState<string>("/profile/community");
+  const [communityPath, setCommunityPath] =
+    useState<string>("/profile/community");
+  const alternativeVersionOfInterface = useSelector(
+    (state: RootState) => state.auth.alternativeVersionOfInterface
+  );
 
   useEffect(() => {
     if (userDetails) {
@@ -55,10 +60,22 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
   }, [userDetails]);
 
   const links: Link[] = [
-    { icon: MdOutlineAccountBox, text: "User Details", path: "/profile/details" },
+    {
+      icon: MdOutlineAccountBox,
+      text: "User Details",
+      path: "/profile/details",
+    },
     { icon: BiHistory, text: "Order History", path: "/profile/orders" },
     { icon: MdOutlineForum, text: "Community", path: communityPath },
   ];
+
+  if (alternativeVersionOfInterface) {
+    links.push({
+      icon: FaShoppingBag,
+      text: "Order Preferences",
+      path: "/profile/preferences",
+    });
+  }
 
   const logout = () => {
     keycloak.logout({
@@ -96,8 +113,8 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
               leftIcon={<AiFillEdit />}
               onClick={() => navigate("./edit")}
               backgroundColor="primary.400"
-              _hover={{backgroundColor: "primary.500"}}
-              _active={{backgroundColor: "primary.500"}}
+              _hover={{ backgroundColor: "primary.500" }}
+              _active={{ backgroundColor: "primary.500" }}
               borderRadius={0}
               color="white"
               cursor="pointer"
@@ -111,8 +128,8 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
               leftIcon={<ImExit />}
               onClick={logout}
               backgroundColor="primary.400"
-              _hover={{backgroundColor: "primary.500"}}
-              _active={{backgroundColor: "primary.500"}}
+              _hover={{ backgroundColor: "primary.500" }}
+              _active={{ backgroundColor: "primary.500" }}
               borderRadius={0}
               color="white"
               cursor="pointer"

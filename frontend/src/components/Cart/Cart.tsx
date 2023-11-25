@@ -9,13 +9,13 @@ import CartConfirmation from './CartConfirmation';
 
 
 export interface CartProps {
-
+    startCartStep: number
 }
 
 
-const Cart: React.FC<CartProps> = () => {
+const Cart: React.FC<CartProps> = ({startCartStep}) => {
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-    const [currentCartStep, setCurrentCartStep] = useState(0);
+    const [currentCartStep, setCurrentCartStep] = useState(startCartStep);
     const direction = useBreakpointValue({
         base: "column",
         lg: "row",
