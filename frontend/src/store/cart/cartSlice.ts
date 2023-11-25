@@ -7,6 +7,7 @@ import { DeliveryMethod, DeliveryPickupLocation, PaymentMethodData } from "../..
 export interface CartSliceState {
     cartItems: CartEntryData[],
     orderData: OrderData,
+    orderPreferences: OrderData,
     invoice?: Blob,
     deliveryPickupLocation: DeliveryPickupLocation | null,
     currency: string,
@@ -21,6 +22,36 @@ const cartInitialState: CartSliceState = {
     cartItems: [],
     currency: "$",
     orderData: {
+        orderId: 0,
+        orderDate: DateTime.now(),
+        orderDetails: {
+            personal: {
+                name: "",
+                surname: "",
+                emailAddress: "",
+                phoneNumber: "",
+            },
+            location: {
+                country: "",
+                city: "",
+                street: "",
+                buildingNumber: "",
+                postalCode: ""
+            }
+        },
+        deliveryMethod: {
+            provider: "",
+            expectedDeliveryDays: 0,
+            price: 0,
+            type: "Courier",
+        },
+        paymentMethod: {
+            provider: "",
+            description: "",
+            cost: 0,
+        }
+    },
+    orderPreferences: {
         orderId: 0,
         orderDate: DateTime.now(),
         orderDetails: {
@@ -77,6 +108,10 @@ const cartSlice = createSlice({
                 state.cartItems.filter(item => item.variant.id === action.payload.id).forEach(item => item.quantity = action.payload.newQuantity)
             }
         },
+        addBuyNowItem: (state, action: PayloadAction<CartEntryData>) => {
+            state.cartItems = []
+            state.cartItems.push(action.payload);
+        },
         clearCart: (state) => {
             state.cartItems = []
         },
@@ -94,6 +129,18 @@ const cartSlice = createSlice({
         },
         updatePaymentMethod: (state, action: PayloadAction<PaymentMethodData>) => {
             state.orderData.paymentMethod = action.payload;
+        },
+        updateOrderDetails: (state, action: PayloadAction<OrderDetails>) => {
+            state.orderData.orderDetails = action.payload;
+        },
+        updatePreferedDeliveryMethod: (state, action: PayloadAction<DeliveryMethod>) => {
+            state.orderPreferences.deliveryMethod = action.payload;
+        },
+        updatePreferedPaymentMethod: (state, action: PayloadAction<PaymentMethodData>) => {
+            state.orderPreferences.paymentMethod = action.payload;
+        },
+        updatePreferedOrderDetails: (state, action: PayloadAction<OrderDetails>) => {
+            state.orderPreferences.orderDetails = action.payload;
         },
         updateDeliveryPickupLocation: (state, action: PayloadAction<DeliveryPickupLocation>) => {
             state.deliveryPickupLocation = action.payload;

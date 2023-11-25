@@ -8,8 +8,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useKeycloak } from "@react-keycloak/web";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { SetStateAction, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductOutputDTO } from "../../../../store/api/result/dto/product/base/ProductOutputDTO";
 import ProductAverageRating from "./ProductAverageRating";
 import { imageHeight } from "./ProductDimensions";
@@ -17,8 +17,13 @@ import ProductLikeButton from "./ProductLikeButton";
 import { cartActions } from "../../../../store/cart/cartSlice";
 import { ProductVariantOutputDTO } from "../../../../store/api/result/dto/product/variant/ProductVariantOutputDTO";
 import { getUserDetails, UserDetails } from "../../../../utils/KeycloakUtils";
-import add_interaction, { InteractionType } from "../../../../functions/recommendation-functions";
+import add_interaction, {
+  InteractionType,
+} from "../../../../functions/recommendation-functions";
 import useUserProfile from "../../../../hooks/useUserProfile";
+import { RootState } from "../../../../store";
+import { useNavigate } from "react-router-dom";
+import BuyNowModal from "../../MainPage/Products/BuyNowModal";
 
 const headerSize = {
   base: "14px",
@@ -48,12 +53,15 @@ const fontSize = {
 };
 
 export interface ProductBasicInfoProps {
-  data: ProductOutputDTO,
-  selectedVariant?: ProductVariantOutputDTO
-};
+  data: ProductOutputDTO;
+  selectedVariant?: ProductVariantOutputDTO;
+}
 
-const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({data, selectedVariant}) => {
-  const {keycloak} = useKeycloak();
+const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
+  data,
+  selectedVariant,
+}) => {
+  const { keycloak } = useKeycloak();
   const horizontalWidth = parseInt(useBreakpointValue(imageHeight)!) * 1.5;
   const starSize = parseInt(useBreakpointValue(headerSize)!);
   const [userDetails, setUserDetails] = useState<UserDetails>();
@@ -72,7 +80,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({data, selectedVarian
   useEffect(() => {
     if (keycloak.idTokenParsed) {
       const details = getUserDetails(keycloak.idTokenParsed);
-      
+
       setUserDetails(details);
 
       const isObserved = data.observers.includes(details.personal.emailAddress);
@@ -83,43 +91,78 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({data, selectedVarian
 
   const addToCart = () => {
     if (selectedVariant) {
-      dispatch(cartActions.addToCart({
-        variant: selectedVariant,
-        product: data,
-        quantity: 1
-      }));
+      dispatch(
+        cartActions.addToCart({
+          variant: selectedVariant,
+          product: data,
+          quantity: 1,
+        })
+      );
       add_interaction(userProfile?.username!, data.id, InteractionType.CART);
       toast({
-        title: 'Cart updated',
+        title: "Cart updated",
         description: `Product ${data.name} have been successfully added to your cart`,
         status: "success",
         duration: 9000,
-        isClosable: true,  
-      })
+        isClosable: true,
+      });
     }
-  }
+  };
 
-  const canAddToCart = selectedVariant ? selectedVariant.availableQuantity >= 0 : false;
+  const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const buyNow = (value: SetStateAction<number>) => {
+    if (selectedVariant) {
+      navigate(`/cart?startCartStep=2`);
+    }
+  };
+
+  const openConfirmationModal = () => {
+    if (selectedVariant) {
+      setIsOpen(true);
+      dispatch(
+        cartActions.addBuyNowItem({
+          variant: selectedVariant,
+          product: data,
+          quantity: 1,
+        })
+      );
+    }
+  };
+
+  const canAddToCart = selectedVariant
+    ? selectedVariant.availableQuantity >= 0
+    : false;
+
+  const alternativeVersionOfInterface = useSelector(
+    (state: RootState) => state.auth.alternativeVersionOfInterface
+  );
 
   return (
     <VStack
       alignItems="flex-start"
       width={width}
       minHeight={imageHeight}
-      pl={{lg: "3%"}}
+      pl={{ lg: "3%" }}
     >
-      <Text fontSize={headerSize} textStyle="h1">{data.name}</Text>
+      <Text fontSize={headerSize} textStyle="h1">
+        {data.name}
+      </Text>
       <HStack>
         <Text fontSize={headerSize} mb="2%" textStyle="h1">
           {data.productType}
         </Text>
-        {keycloak.authenticated && <ProductLikeButton
-          productId={data.id}
-          userEmail={userDetails?.personal.emailAddress}
-          isLiked={isLiked}
-          setIsLiked={setIsLiked}
-          fontSize={priceFontSize}
-        />}
+        {keycloak.authenticated && (
+          <ProductLikeButton
+            productId={data.id}
+            userEmail={userDetails?.personal.emailAddress}
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+            fontSize={priceFontSize}
+          />
+        )}
       </HStack>
       <ProductAverageRating
         product={data}
@@ -127,22 +170,45 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({data, selectedVarian
         starSize={starSize}
       />
       <HStack fontSize={priceFontSize} pt="1%" spacing={6}>
-        <Text textStyle="p" fontWeight="bold">${selectedVariant ? selectedVariant.price : data.price}</Text>
+        <Text textStyle="p" fontWeight="bold">
+          ${selectedVariant ? selectedVariant.price : data.price}
+        </Text>
       </HStack>
-      <Text fontSize={fontSize} textStyle="p">{data.description}</Text>
+      <Text fontSize={fontSize} textStyle="p">
+        {data.description}
+      </Text>
       <Spacer />
-      {keycloak.authenticated && <Button
-        width="100%"
-        colorScheme="purple"
-        fontWeight="bold"
-        py="5%"
-        fontSize={priceFontSize}
-        textStyle="p"
-        disabled={!canAddToCart}
-        onClick={addToCart}
-      >
-        Add to cart
-      </Button>}
+      {keycloak.authenticated && (
+        <HStack width="100%">
+          <Button
+            width={alternativeVersionOfInterface ? "50%" : "100%"}
+            colorScheme="purple"
+            fontWeight="bold"
+            py="5%"
+            fontSize={priceFontSize}
+            textStyle="p"
+            disabled={!canAddToCart}
+            onClick={addToCart}
+          >
+            Add to cart
+          </Button>
+          {alternativeVersionOfInterface && (
+            <Button
+              width="50%"
+              colorScheme="whatsapp"
+              fontWeight="bold"
+              py="5%"
+              fontSize={priceFontSize}
+              textStyle="p"
+              disabled={!canAddToCart}
+              onClick={() => openConfirmationModal()}
+            >
+              Buy now!
+            </Button>
+          )}
+        </HStack>
+      )}
+      <BuyNowModal isOpen={isOpen} setIsOpen={setIsOpen} buyNow={buyNow} />
     </VStack>
   );
 };

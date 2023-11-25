@@ -5,8 +5,7 @@ import ProfileHistory from "../components/Profile/History/ProfileHistory";
 import CommunityPage from "../components/Profile/Community/CommunityPage";
 import useAuthentication from "../hooks/useAuthentication";
 import ProfileEdit from "../components/Profile/Edit/ProfileEdit";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import OrderPreferencesForms from "../components/Profile/Preferences/OrderPreferencesForms";
 
 export interface ProfilePageProps {
     isSidebarOpened: boolean,
@@ -14,7 +13,6 @@ export interface ProfilePageProps {
 
 const ProfilePage: React.FC<ProfilePageProps> = ({isSidebarOpened}) => {
     useAuthentication("/profile");
-    const userDetails = useSelector((state: RootState) => state.auth.userDetails);  
 
     return (
         <>
@@ -24,6 +22,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({isSidebarOpened}) => {
             <Route path="orders" element={<ProfileHistory />} />
             <Route path="community/:username" element={<CommunityPage />} />
             <Route path="edit" element={<ProfileEdit />} />
+            <Route path="preferences" element={<OrderPreferencesForms />} />
             <Route path="/" element={<Navigate to="details" />} />
         </Routes>
         </>
