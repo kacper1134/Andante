@@ -151,6 +151,13 @@ const ForumPostPage = () => {
               setReloadReplies={setReloadReplies}
             />
           ))}
+          
+      <NewPostReply
+        isEdit={false}
+        isOpen={!isOpen}
+        setIsOpen={setIsOpen}
+        setReloadReplies={setReloadReplies}
+      />
       </VStack>
       {replies && replies.length > 0 && (
         <PageChanger

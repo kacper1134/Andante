@@ -1,4 +1,6 @@
 import {
+  VStack,
+  Text,
   Button,
   Collapse,
   Flex,
@@ -91,7 +93,25 @@ const NewPostComment = ({
   };
 
   return (
-    <Collapse in={isOpen}>
+    <VStack 
+    as={Collapse} 
+    in={isOpen}
+    w="100%"
+    rounded="2xl"
+    mt="10px"
+    p="2"
+    bg="white"
+    boxShadow="1px 2px 2px 1px rgba(0,0,0,0.25)"
+    textStyle="p">
+      <Text
+        w="95%"
+        fontSize="1.8rem"
+        mx="2.5%"
+        my="10px"
+        textStyle="h1"
+      >
+        Add your comment
+      </Text>
       <UserTextEditor content={content} setContent={setContent} />
       <Flex direction="column" align="flex-end">
         <Button
@@ -114,7 +134,7 @@ const NewPostComment = ({
           )}
         </Button>
       </Flex>
-    </Collapse>
+    </VStack>
   );
 };
 
