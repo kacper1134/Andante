@@ -24,6 +24,7 @@ import { useUpdateProfileMutation } from "../../../store/api/profile-api-slice";
 import { useKeycloak } from "@react-keycloak/web";
 import useUserProfile from "../../../hooks/useUserProfile";
 import useGetFirebaseImage from "../../../hooks/useGetFirebaseImage";
+import { useTranslation } from "react-i18next";
 
 export type ProfileEditType = {
   firstName: string;
@@ -131,7 +132,7 @@ const ProfileEdit = () => {
   };
 
   const [isUpdateModal, setIsUpdateModal] = useState(false);
-
+  const {t} = useTranslation();
   return (
     <HStack h="100%" w="100%">
       <Center w="100%" h="100%">
@@ -154,7 +155,7 @@ const ProfileEdit = () => {
             {userData?.personal.name} {userData?.personal.surname}
           </Text>
           <Text textStyle="h1" fontSize={headerFontSize} color="primary.600">
-            About
+          {t("profilePage.edit.about")}
           </Text>
           <UserTextEditor
             initialValue={userData?.personal.description}
@@ -172,24 +173,24 @@ const ProfileEdit = () => {
         >
           <VStack alignItems="flex-start" w="95%">
             <Text textStyle="h1" fontSize={headerFontSize} color="primary.600">
-              Personal Details
+            {t("profilePage.edit.personal.title")}
             </Text>
             <SimpleGrid columns={2} spacingX={10} spacingY={4} w="100%">
               <FormEditInput
-                label="Name*"
-                placeholder="Enter your name"
+                label={t("profilePage.edit.personal.name.label")}
+                placeholder={t("profilePage.edit.personal.name.placeholder")}
                 value={firstName}
                 setValue={setFirstName}
               />
               <FormEditInput
-                label="Surname*"
-                placeholder="Enter your surname"
+                label={t("profilePage.edit.personal.surname.label")}
+                placeholder={t("profilePage.edit.personal.surname.placeholder")}
                 value={lastName}
                 setValue={setLastName}
               />
               <FormEditInput
-                label="Phone*"
-                placeholder="Enter your phone number"
+                label={t("profilePage.edit.personal.phone.label")}
+                placeholder={t("profilePage.edit.personal.phone.placeholder")}
                 value={phonenumber}
                 setValue={setPhonenumber}
               />
@@ -199,7 +200,7 @@ const ProfileEdit = () => {
                   textStyle="h1"
                   fontWeight="semibold"
                 >
-                  Birthdate*
+                  {t("profilePage.edit.personal.birthdate.label")}
                 </FormLabel>
                 <Input
                   fontSize={normalTextFontSize}
@@ -216,7 +217,7 @@ const ProfileEdit = () => {
                   textStyle="h1"
                   fontWeight="semibold"
                 >
-                  Gender*
+                  {t("profilePage.edit.personal.gender.label")}
                 </FormLabel>
                 <Select
                   textStyle="p"
@@ -224,8 +225,8 @@ const ProfileEdit = () => {
                   value={gender}
                   onChange={(event) => setGender(event.target.value)}
                 >
-                  <option value="Female">Female</option>
-                  <option value="Male">Male</option>
+                  <option value="Female">{t("profilePage.edit.personal.gender.female")}</option>
+                  <option value="Male">{t("profilePage.edit.personal.gender.male")}</option>
                 </Select>
               </FormControl>
             </SimpleGrid>
@@ -233,30 +234,30 @@ const ProfileEdit = () => {
           <Spacer />
           <VStack alignItems="flex-start" w="95%">
             <Text textStyle="h1" fontSize={headerFontSize} color="primary.600">
-              Delivery
+            {t("profilePage.edit.delivery.title")}
             </Text>
             <SimpleGrid columns={2} spacingX={10} spacingY={4} w="100%">
               <FormEditInput
-                label="Country*"
-                placeholder="Enter your country"
+                label={t("profilePage.edit.delivery.country.label")}
+                placeholder={t("profilePage.edit.delivery.country.placeholder")}
                 value={country}
                 setValue={setCountry}
               />
               <FormEditInput
-                label="City*"
-                placeholder="Enter your city"
+                label={t("profilePage.edit.delivery.city.label")}
+                placeholder={t("profilePage.edit.delivery.city.placeholder")}
                 value={city}
                 setValue={setCity}
               />
               <FormEditInput
-                label="Street"
-                placeholder="Enter your street"
+                label={t("profilePage.edit.delivery.street.label")}
+                placeholder={t("profilePage.edit.delivery.street.placeholder")}
                 value={street}
                 setValue={setStreet}
               />
               <FormEditInput
-                label="Postal Code"
-                placeholder="Enter your postal code"
+                label={t("profilePage.edit.delivery.postalcode.label")}
+                placeholder={t("profilePage.edit.delivery.postalcode.placeholder")}
                 value={postalcode}
                 setValue={setPostalcode}
               />
@@ -275,7 +276,7 @@ const ProfileEdit = () => {
                 py="10px"
                 onClick={() => onCancel()}
               >
-                Cancel
+                {t("profilePage.edit.buttons.cancel")}
               </Button>
               <Button
                 colorScheme="primary"
@@ -286,7 +287,7 @@ const ProfileEdit = () => {
                 mr="5px"
                 onClick={() => setIsUpdateModal(true)}
               >
-                Update
+                {t("profilePage.edit.buttons.update")}
               </Button>
             </Box>
           </HStack>

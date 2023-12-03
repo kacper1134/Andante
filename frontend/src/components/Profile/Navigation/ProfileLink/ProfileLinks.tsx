@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useKeycloak } from "@react-keycloak/web";
 import { RootState } from "../../../../store";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface Link {
   icon: As;
@@ -62,17 +63,17 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
   const links: Link[] = [
     {
       icon: MdOutlineAccountBox,
-      text: "User Details",
+      text: "profilePage.navigation.links.details",
       path: "/profile/details",
     },
-    { icon: BiHistory, text: "Order History", path: "/profile/orders" },
-    { icon: MdOutlineForum, text: "Community", path: communityPath },
+    { icon: BiHistory, text: "profilePage.navigation.links.history", path: "/profile/orders" },
+    { icon: MdOutlineForum, text: "profilePage.navigation.links.community", path: communityPath },
   ];
 
   if (alternativeVersionOfInterface) {
     links.push({
       icon: FaShoppingBag,
-      text: "Order Preferences",
+      text: "profilePage.navigation.links.preferences",
       path: "/profile/preferences",
     });
   }
@@ -84,7 +85,7 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
     dispatch(authActions.queueLogout());
     dispatch(cartActions.clearCart());
   };
-
+  const {t} = useTranslation();
   return (
     <>
       {isSidebarOpened ? (
@@ -122,7 +123,7 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
               justifyContent="center"
               borderEnd="1px solid white"
             >
-              Edit account
+              {t("profilePage.navigation.edit")}
             </Button>
             <Button
               leftIcon={<ImExit />}
@@ -137,7 +138,7 @@ const ProfileLinks: React.FC<ProfileLinksProps> = ({ isSidebarOpened }) => {
               justifyContent="center"
               borderEnd="1px solid white"
             >
-              Sign Out
+              {t("profilePage.navigation.signout")}
             </Button>
           </HStack>
         </>
@@ -168,7 +169,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ link, isSelected }) => {
     navigate(link.path);
     controls.start("hidden").then(() => controls.start("visible"));
   };
-
+  const {t} = useTranslation();
   return (
     <HStack
       as={motion.div}
@@ -192,7 +193,7 @@ const ProfileLink: React.FC<ProfileLinkProps> = ({ link, isSelected }) => {
         fontSize={fontSize}
         userSelect="none"
       >
-        {link.text}
+        {t(link.text)}
       </Text>
     </HStack>
   );
@@ -204,7 +205,7 @@ const HorizontalLink: React.FC<ProfileLinkProps> = ({ link, isSelected }) => {
     base: "16px",
     md: "20px",
   };
-
+  const {t} = useTranslation();
   return (
     <HStack
       backgroundColor="primary.400"
@@ -218,7 +219,7 @@ const HorizontalLink: React.FC<ProfileLinkProps> = ({ link, isSelected }) => {
     >
       <Icon as={link.icon} />
       <Text as={motion.p} variants={profileContentVariants} userSelect="none">
-        {link.text}
+        {t(link.text)}
       </Text>
     </HStack>
   );

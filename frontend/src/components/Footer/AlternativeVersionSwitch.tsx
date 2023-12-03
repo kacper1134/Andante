@@ -2,6 +2,7 @@ import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { authActions } from "../../store/auth/auth-slice";
+import { useTranslation } from "react-i18next";
 const switchFontSize = {
   base: "xs",
   md: "md",
@@ -16,7 +17,7 @@ const AlternativeVersionSwitch = () => {
   const changeAppVersion = () => {
     dispatch(authActions.changeInterfaceVersion());
   };
-
+  const {t} = useTranslation();
   return (
     <FormControl display="flex" alignItems="center" w="35%">
       <FormLabel
@@ -27,7 +28,7 @@ const AlternativeVersionSwitch = () => {
         fontSize={switchFontSize}
         textStyle="p"
       >
-        Show alternative version?
+        {t("alternativeVersion")}
       </FormLabel>
       <Switch
         id="email-alerts"

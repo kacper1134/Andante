@@ -14,6 +14,7 @@ import { UserProfileDTO } from "../../../store/api/result/dto/activity/UserProfi
 import CommunityEditImage from "./CommunityEditImage";
 import useGetFirebaseImage from "../../../hooks/useGetFirebaseImage";
 import { useKeycloak } from "@react-keycloak/web";
+import { useTranslation } from "react-i18next";
 
 export interface ProfileBannerProps {
     bannerImage?: string,
@@ -121,16 +122,16 @@ const ProfileBanner: React.FC<ProfileBannerProps> = ({ bannerImage, userDetails,
     };
     
     const statisticsArray = Array.from(statistics);
-    
+    const {t} = useTranslation(); 
     return <Box w="100%">
         <Box backgroundImage={`url(${inititalPictureUrl})`} backgroundPosition="center" backgroundSize="cover" backgroundRepeat="no-repeat" h={bannerHeight} w="100%" position="relative" boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)">
             <VStack w="100%" h="inherit" justifyContent="center" backgroundColor={ inititalPictureUrl ? "rgba(0,0,0,0.35)" : ""}>
                 {userDetails.personal.username === currentUsername ? (inititalPictureUrl ?
                 <Button bg="primary.300" _hover={{bg: "primary.400"}} _active={{bg: "primary.400"}} color="white" leftIcon={<Icon as={AiFillCamera}/>} fontSize="14px" h="32px" px="8px" mt="24px" onClick={() => setIsOpen(true)}>
-                    Edit
+                    {t("profilePage.community.baner.edit")}
                 </Button>
                 : <HStack as={motion.div} alignSelf="end" px="16px" py="8px" userSelect="none" cursor="pointer" color={primary400} initial={{color: primary400}} whileHover={{color: primary600 }}>
-                    <Text fontSize="18px" textStyle="p" fontWeight={500} onClick={() => setIsOpen(true)}>+ Upload Cover Photo</Text>  
+                    <Text fontSize="18px" textStyle="p" fontWeight={500} onClick={() => setIsOpen(true)}>{t("profilePage.community.baner.buttonText")}</Text>  
                     <Icon as={BsCardImage} boxSize="18px" />
                   </HStack>) : <Button bg="primary.300" _hover={{bg: "primary.400"}} _active={{bg: "primary.400"}} color="white" leftIcon={<Icon as={AiOutlineUser} />} fontSize="14px" h="32px" px="8px" mt="24px"
                   onClick={changeObservationStatus}>{isObserving ? "Unfollow" : "Follow"}</Button>}
@@ -163,11 +164,11 @@ const Statistic: React.FC<StatisticProps> = ({count, label}) => {
         xl: 20,
         '2xl': 24,
     });
-
+    const {t} = useTranslation();
     return (
         <VStack spacing={0}>
             <Text textStyle="p" color="gray.200" fontSize={headerSize + "px"}>{count}</Text>
-            <Text textStyle="p" color="gray.200" fontSize={fontSize + "px"}>{label}</Text>
+            <Text textStyle="p" color="gray.200" fontSize={fontSize + "px"}>{t(label)}</Text>
         </VStack>
     )
 }

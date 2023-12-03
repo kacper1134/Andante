@@ -1,5 +1,6 @@
 import { VStack, Image, HStack, Text } from "@chakra-ui/react";
 import NewsletterButton from "./NewsletterButton";
+import { useTranslation } from "react-i18next";
 
 const Newsletter = () => {
   const sizes = {
@@ -16,6 +17,7 @@ const Newsletter = () => {
     lg: "35px",
     xl: "40px",
   };
+  const {t} = useTranslation();
   return (
     <VStack p={8} position="relative">
       <Image src="/Newsletter.png" boxSize={sizes} />
@@ -28,7 +30,7 @@ const Newsletter = () => {
             fontSize={headerSizes}
             textStyle="h1"
           >
-            Become Andante Friend
+            {t("homePage.newsletter.title")}
           </Text>
           <NewsletterButton />
         </VStack>

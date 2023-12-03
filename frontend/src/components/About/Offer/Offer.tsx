@@ -6,6 +6,7 @@ import { MdForum } from "react-icons/md";
 import { IconType } from 'react-icons/lib';
 import { motion, TargetAndTransition } from 'framer-motion';
 import { GiGlassHeart } from 'react-icons/gi';
+import { useTranslation } from 'react-i18next';
 
 export interface OfferProps {
 
@@ -13,24 +14,25 @@ export interface OfferProps {
 
 const Offer: React.FC<OfferProps> = () => {
     const responsiveSpacing = {sm: '10px', md: '15px', lg: '20px'};
+    const {t} = useTranslation();
 
     return (
     <VStack alignItems="center" spacing={responsiveSpacing} py={responsiveSpacing} backgroundColor="white">
         <Heading />
         <SimpleGrid columns={{sm: 1, md: 2, lg: 4}}>
-            <OfferType title="All about music"
-            description="The andante portal is aimed at music fans and is all about music"
+            <OfferType title={t("aboutPage.offer.first.title")}
+            description={t("aboutPage.offer.first.description")}
             icon={SiMusicbrainz}/>
-            <OfferType title="Made with love"
-            description="Our team believes that if we create our product with passion then users can feel it."
+            <OfferType title={t("aboutPage.offer.second.title")}
+            description={t("aboutPage.offer.second.description")}
             icon={GiGlassHeart} />
             <OfferType 
-            title="Talk about your passion"
-            description="Andante provides opportunity to discuss music with other music fans"
+            title={t("aboutPage.offer.third.title")}
+            description={t("aboutPage.offer.third.description")}
             icon={MdForum} />
             <OfferType
-            title="Amazing devices"
-            description="Pamper yourself with our high quality music devices"
+            title={t("aboutPage.offer.fourth.title")}
+            description={t("aboutPage.offer.fourth.description")}
             icon={ImHeadphones} />
             </SimpleGrid>
     </VStack>
@@ -46,6 +48,8 @@ const Heading: React.FC<{}> = () => {
         '2xl': '200px',
     }
 
+    const {t} = useTranslation();
+
     return ( 
     <>
         <Text textStyle="a2"
@@ -54,7 +58,7 @@ const Heading: React.FC<{}> = () => {
         textAlign="center"
         userSelect="none" 
         textTransform="uppercase">
-            about us
+            {t("aboutPage.main.title")}
         </Text>
         <AspectRatio ratio={3} w={seperatorSize}>
             <Image src={seperator}
@@ -67,7 +71,7 @@ const Heading: React.FC<{}> = () => {
         textStyle="s2"
         userSelect="none"
         textAlign="center"
-        w={{base: '80%', md: '60%', lg: '40%'}}>The culture of our company, which is based on openness and orientation to employees and customers, makes cooperation with us effective, we achieve goals faster and we overcome difficulties much more efficiently. We are choice in the digital transformation of business and affects the level of customer satisfaction.</Text>
+        w={{base: '80%', md: '60%', lg: '40%'}}>{t("aboutPage.main.content")}</Text>
     </>
     );
 };

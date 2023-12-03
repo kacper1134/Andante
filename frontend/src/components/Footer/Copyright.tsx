@@ -1,4 +1,5 @@
 import { HStack, Text, Icon } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { FaRegCopyright } from "react-icons/fa";
 
 const Copyright = () => {
@@ -16,6 +17,7 @@ const Copyright = () => {
     lg: "18px",
     xl: "20px",
   };
+  const {t} = useTranslation();
   return (
     <HStack>
       <Icon
@@ -24,7 +26,7 @@ const Copyright = () => {
         boxSize={copyrightIconSize}
       />
       <Text color="primary.500" fontWeight="semibold" fontSize={footerFontSize} textStyle="p">
-        Andante 2022 - All Rights Reserved
+        {t("copyright")}
       </Text>
     </HStack>
   );

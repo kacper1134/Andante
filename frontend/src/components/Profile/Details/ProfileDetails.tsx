@@ -13,6 +13,7 @@ import useUserProfile from '../../../hooks/useUserProfile';
 import recombeeClient from '../../../config/recombee-config';
 import recombee from "recombee-js-api-client";
 import { useLazyGetAllByIdQuery } from '../../../store/api/productSlice';
+import { useTranslation } from 'react-i18next';
 
 export interface ProfileDetailsProps {
 };
@@ -25,22 +26,24 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = () => {
 
     const [getAllProducts] = useLazyGetAllByIdQuery();
 
+    const {t} = useTranslation();
+
     const deliveryInformation: Data[] = [
-        {label: "Country", value: userDetails?.delivery.country ?? "Not provided"},
-        {label: "City", value: userDetails?.delivery.city ?? "Not provided"},
-        {label: "Street", value: userDetails?.delivery.street ?? "Not provided"},
-        {label: "Postal Code", value: userDetails?.delivery.postalCode ?? "Not provided"},
+        {label: "profilePage.details.delivery.country.label", value: userDetails?.delivery.country ?? "profilePage.details.delivery.country.placeholder"},
+        {label: "profilePage.details.delivery.city.label", value: userDetails?.delivery.city ?? "profilePage.details.delivery.city.placeholder"},
+        {label: "profilePage.details.delivery.street.label", value: userDetails?.delivery.street ?? "profilePage.details.delivery.street.placeholder"},
+        {label: "profilePage.details.delivery.postalcode.label", value: userDetails?.delivery.postalCode ?? "profilePage.details.delivery.postalcode.placeholder"},
     ];
 
     const contactInformation: Data[] = [
-        {label: "Email Address", value: userDetails?.personal.emailAddress ?? "Not provided"},
-        {label: "Phone Number", value: userDetails?.personal.phoneNumber ?? "Not provided"},
+        {label: "profilePage.details.contact.email.label", value: userDetails?.personal.emailAddress ?? "profilePage.details.contact.email.placeholder"},
+        {label: "profilePage.details.contact.phone.label", value: userDetails?.personal.phoneNumber ?? "profilePage.details.contact.phone.placeholder"},
     ];
 
     const personalDetails: Data[] = [
-        {label: "Nickname", value: userDetails?.personal.username ?? "Not selected"},
-        {label: "Gender", value: userDetails?.personal.gender ?? "Unspecified"},
-        {label: "Birthdate", value: userDetails?.personal?.dateOfBirth?.toLocaleString(DateTime.DATE_FULL) ?? "Not provided"},
+        {label: "profilePage.details.personal.nickname.label", value: userDetails?.personal.username ?? "profilePage.details.personal.nickname.placeholder"},
+        {label: "profilePage.details.personal.gender.label", value: t(userDetails?.personal.gender ?? "profilePage.details.personal.gender.placeholder")},
+        {label: "profilePage.details.personal.birthdate.label", value: userDetails?.personal?.dateOfBirth?.toLocaleString(DateTime.DATE_FULL) ?? "profilePage.details.personal.birthdate.placeholder"},
     ];
 
     const headingSize = useBreakpointValue({
@@ -98,13 +101,13 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = () => {
     }, [getAllProducts, userProfile?.username]);
 
     return <>
-        <Text textStyle="h3" color="primary.300" fontSize={headingSize + "px"} textAlign="center" w="100%" bg="purple.50" boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)">User Details</Text>
+        <Text textStyle="h3" color="primary.300" fontSize={headingSize + "px"} textAlign="center" w="100%" bg="purple.50" boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)">{t("profilePage.details.title")}</Text>
         <Card width="100%" px={mainPadding + "px"} py={mainPadding + "px"} mx={mainMargin + "px"} my={mainMargin + "px"} borderRadius={borderRadius}>
             <SimpleGrid columns={columns} spacing="8px" justifyItems="center">
                 <AvatarCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} />
-                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title="Personal Details" properties={personalDetails}/>
-                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title="Contact Information" properties={contactInformation}/>
-                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title="Delivery" properties={deliveryInformation}/>
+                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title={t("profilePage.details.personal.title")} properties={personalDetails}/>
+                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title={t("profilePage.details.contact.title")} properties={contactInformation}/>
+                <DataCard borderRadius={borderRadius} fontSize={fontSize} height={cardHeight} width={cardWidth} title={t("profilePage.details.delivery.title")} properties={deliveryInformation}/>
             </SimpleGrid>   
         </Card>
         <Stack direction={{base: 'column', lg: 'row'}}>
@@ -151,11 +154,13 @@ const Carousel: React.FC<CarouselProps> = ({padding, margin, borderRadius, itemW
         };
     }, [sidebarWidth, dragConstraint, controls, margin, padding, scrollWidth])
 
+    const {t} = useTranslation();
+
     return <Box position="relative" width={`calc(100% - 2 * ${margin}px)`} p={padding + "px"} m={margin + "px"} borderRadius={borderRadius} boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)" overflowX="hidden">
         <Box ref={dragConstraint} width={`calc(100% + ${overflowWidth}px)`} left={-overflowWidth} position="absolute" />
-        <Heading color="primary.800" textStyle="h2" fontSize="32px" position="sticky" left="8px">Recommended for You</Heading>
+        <Heading color="primary.800" textStyle="h2" fontSize="32px" position="sticky" left="8px">{t("profilePage.details.recommended.title")}</Heading>
         {loading && <Spinner color="primary.600" size="lg" />}
-        {(isEmpty && !loading) && <Center w="100%" mt="10px"><Text fontSize="20px" textStyle="h1">We have nothing to recommend for you right now!</Text></Center>}
+        {(isEmpty && !loading) && <Center w="100%" mt="10px"><Text fontSize="20px" textStyle="h1">{t("profilePage.details.recommended.nothingContent")}</Text></Center>}
         <HStack animate={controls} as={motion.div} drag={overflowWidth > 0 ? "x" : undefined} dragConstraints={dragConstraint} spacing={itemSpacing + "px"} key={overflowWidth}>{children}</HStack>
     </Box>;
 }

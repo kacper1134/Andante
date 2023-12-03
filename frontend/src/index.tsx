@@ -21,20 +21,26 @@ import "@fontsource/hind/400.css";
 import "@fontsource/space-mono/400.css";
 import { PersistGate } from "redux-persist/integration/react";
 
+// Internationalization
+import "./i18n";
+import { Suspense } from "react";
+
 const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
-    <ReactKeycloakProvider authClient={keycloak}>
-        <Provider store={store}>
-            <ChakraProvider theme={theme}>
-                <BrowserRouter>
-                    <PersistGate loading={null} persistor={persistor}>
-                        <App />
-                    </PersistGate>
-                </BrowserRouter>
-            </ChakraProvider>
-        </Provider>
-    </ReactKeycloakProvider>
+  <ReactKeycloakProvider authClient={keycloak}>
+    <Provider store={store}>
+      <ChakraProvider theme={theme}>
+        <BrowserRouter>
+          <PersistGate loading={null} persistor={persistor}>
+            <Suspense fallback="">
+              <App />
+            </Suspense>
+          </PersistGate>
+        </BrowserRouter>
+      </ChakraProvider>
+    </Provider>
+  </ReactKeycloakProvider>
 );

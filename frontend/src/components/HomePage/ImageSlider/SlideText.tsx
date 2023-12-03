@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ProductOutputDTO } from "../../../store/api/result/dto/product/base/ProductOutputDTO";
 import { contentVariants } from "./AnimationVariants";
+import { useTranslation } from "react-i18next";
 
 type SlideTextProps = {
   product: ProductOutputDTO,
@@ -25,6 +26,7 @@ const SlideText = ({ product }: SlideTextProps) => {
     xl: "42px",
   };
   const textColor = "white";
+  const {t} = useTranslation();
   return (
     <VStack
       as={motion.div}
@@ -33,7 +35,7 @@ const SlideText = ({ product }: SlideTextProps) => {
       alignItems="flex-start"
     >
       <Text fontSize={headerSize} color={textColor} textStyle="h1">
-        Users Choice
+        {t("homePage.slide.title")}
       </Text>
       <Text fontSize={textSize} color={textColor} fontWeight="semibold" textStyle="p">
         {product.name}
@@ -43,7 +45,7 @@ const SlideText = ({ product }: SlideTextProps) => {
           ${product.price}
         </Text>
         <Button rounded="xl" color="primary.700" backgroundColor="white" textStyle="p" onClick={() => navigate(`/shop/product/${product.id}`)}>
-          Order Now
+        {t("homePage.slide.buttonText")}
         </Button>
       </HStack>
     </VStack>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AspectRatio, Image, Box, SimpleGrid, VStack, Text, useBreakpointValue } from "@chakra-ui/react";
 import useVerticalViewportOffset from '../../../hooks/useVerticalViewportOffset';
+import { useTranslation } from 'react-i18next';
 
 export interface StatisticsProps {
 
@@ -9,23 +10,23 @@ export interface StatisticsProps {
 const GRID_ITEMS: StatisticItemProps[] = [
     {
         count: 250,
-        caption: 'Certificates',
-        description: 'Quality of our products is guaranteed by a lot of certificates',
+        caption: 'aboutPage.statistics.first.caption',
+        description: 'aboutPage.statistics.first.description',
     }, 
     {
         count: 22,
-        caption: 'countries of origin',
-        description: 'We have our officies all around the world',
+        caption: 'aboutPage.statistics.first.caption',
+        description: 'aboutPage.statistics.first.description',
     },
     {
         count: 4,
-        caption: 'years on the market',
-        description: 'Andante has long history on the market a a lot of happy users',
+        caption: 'aboutPage.statistics.first.caption',
+        description: 'aboutPage.statistics.first.description',
     },
     {
         count: 41,
-        caption: 'IT specialists',
-        description: 'Our team is dedicated in developing our portal',
+        caption: 'aboutPage.statistics.first.caption',
+        description: 'aboutPage.statistics.first.description',
     }
 ];
 
@@ -33,7 +34,7 @@ const Statistics: React.FC<StatisticsProps> = () => {
     const aspectRatio = {base: 8/3, md: 32/9};
     const ref: React.RefObject<HTMLDivElement> = React.createRef();
     const offset = useVerticalViewportOffset(ref, {from: -15, to: 15});
-
+    const {t} = useTranslation();
     return (
         <>
             <AspectRatio ratio={aspectRatio} mt="10px">
@@ -49,7 +50,7 @@ const Statistics: React.FC<StatisticsProps> = () => {
                 </Box>
             </AspectRatio>
             <SimpleGrid columns={{base: 1, md: 2, lg: 4}} spacing={{md: 10}} w="90%" alignSelf="center">
-                {GRID_ITEMS.map(item => <GridText key={item.caption} count={item.count} caption={item.caption} description={item.description} />)}
+                {GRID_ITEMS.map(item => <GridText key={item.caption} count={item.count} caption={t(item.caption)} description={t(item.description)} />)}
             </SimpleGrid>
         </>
     );

@@ -11,6 +11,7 @@ import { useState } from "react";
 import CommunitiesModal from "./CommunitiesModal";
 import headphones from "../../../static/headphones.png";
 import useFirebaseWithMultipleImages from "../../../hooks/useFirebaseWithMultipleImages";
+import { useTranslation } from "react-i18next";
 
 export interface Community {
   id: number;
@@ -40,7 +41,7 @@ const Communities: React.FC<CommunitiesProps> = ({ communities }) => {
     communities.map((c) => communitiesImages.get(c.name) ?? ""),
     headphones
   );
-
+  const {t} = useTranslation();  
   return (
     <VStack w="100%" bg="purple.50" px="16px" py="8px">
       <Text
@@ -50,7 +51,7 @@ const Communities: React.FC<CommunitiesProps> = ({ communities }) => {
         userSelect="none"
         alignSelf="start"
       >
-        COMMUNITIES
+        {t("profilePage.community.communities")}
       </Text>
       <Wrap alignSelf="start">
         {communities.map((community, index) => (

@@ -20,6 +20,7 @@ import { useEffect, useRef, useState } from "react";
 import { AiFillCamera } from "react-icons/ai";
 import { RiImageAddFill } from "react-icons/ri";
 import { imageSize, normalTextFontSize } from "./ProfileEditSizes";
+import { useTranslation } from "react-i18next";
 
 type ProfileEditImageProps = {
   picture: File | null | undefined;
@@ -64,7 +65,7 @@ const ProfileEditImage = ({
     setIsOpen(false);
     setCurrentPicture(picture);
   };
-
+  const {t} = useTranslation();
   return (
     <VStack>
       <Avatar
@@ -81,7 +82,7 @@ const ProfileEditImage = ({
         cursor="pointer"
         onClick={() => setIsOpen(true)}
       >
-        <Text>Edit</Text>
+        <Text>{t("profilePage.edit.buttons.edit")}</Text>
         <Icon as={AiFillCamera} />
       </HStack>
       <Modal

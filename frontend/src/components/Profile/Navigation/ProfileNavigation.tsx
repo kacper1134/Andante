@@ -16,6 +16,7 @@ import useUserProfile from "../../../hooks/useUserProfile";
 import { authActions } from "../../../store/auth/auth-slice";
 import { cartActions } from "../../../store/cart/cartSlice";
 import useGetFirebaseImage from "../../../hooks/useGetFirebaseImage";
+import { useTranslation } from "react-i18next";
 
 export interface ProfileNavigationProps {
     navbarHeight: string,
@@ -79,7 +80,7 @@ const Sidebar: React.FC<SidebarProps> = ({ navbarHeight }) => {
         dispatch(authActions.queueLogout());
         dispatch(cartActions.clearCart());
     }
-
+    const {t} = useTranslation();
     return (
         <Box as={motion.div}
             variants={profileNavigationVariants(sidebarWidth + "px")}
@@ -95,19 +96,19 @@ const Sidebar: React.FC<SidebarProps> = ({ navbarHeight }) => {
             <VStack as={motion.div} variants={profileContentVariants} color="white" textAlign="center" wordBreak="break-word">
                 <Avatar boxSize={avatarSize} mb={{ lg: '4px', xl: '6px', '2xl': '8px' }} src={image} />
                 <Text textStyle="h3" fontSize={fontSize + "px"}>{userDetails?.personal.name ?? "Unknown"} {userDetails?.personal.surname ?? "Unknown"}</Text>
-                <Text textStyle="p" fontSize={(fontSize - 2) + "px"} fontWeight="thin" lineHeight="90%">Joined {userDetails?.personal.accountCreated.monthLong ?? "Unknown"} {userDetails?.personal.accountCreated.year ?? "Unknown"}</Text>
+                <Text textStyle="p" fontSize={(fontSize - 2) + "px"} fontWeight="thin" lineHeight="90%">{t("profilePage.navigation.joined")} {userDetails?.personal.accountCreated.monthLong ?? "Unknown"} {userDetails?.personal.accountCreated.year ?? "Unknown"}</Text>
                 <HStack textStyle="p" fontSize={(fontSize - 6) + "px"} fontWeight='hairline'>
                     <Icon as={IoLocationOutline} boxSize={fontSize + "px"} />
                     <Text >{userDetails?.delivery.city ?? "Unknown"},{userDetails?.delivery.country ?? "Unknown"}</Text>
                 </HStack>
                 <Button leftIcon={<AiFillEdit/>} sx={buttonStyle} onClick={() => navigate("profile/edit")}>
-                    Edit account
+                    {t("profilePage.navigation.edit")}
                 </Button> 
                 <Button 
                     leftIcon={<ImExit />}
                     sx={buttonStyle}
                     onClick={logout}>
-                    Sign Out
+                    {t("profilePage.navigation.signout")}
                 </Button>
                 <ProfileLinks isSidebarOpened={true} />
             </VStack>
