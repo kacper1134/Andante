@@ -10,6 +10,7 @@ import noimage from "../../../../static/noimage.png";
 import { FacebookShareButton, LinkedinShareButton, TumblrShareButton, TwitterShareButton } from "react-share";
 import { GrTwitter } from "react-icons/gr";
 import { AiFillLinkedin } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 export interface Link {
     text: string,
@@ -37,8 +38,8 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
 
 
     const breadcrumbs: Link[] = [
-        { text: "Shop", to: "/shop"},
-        { text: "Product", to: "/shop/filtered"},
+        { text: "profilePage.community.breadcrumbs.shop", to: "/shop"},
+        { text: "profilePage.community.breadcrumbs.product", to: "/shop/filtered"},
         { text: `${data.id}`, to: `/shop/product/${data.id}`}
     ];
 
@@ -47,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
         sm: "400px",
         md: "450px"
     }
-
+    const {t} = useTranslation();
     return <VStack w={width} borderRadius="8px" boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)" px="16px" spacing={0} bgColor="white">
         <Box w={width} h="200px" backgroundImage={productImage} backgroundPosition="center" backgroundRepeat="no-repeat" backgroundSize="fill">
             <Box backgroundColor="rgba(0,0,0,0.1)" w="inherit" h="inherit" />
@@ -72,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({data}) => {
                 </PopoverTrigger>
                 <PopoverContent>
                     <PopoverCloseButton boxSize="28px" />
-                    <PopoverHeader fontSize="20px">SHARE</PopoverHeader>
+                    <PopoverHeader fontSize="20px">{t("profilePage.community.share")}</PopoverHeader>
                     <PopoverBody>
                         <HStack justifyContent="space-around">
                             <TwitterShareButton children={<Icon as={GrTwitter} color="twitter.500" boxSize={iconSize} />} url={productUrl} />
@@ -92,11 +93,12 @@ interface ProductBreadcrumbsProps {
 } 
 
 const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({breadcrumbs}) => {
+    const {t} = useTranslation();
     return (
         <Breadcrumb separator={<Icon as={BsDot} color="primary.400" />} alignSelf="start" py="4px">
             {breadcrumbs.map((link, index) => 
                 <BreadcrumbItem key={index}>
-                    <BreadcrumbLink href={link.to} color="primary.400" _hover={{}}>{link.text}</BreadcrumbLink>
+                    <BreadcrumbLink href={link.to} color="primary.400" _hover={{}}>{t(link.text)}</BreadcrumbLink>
                 </BreadcrumbItem>)}
         </Breadcrumb>
     )

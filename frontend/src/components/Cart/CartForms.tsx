@@ -26,6 +26,7 @@ import DeliveryMethodModal from "./Delivery/DeliveryMethodModal";
 import PickupLocationEdit from "./Delivery/PickupLocationEdit";
 import { useKeycloak } from "@react-keycloak/web";
 import { userDetailsWidth } from "./CartSizes";
+import { useTranslation } from "react-i18next";
 
 export interface CartFormsProps {
   changeCurrentCartStep: Dispatch<SetStateAction<number>>;
@@ -33,13 +34,13 @@ export interface CartFormsProps {
 
 const deliveryMethods: DeliveryMethod[] = [
   {
-    provider: "Courier InPost, UPS, DPD, DTS",
+    provider: "profilePage.preferences.delivery.courier.label",
     expectedDeliveryDays: 1,
     price: 6.49,
     type: "Courier",
   },
   {
-    provider: "Pickup Point",
+    provider: "profilePage.preferences.delivery.pickup.label",
     expectedDeliveryDays: 2,
     price: 4.99,
     type: "Pickup Point",
@@ -48,19 +49,18 @@ const deliveryMethods: DeliveryMethod[] = [
 
 const mockPaymentMethods: PaymentMethodData[] = [
   {
-    provider: "Online payment(PayU)",
-    description: "Quick transfer, card, BLIK",
+    provider: "profilePage.preferences.payment.online.label",
+    description: "profilePage.preferences.payment.online.content",
     cost: 0,
   },
   {
-    provider: "PayPo - buy now, pay in 30 days",
-    description:
-      "Buy now, check product and pay in up to 30 days without interest",
+    provider: "profilePage.preferences.payment.payPo.label",
+    description: "profilePage.preferences.payment.payPo.content",
     cost: 0,
   },
   {
-    provider: "Pay on delivery",
-    description: "Pay after receiving the order",
+    provider: "profilePage.preferences.payment.delivery.label",
+    description: "profilePage.preferences.payment.delivery.content",
     cost: 3,
   },
 ];
@@ -287,7 +287,7 @@ export const ContactData: React.FC<ContactDataProps> = ({
       phoneNumber: e.target.value,
     }));
   }
-
+  const {t} = useTranslation();
   return (
     <VStack w={userDetailsWidth} alignSelf="start">
       <Heading
@@ -296,32 +296,32 @@ export const ContactData: React.FC<ContactDataProps> = ({
         fontSize={headingSize}
         color="primary.400"
       >
-        Contact Details
+        {t("profilePage.preferences.contact.title")}
       </Heading>
       <VStack border="1px solid black" w="inherit" p="16px">
         <CartInput
-          placeholder="Name*"
+          placeholder={t("profilePage.preferences.contact.name")}
           value={personalDetails.name}
           onChange={handleNameInput}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="Surname*"
+          placeholder={t("profilePage.preferences.contact.surname")}
           value={personalDetails.surname}
           onChange={handleSurnameInput}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="Email Address*"
+          placeholder={t("profilePage.preferences.contact.email")}
           value={personalDetails.emailAddress}
           onChange={handleEmailInput}
           isRequired
           disabled
         />
         <CartInput
-          placeholder="Phone Number*"
+          placeholder={t("profilePage.preferences.contact.phone")}
           value={personalDetails.phoneNumber}
           onChange={handlePhoneInput}
           isRequired
@@ -333,7 +333,7 @@ export const ContactData: React.FC<ContactDataProps> = ({
           alignSelf="start"
           color="primary.400"
         >
-          *Required fields
+          {t("profilePage.preferences.subText")}
         </Text>
       </VStack>
     </VStack>
@@ -405,7 +405,7 @@ export const BillDetails: React.FC<BillDetailsProps> = ({
       postalCode: e.target.value,
     }));
   }
-
+  const {t} = useTranslation();
   return (
     <VStack w={userDetailsWidth} alignSelf="start">
       <Heading
@@ -414,46 +414,46 @@ export const BillDetails: React.FC<BillDetailsProps> = ({
         fontSize={headingSize}
         color="primary.400"
       >
-        Billing Details
+        {t("profilePage.preferences.billing.title")}
       </Heading>
       <VStack border="1px solid black" w="inherit" p="16px">
         <CartInput
-          placeholder="Country*"
+          placeholder={t("profilePage.preferences.billing.country")}
           value={deliveryDetails.country}
           onChange={handleCountryInput}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="City*"
+          placeholder={t("profilePage.preferences.billing.city")}
           value={deliveryDetails.city}
           onChange={handleCityInput}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="Street*"
+          placeholder={t("profilePage.preferences.billing.street")}
           value={deliveryDetails.street}
           onChange={handleStreetInput}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="Building Number*"
+          placeholder={t("profilePage.preferences.billing.building")}
           value={deliveryDetails.buildingNumber}
           onChange={handleBuildingNumber}
           isRequired
           disabled={false}
         />
         <CartInput
-          placeholder="Flat number"
+          placeholder={t("profilePage.preferences.billing.flat")}
           value={deliveryDetails.flatNumber}
           onChange={handleFlatInput}
           isRequired={false}
           disabled={false}
         />
         <CartInput
-          placeholder="Postal code*"
+          placeholder={t("profilePage.preferences.billing.postalcode")}
           value={deliveryDetails.postalCode}
           onChange={handlePostalCode}
           isRequired
@@ -465,7 +465,7 @@ export const BillDetails: React.FC<BillDetailsProps> = ({
           alignSelf="start"
           color="primary.400"
         >
-          *Required fields
+          {t("profilePage.preferences.subText")}
         </Text>
       </VStack>
     </VStack>
@@ -558,6 +558,7 @@ const DeliveryOption: React.FC<DeliveryOptionProps> = ({
   const deliveryLocation = useSelector(
     (state: RootState) => state.cart.deliveryPickupLocation
   );
+  const {t} = useTranslation(); 
   const pickUpButton = (
     <Button
       alignSelf="flex-start"
@@ -566,10 +567,9 @@ const DeliveryOption: React.FC<DeliveryOptionProps> = ({
       onClick={() => setIsModalOpen(true)}
       textStyle="p"
     >
-      Select a pickup point
+      {t("profilePage.preferences.delivery.pickup.buttonText")}
     </Button>
-  );
-
+  ); 
   return (
     <>
       <DeliveryMethodModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
@@ -583,7 +583,7 @@ const DeliveryOption: React.FC<DeliveryOptionProps> = ({
         <HStack w="inherit">
           <VStack w="inherit">
             <HStack spacing="4px" alignSelf="start">
-              <Text textStyle="p">{method.provider}</Text>
+              <Text textStyle="p">{t(method.provider)}</Text>
             </HStack>
             <Spacer />
             {method.type === "Pickup Point" &&
@@ -594,7 +594,7 @@ const DeliveryOption: React.FC<DeliveryOptionProps> = ({
               <PickupLocationEdit setIsModalOpen={setIsModalOpen} />
             )}
             <Text textStyle="p" fontSize="12px">
-              Expected to be delivered on{" "}
+              {t("profilePage.preferences.delivery.courier.content")}{" "}
               {DateTime.now()
                 .plus({ days: method.expectedDeliveryDays })
                 .toLocaleString(DateTime.DATE_FULL)}
@@ -634,7 +634,7 @@ export const PaymentMethods: React.FC<PaymentMethodsProps> = ({
       setPaymentMethod(selectedMethod);
     }
   }
-
+  const { t } = useTranslation();
   return (
     <VStack w={userDetailsWidth} alignSelf="start">
       <Heading
@@ -643,7 +643,7 @@ export const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         fontSize={headerSize}
         color="primary.400"
       >
-        Payment Method
+        {t("profilePage.preferences.title")}
       </Heading>
       <RadioGroup
         onChange={handlePaymentMethod}
@@ -668,6 +668,7 @@ interface PaymentMethodProps {
 }
 
 const PaymentMethod: React.FC<PaymentMethodProps> = ({ method }) => {
+  const { t } = useTranslation();
   return (
     <Radio
       colorScheme="primary"
@@ -683,7 +684,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({ method }) => {
             fontSize="14px"
             alignSelf="start"
           >
-            {method.provider}
+            {t(method.provider)}
           </Text>
           <Text
             color="gray.500"
@@ -692,7 +693,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({ method }) => {
             textStyle="p"
             alignSelf="start"
           >
-            {method.description}
+            {t(method.description)}
           </Text>
         </VStack>
         <Spacer />

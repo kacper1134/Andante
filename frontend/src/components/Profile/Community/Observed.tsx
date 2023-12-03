@@ -9,6 +9,7 @@ import ProfilePost from "./ProfilePost";
 import { UserDetails } from "../../../utils/KeycloakUtils";
 import { useGetLikedPostsQuery } from "../../../store/api/forum-api-slice";
 import { PostOutputDTO } from "../../../store/api/result/dto/forum/PostOutputDTO";
+import { useTranslation } from "react-i18next";
 
 export interface ObservedProps {
     userDetails: UserDetails
@@ -71,14 +72,14 @@ const Observed: React.FC<ObservedProps> = ({ userDetails }) => {
         base: "10px",
         sm: "16px",
     }
-
+    const {t} = useTranslation();
     return <VStack w="100%" px="16px" py="8px" bg="purple.50">
-        <Text color="primary.400" textStyle="h3" fontSize="16px" userSelect="none" alignSelf="start">OBSERVED</Text>
+        <Text color="primary.400" textStyle="h3" fontSize="16px" userSelect="none" alignSelf="start">{t("profilePage.community.observed")}</Text>
         <Tabs variant="solid-rounded" alignSelf="start">
             <HStack>
                 <Text color="gray.400" fontSize="18px" textStyle="p" fontWeight={800}>Filter</Text>
                 <TabList mx="16px">
-                    {Object.values(ObservedCategory).filter(category => isNaN(Number(category))).map((category, index) => <Tab key={index} border={`1px solid ${primary400}`} color="gray.500" _selected={{bg: "primary.400", color: "white"}} mx="6px" fontSize={filterFontSize}>{category}</Tab>)}
+                    {Object.values(ObservedCategory).filter(category => isNaN(Number(category))).map((category, index) => <Tab key={index} border={`1px solid ${primary400}`} color="gray.500" _selected={{bg: "primary.400", color: "white"}} mx="6px" fontSize={filterFontSize}>{t(category.toString())}</Tab>)}
                 </TabList>
             </HStack>
             <TabPanels>

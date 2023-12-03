@@ -8,6 +8,21 @@
   "about": "about",
   "copyright": "Andante 2023 - All Rights Reserved",
   "alternativeVersion": "Show alternative version?",
+  "Male": "Male",
+  "Female": "Female",
+  "New": "New",
+  "Completed": "Completed",
+  "Canceled": "Canceled",
+  "Oldest: First": "Oldest: First",
+  "Newest: First": "Newest: First",
+  "Total Upvotes": "Total Upvotes",
+  "Posts": "Posts",
+  "Comments": "Comments",
+  "Followers": "Followers",
+  "Following": "Following",
+  "PRODUCTS": "PRODUCTS",
+  "POSTS": "POSTS",
+  "COMMENTS": "COMMENTS",
   "aboutPage": {
     "offer": {
       "first": {
@@ -66,6 +81,238 @@
     "main": {
       "title": "about us",
       "content": "The culture of our company, which is based on openness and orientation to employees and customers, makes cooperation with us effective, we achieve goals faster and we overcome difficulties much more efficiently. We are choice in the digital transformation of business and affects the level of customer satisfaction."
+    }
+  },
+  "homePage": {
+    "slide": {
+      "title": "Users Choice",
+      "buttonText": "Order Now"
+    },
+    "reviews": {
+      "title": "RECENT REVIEWS",
+      "buttonText": "Read More Reviews"
+    },
+    "products": {
+      "title": "NEW ARRIVALS",
+      "buttonText": "ADD TO CART"
+    },
+    "newsletter": {
+      "title": "Become Andante Friend",
+      "content": "Sign up for newsletter",
+      "buttonText": "SEND"
+    }
+  },
+  "profilePage": {
+    "edit": {
+      "personal": {
+        "title": "Personal Details",
+        "name": {
+          "label": "Name*",
+          "placeholder": "Enter your name"
+        },
+        "surname": {
+          "label": "Surname*",
+          "placeholder": "Enter your surname"
+        },
+        "phone": {
+          "label": "Phone*",
+          "placeholder": "Enter your phone number"
+        },
+        "birthdate": {
+          "label": "Birthdate*"
+        },
+        "gender": {
+          "label": "Gender*",
+          "male": "Male",
+          "female": "Female"
+        }
+      },
+      "delivery": {
+        "title": "Delivery",
+        "country": {
+          "label": "Country*",
+          "placeholder": "Enter your country"
+        },
+        "city": {
+          "label": "City*",
+          "placeholder": "Enter your city"
+        },
+        "street": {
+          "label": "Street",
+          "placeholder": "Enter your street"
+        },
+        "postalcode": {
+          "label": "Postal Code",
+          "placeholder": "Enter your postal code"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "update": "Update",
+        "edit": "Edit"
+      },
+      "about": "About"
+    },
+    "navigation": {
+      "edit": "Edit account",
+      "signout": "Sign Out",
+      "links": {
+        "details": "User Details",
+        "history": "Order History",
+        "community": "Community",
+        "preferences": "Order Preferences"
+      },
+      "joined": "Joined"
+    },
+    "details": {
+      "title": "User Details",
+      "personal": {
+        "title": "Personal Details",
+        "nickname": {
+          "label": "Nickname",
+          "placeholder": "Not selected"
+        },
+        "gender": {
+          "label": "Gender",
+          "placeholder": "Unspecified"
+        },
+        "birthdate": {
+          "label": "Birthdate",
+          "placeholder": "Not provided"
+        }
+      },
+      "contact": {
+        "title": "Contact Information",
+        "email": {
+          "label": "Email Address",
+          "placeholder": "Not provided"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Not provided"
+        }
+      },
+      "delivery": {
+        "title": "Delivery",
+        "country": {
+          "label": "Country",
+          "placeholder": "Not provided"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "Not provided"
+        },
+        "street": {
+          "label": "Street",
+          "placeholder": "Not provided"
+        },
+        "postalcode": {
+          "label": "Postal Code",
+          "placeholder": "Not provided"
+        }
+      },
+      "recommended": {
+        "title": "Recommended for You",
+        "nothingContent": "We have nothing to recommend for you right now!"
+      }
+    },
+    "history": {
+      "title": "Orders & Returns",
+      "pages": {
+        "NEW": "NEW",
+        "COMPLETED": "COMPLETED",
+        "CANCELED": "CANCELED"
+      },
+      "sorting": {
+        "oldest": "Oldest: First",
+        "newest": "Newest: First"
+      },
+      "order": {
+        "order": "Order #",
+        "purchaseDate": "Date Purchased",
+        "address": "Shipping Address",
+        "value": "Order Value",
+        "qty": "QTY",
+        "name": "Name",
+        "status": "Order Status",
+        "shipDate": "Estimated Ship Date",
+        "payNow": "PAY NOW",
+        "invoice": "INVOICE",
+        "cancel": "CANCEL ORDER"
+      },
+      "nothingContent": "You have no orders of a given type!"
+    },
+    "community": {
+      "baner": {
+        "buttonText": "+ Upload Cover Photo",
+        "upvotes": "Total Upvotes",
+        "posts": "Posts",
+        "comments": "Comments",
+        "followers": "Followers",
+        "following": "Following",
+        "edit": "Edit"
+      },
+      "about": "ABOUT ME",
+      "posts": "TOP POSTS & COMMENTS",
+      "communities": "COMMUNITIES",
+      "observed": "OBSERVED",
+      "filters": {
+        "products": "PRODUCTS",
+        "posts": "POSTS",
+        "comments": "COMMENTS"
+      },
+      "breadcrumbs": {
+        "shop": "Shop",
+        "product": "Product"
+      },
+      "share": "SHARE",
+      "following": "FOLLOWING:",
+      "followers": "FOLLOWERS:"
+    },
+    "preferences": {
+      "title": "Order Preferences",
+      "subText": "*Required fields",
+      "contact": {
+        "title": "Contact Details",
+        "name": "Name*",
+        "surname": "Surname*",
+        "phone": "Phone Number*"
+      },
+      "billing": {
+        "title": "Billing Details",
+        "country": "Country*",
+        "city": "City*",
+        "street": "Street*",
+        "building": "Building Number*",
+        "flat": "Flat Number",
+        "postalcode": "Postal code*"
+      },
+      "delivery": {
+        "courier": {
+          "label": "Courier InPost, UPS, DPD, DTS",
+          "content": "Expected to be delivered on"
+        },
+        "pickup": {
+          "label": "Pickup Point",
+          "content": "Expected to be delivered on",
+          "buttonText": "Select a pickup point"
+        }
+      },
+      "payment": {
+        "online": {
+          "label": "Online payment(PayU)",
+          "content": "Quick transfer, card, BLIK"
+        },
+        "payPo": {
+          "label": "PayPo - buy now, pay in 30 days",
+          "content": "Buy now, check product and pay in up to 30 days without interest"
+        },
+        "delivery": {
+          "label": "Pay on delivery",
+          "content": "Pay after receiving the order"
+        }
+      },
+      "update": "Update"
     }
   }
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { readClient } from "../../../client";
 import BlogPost from "./BlogPost";
 import { BlogPostType } from "./BlogPost";
+import { useTranslation } from "react-i18next";
 
 const RecentBlogPosts = () => {
   const [recentPosts, setRecentPosts] = useState<BlogPostType[]>();
@@ -46,7 +47,7 @@ const RecentBlogPosts = () => {
       )
       .catch(console.log);
   }, []);
-
+  const {t} = useTranslation();
   return (
     <VStack
       bgImage="url(/blogReviewBackground.png)"
@@ -60,7 +61,7 @@ const RecentBlogPosts = () => {
         fontSize={{ base: "3xl", lg: "5xl" }}
         textStyle="h1"
       >
-        RECENT REVIEWS
+        {t("homePage.reviews.title")}
       </Text>
       <SimpleGrid columns={{ base: 1, xl: 2 }} spacing={10}>
         {recentPosts?.map((post) => (
@@ -82,7 +83,7 @@ const RecentBlogPosts = () => {
           textStyle="p"
           onClick={() => navigate("/reviews")}
         >
-          Read More Reviews
+          {t("homePage.reviews.buttonText")}
         </Button>
       </motion.div>
     </VStack>

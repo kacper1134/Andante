@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { CommentOutputDTO, isCommentOutputDTOArray } from '../../../store/api/result/dto/product/CommentOutputDTO';
 import { useGetTopCommentsByUserQuery } from '../../../store/api/productSlice';
 import { UserDetails } from '../../../utils/KeycloakUtils';
+import { useTranslation } from 'react-i18next';
 
 export interface TopPostsProps {
     userDetails: UserDetails,
@@ -34,11 +35,11 @@ const TopPosts: React.FC<TopPostsProps> = ({ userDetails }) => {
           isClosable: true,
         }))
       }, [errorMessages]);
-
+    const {t} = useTranslation();  
     return (
         <VStack w="100%" bg="purple.50" px="16px" py="8px">
             <HStack alignSelf="start">
-                <Text color="primary.400" textStyle="h3" fontSize="16px" userSelect="none" alignSelf="start">TOP POSTS & COMMENTS</Text>
+                <Text color="primary.400" textStyle="h3" fontSize="16px" userSelect="none" alignSelf="start">{t("profilePage.community.posts")}</Text>
             </HStack>
             <Wrap spacing="16px" alignSelf="start">
             {topComments.map((post, index) => <ProfilePost key={index} comment={post} />)}

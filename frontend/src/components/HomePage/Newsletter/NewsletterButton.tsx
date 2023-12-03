@@ -1,6 +1,7 @@
 import { Button, Input, HStack, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSubscribeToNewsletterMutation } from "../../../store/api/productSlice";
+import { useTranslation } from "react-i18next";
 
 const NewsletterButton = () => {
   const [subscribeToNewsletter, {isSuccess, isError, isLoading} ] = useSubscribeToNewsletterMutation();
@@ -61,11 +62,11 @@ const NewsletterButton = () => {
       })
     }
   }, [isError, toast]);
-
+  const {t} = useTranslation();
   return (
     <HStack spacing={-9}>
       <Input
-        placeholder="Sign up for newsletter"
+        placeholder={t("homePage.newsletter.content")}
         value={email}
         onChange={(event) => setEmail(event.target.value.trim())}
         fontSize={fontSize}
@@ -86,7 +87,7 @@ const NewsletterButton = () => {
         onClick={handleSubscribeAction}
         disabled={isLoading}
       >
-        SEND
+        {t("homePage.newsletter.buttonText")}
       </Button>
     </HStack>
   );

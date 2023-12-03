@@ -4,6 +4,7 @@ import { Page } from "../../../store/api/result/Page";
 import { ProductOutputDTO, useGetByQuery } from "../../../store/api/result/dto/product/base/ProductOutputDTO";
 import NewItem from "./NewItem";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 export function isProductPage(value: Page<ProductOutputDTO> | string[]): value is Page<ProductOutputDTO> {
   return "content" in value;
@@ -16,7 +17,7 @@ const NewItems = () => {
   pageSize: 4,
   sortingOrder: ProductSortingOrder.RECENTLY_ADDED
  }}, []), 0);
-
+  const {t} = useTranslation();
   return (
     <VStack
       bgImage="url(/newArrivalsBackground.jpg)"
@@ -31,7 +32,7 @@ const NewItems = () => {
         fontSize={{ base: "3xl", sm: "5xl" }}
         textStyle="h1"
       >
-        NEW ARRIVALS
+        {t("homePage.products.title")}
       </Text>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}

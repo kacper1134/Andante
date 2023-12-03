@@ -19,6 +19,7 @@ import { OrderStatus } from "../../../enums/OrderStatus";
 import { SortingOrder } from "./OrderHistory";
 import { BsSortDown } from "react-icons/bs";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface ProfileHistoryProps {}
 
@@ -50,7 +51,7 @@ const ProfileHistory: React.FC<ProfileHistoryProps> = () => {
   );
 
   const [reloadCanceled, setReloadCanceled] = useState(false);
-
+  const {t} = useTranslation();  
   return (
     <VStack w="100%" h="100%" spacing={0}>
       <Text
@@ -61,7 +62,7 @@ const ProfileHistory: React.FC<ProfileHistoryProps> = () => {
         bg="purple.50"
         textAlign="center"
       >
-        Orders & Returns
+        {t("profilePage.history.title")}
       </Text>
       <Tabs
         colorScheme="primary"
@@ -80,7 +81,7 @@ const ProfileHistory: React.FC<ProfileHistoryProps> = () => {
             .filter((status) => isNaN(Number(status)))
             .map((status, index) => (
               <Tab key={index} fontSize={tabsFontSize} textStyle="p">
-                {status}
+                {t(status.toString().charAt(0) + status.toString().toLowerCase().substring(1)).toUpperCase()}
               </Tab>
             ))}
           <Menu>
@@ -104,7 +105,7 @@ const ProfileHistory: React.FC<ProfileHistoryProps> = () => {
                     onClick={() => setSortingOrder(order)}
                     _hover={{ backgroundColor: "primary.100" }}
                   >
-                    {order}
+                    {t(order)}
                   </MenuItem>
                 ))}
             </MenuList>

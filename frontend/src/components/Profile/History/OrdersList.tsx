@@ -11,6 +11,7 @@ import CancelOrderModal from "./CancelOrderModal";
 import { CartEntryData } from "../../Cart/CartEntry";
 import noimage from "../../../static/noimage.png";
 import { useFirebase } from "../../../hooks/useFirebase";
+import { useTranslation } from "react-i18next";
 
 type OrdersListProps = {
     orders: OrderDetails[];
@@ -25,9 +26,9 @@ const OrdersList = ({orders, setReload}: OrdersListProps) => {
         lg: "30px",
         xl: "35px",
     }
-
+    const {t} = useTranslation();
     return <VStack as={Center} spacing="24px" h="100%">
-        {orders.length === 0 && <Text textStyle="h1" color="primary.600" fontSize={headerFontSize}>You have no orders of a given type!</Text>}
+        {orders.length === 0 && <Text textStyle="h1" color="primary.600" fontSize={headerFontSize}>{t("profilePage.history.nothingContent")}</Text>}
         {orders.map((order, index) => <OrderCard key={index} data={order} setReload={setReload} />)}
     </VStack>;
 };
@@ -113,7 +114,7 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const image = useFirebase(data.orderImage!, noimage);
-    
+    const {t} = useTranslation();
     return <VStack w={orderCardWidth} borderRadius="16px" boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)" py="8px">
         <HStack alignSelf="start" px="8px">
             <Image src={image} w="32px" h="32px" objectFit="contain" mr="4px" />
@@ -122,26 +123,26 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
         <Divider borderColor="gray.400"/>
         <HStack alignSelf="start" px="24px" spacing={{base: "24px", lg: "80px"}}>
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Order #</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.order")}</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{data.orderId}</Text>
             </VStack>
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Date Purchased</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.purchaseDate")}</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{data.orderDate.toLocaleString(DateTime.DATE_MED)}</Text>
             </VStack>
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Shipping Address</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.address")}</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{getShortenedAddress(data.shippingAddress)}</Text>
             </VStack>
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Order Value</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.value")}</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{data.orderCurrency}{data.totalCost}</Text>
             </VStack>
         </HStack>
         <Divider borderColor="gray.400" />
         <HStack spacing="16px" alignSelf="start" pl="24px" w="inherit">
-            <Text textStyle="p" fontWeight="800" color="gray.400" fontSize="14px" w="40px">QTY</Text>
-            <Text textStyle="p" fontWeight="800" color="gray.400" fontSize="14px" pl="7px">Name</Text>
+            <Text textStyle="p" fontWeight="800" color="gray.400" fontSize="14px" w="40px">{t("profilePage.history.order.qty")}</Text>
+            <Text textStyle="p" fontWeight="800" color="gray.400" fontSize="14px" pl="7px">{t("profilePage.history.order.name")}</Text>
         </HStack>
         {data.orderedItems.map((orderedItem, index) => 
             <HStack key={index} spacing="16px" alignSelf="center" pl="16px" borderBottom={data.orderedItems.length -1 === index ? '' : `1px solid ${gray300}`} w="calc(100% - 32px)">
@@ -152,11 +153,11 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
         <Divider borderColor="gray.400" />
         <HStack px="24px" spacing={{base: "48px", lg: "80px"}} w="inherit" alignSelf="start">
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Order Status</Text>
-                <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{OrderStatus[data.orderStatus].charAt(0).toUpperCase() + OrderStatus[data.orderStatus].substring(1).toLowerCase()}</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.status")}</Text>
+                <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{t(OrderStatus[data.orderStatus].charAt(0).toUpperCase() + OrderStatus[data.orderStatus].substring(1).toLowerCase())}</Text>
             </VStack>
             <VStack spacing={0}>
-                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>Estimated Ship Date</Text>
+                <Text textStyle="p" color="gray.400" fontSize="16px" fontWeight={800}>{t("profilePage.history.order.shipDate")}</Text>
                 <Text textStyle="p" color="black" fontSize="16px" alignSelf="start">{data.estimatedShipDate.toLocaleString(DateTime.DATE_MED)}</Text>
             </VStack>
         </HStack>
@@ -164,11 +165,11 @@ const OrderCard: React.FC<OrderCardProps> = ({data, setReload}) => {
         { (data.orderStatus === OrderStatus.NEW) && <>
         <Divider borderColor="gray.400" />
         <HStack userSelect="none">
-            {data.paymentMethod === "PayU" && <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => navigate(`../../cart/payment?orderId=${data.orderId}`)}>PAY NOW</Text>}
+            {data.paymentMethod === "PayU" && <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => navigate(`../../cart/payment?orderId=${data.orderId}`)}>{t("profilePage.history.order.payNow")}</Text>}
             {data.paymentMethod === "PayU" && <Icon as={BsDot} boxSize="14px" color="gray.500" />}
-            <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => generateInvoice(data, true)}>INVOICE</Text>
+            <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => generateInvoice(data, true)}>{t("profilePage.history.order.invoice")}</Text>
             <Icon as={BsDot} boxSize="14px" color="gray.500" />
-            <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => setIsModalOpen(true)}>CANCEL ORDER</Text>
+            <Text as={motion.p} variants={LinkVariants} whileHover="hover" textStyle="p" color="gray.500" fontSize="14px" cursor="pointer" onClick={() => setIsModalOpen(true)}>{t("profilePage.history.order.cancel")}</Text>
         </HStack>
         </>
         }

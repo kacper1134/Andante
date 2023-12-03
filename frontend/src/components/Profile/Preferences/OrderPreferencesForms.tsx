@@ -21,18 +21,19 @@ import {
 import { useKeycloak } from "@react-keycloak/web";
 import { cartActions } from "../../../store/cart/cartSlice";
 import { OrderDetails } from "../../Cart/CartConfirmation";
+import { useTranslation } from "react-i18next";
 
 export interface OrderPreferencesFormsProps {}
 
 const deliveryMethods: DeliveryMethod[] = [
   {
-    provider: "Courier InPost, UPS, DPD, DTS",
+    provider: "profilePage.preferences.delivery.courier.label",
     expectedDeliveryDays: 1,
     price: 6.49,
     type: "Courier",
   },
   {
-    provider: "Pickup Point",
+    provider: "profilePage.preferences.delivery.pickup.label",
     expectedDeliveryDays: 2,
     price: 4.99,
     type: "Pickup Point",
@@ -41,19 +42,18 @@ const deliveryMethods: DeliveryMethod[] = [
 
 const mockPaymentMethods: PaymentMethodData[] = [
   {
-    provider: "Online payment(PayU)",
-    description: "Quick transfer, card, BLIK",
+    provider: "profilePage.preferences.payment.online.label",
+    description: "profilePage.preferences.payment.online.content",
     cost: 0,
   },
   {
-    provider: "PayPo - buy now, pay in 30 days",
-    description:
-      "Buy now, check product and pay in up to 30 days without interest",
+    provider: "profilePage.preferences.payment.payPo.label",
+    description: "profilePage.preferences.payment.payPo.content",
     cost: 0,
   },
   {
-    provider: "Pay on delivery",
-    description: "Pay after receiving the order",
+    provider: "profilePage.preferences.payment.delivery.label",
+    description: "profilePage.preferences.payment.delivery.content",
     cost: 3,
   },
 ];
@@ -280,6 +280,8 @@ const OrderPreferencesForms: React.FC<OrderPreferencesFormsProps> = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Text
@@ -291,7 +293,7 @@ const OrderPreferencesForms: React.FC<OrderPreferencesFormsProps> = () => {
         bg="purple.50"
         boxShadow="0 4px 4px 0 rgba(0,0,0,0.25)"
       >
-        Order Preferences
+        {t("profilePage.preferences.title")}
       </Text>
       <VStack
         h="90%"
@@ -336,7 +338,7 @@ const OrderPreferencesForms: React.FC<OrderPreferencesFormsProps> = () => {
               mr="5px"
               onClick={updateOrderPreferences}
             >
-              Update
+              {t("profilePage.preferences.update")}
             </Button>
           </VStack>
         </Wrap>

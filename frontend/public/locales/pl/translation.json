@@ -8,6 +8,21 @@
   "about": "o nas",
   "copyright": "Andante 2023 - Wszelkie prawa zastrzeżone",
   "alternativeVersion": "Pokazać alternatywną wersję?",
+  "Male": "Mężczyzna",
+  "Female": "Kobieta",
+  "New": "Nowe",
+  "Completed": "Zakończone",
+  "Canceled": "Anulowane",
+  "Oldest: First": "Najstarszy: Pierwszy",
+  "Newest: First": "Najnowszy: Pierwszy",
+  "Total Upvotes": "Liczba Głosów",
+  "Posts": "Posty",
+  "Comments": "Komentarze",
+  "Followers": "Obserwujący",
+  "Following": "Obserwowani",
+  "PRODUCTS": "PRODUKTY",
+  "POSTS": "POSTY",
+  "COMMENTS": "KOMENTARZE",
   "aboutPage": {
     "offer": {
       "first": {
@@ -66,6 +81,238 @@
     "main": {
       "title": "o nas",
       "content": "Kultura naszej firmy, która opiera się na otwartości i nastawieniu na pracowników i klientów, sprawia, że współpraca z nami jest efektywna, szybciej osiągamy cele i znacznie sprawniej pokonujemy trudności. Jesteśmy wyborem w cyfrowej transformacji biznesu i wpływamy na poziom satysfakcji klientów."
+    }
+  },
+  "homePage": {
+    "slide": {
+      "title": "Wybór Użytkowników",
+      "buttonText": "Zamów Teraz"
+    },
+    "reviews": {
+      "title": "OSTATNIE RECENZJE",
+      "buttonText": "Więcej recenzji"
+    },
+    "products": {
+      "title": "NOWOŚCI",
+      "buttonText": "DO KOSZYKA"
+    },
+    "newsletter": {
+      "title": "Zostań przyjacielem Andante",
+      "content": "Zapisz się do newslettera",
+      "buttonText": "WYŚLIJ"
+    }
+  },
+  "profilePage": {
+    "edit": {
+      "personal": {
+        "title": "Dane osobowe",
+        "name": {
+          "label": "Imię*",
+          "placeholder": "Wpisz swoje imię"
+        },
+        "surname": {
+          "label": "Nazwisko*",
+          "placeholder": "Wpisz swoje nazwisko"
+        },
+        "phone": {
+          "label": "Telefon*",
+          "placeholder": "Wprowadź swój numer telefonu"
+        },
+        "birthdate": {
+          "label": "Data urodzenia*"
+        },
+        "gender": {
+          "label": "Płeć*",
+          "male": "Mężczyzna",
+          "female": "Kobieta"
+        }
+      },
+      "delivery": {
+        "title": "Dostawa",
+        "country": {
+          "label": "Kraj*",
+          "placeholder": "Wprowadź swój kraj"
+        },
+        "city": {
+          "label": "Miasto*",
+          "placeholder": "Wpisz swoje miasto"
+        },
+        "street": {
+          "label": "Ulica",
+          "placeholder": "Wprowadź swoją ulicę"
+        },
+        "postalcode": {
+          "label": "Kod pocztowy",
+          "placeholder": "Wprowadź swój kod pocztowy"
+        }
+      },
+      "buttons": {
+        "cancel": "Anuluj",
+        "update": "Aktualizuj",
+        "edit": "Edytuj"
+      },
+      "about": "O mnie"
+    },
+    "navigation": {
+      "edit": "Edytuj konto",
+      "signout": "Wyloguj",
+      "links": {
+        "details": "Dane Użytkownika",
+        "history": "Historia Zamówień",
+        "community": "Społeczność",
+        "preferences": "Preferencje"
+      },
+      "joined": "Dołączył"
+    },
+    "details": {
+      "title": "Dane Użytkownika",
+      "personal": {
+        "title": "Dane Osobowe",
+        "nickname": {
+          "label": "Pseudonim",
+          "placeholder": "Nie wybrano"
+        },
+        "gender": {
+          "label": "Płeć",
+          "placeholder": "Nieokreślony"
+        },
+        "birthdate": {
+          "label": "Data urodzin",
+          "placeholder": "Nie podano"
+        }
+      },
+      "contact": {
+        "title": "Dane kontaktowe",
+        "email": {
+          "label": "Adres Email",
+          "placeholder": "Nie podano"
+        },
+        "phone": {
+          "label": "Numer Telefonu",
+          "placeholder": "Nie podano"
+        }
+      },
+      "delivery": {
+        "title": "Dostawa",
+        "country": {
+          "label": "Kraj",
+          "placeholder": "Nie podano"
+        },
+        "city": {
+          "label": "Miasto",
+          "placeholder": "Nie podano"
+        },
+        "street": {
+          "label": "Ulica",
+          "placeholder": "Nie podano"
+        },
+        "postalcode": {
+          "label": "Kod Pocztowy",
+          "placeholder": "Nie podano"
+        }
+      },
+      "recommended": {
+        "title": "Polecane dla Ciebie",
+        "nothingContent": "W tej chwili nie mamy nic do polecenia!"
+      }
+    },
+    "history": {
+      "title": "Zamówienia & Zwroty",
+      "pages": {
+        "NEW": "NOWE",
+        "COMPLETED": "ZAKOŃCZONE",
+        "CANCELED": "ANULOWANE"
+      },
+      "sorting": {
+        "oldest": "Najstarszy: Pierwszy",
+        "newest": "Najnowszy: Pierwszy"
+      },
+      "order": {
+        "order": "ID #",
+        "purchaseDate": "Data zakupu",
+        "address": "Adres wysyłki",
+        "value": "Wartość",
+        "qty": "ILO",
+        "name": "Nazwa",
+        "status": "Status",
+        "shipDate": "Data wysyłki",
+        "payNow": "ZAPŁAĆ TERAZ",
+        "invoice": "FAKTURA",
+        "cancel": "ANULUJ"
+      },
+      "nothingContent": "Nie masz żadnych zamówień danego typu!"
+    },
+    "community": {
+      "baner": {
+        "buttonText": "+ Prześlij Zdjęcie",
+        "upvotes": "Liczba Głosów",
+        "posts": "Posty",
+        "comments": "Komentarze",
+        "followers": "Obserwujący",
+        "following": "Obserwowani",
+        "edit": "Edytuj"
+      },
+      "about": "O MNIE",
+      "posts": "TOP POSTY & KOMENTARZE",
+      "communities": "SPOŁECZNOŚCI",
+      "observed": "OBSERWOWANE",
+      "filters": {
+        "products": "PRODUKTY",
+        "posts": "POSTY",
+        "comments": "KOMENTARZE"
+      },
+      "breadcrumbs": {
+        "shop": "Sklep",
+        "product": "Produkt"
+      },
+      "share": "UDOSTĘPNIJ",
+      "following": "OBSERWUJĄCY:",
+      "followers": "OBSERWOWANI:"
+    },
+    "preferences": {
+      "title": "Preferencje Zamówień",
+      "subText": "*Wymagane pola",
+      "contact": {
+        "title": "Dane Kontaktowe",
+        "name": "Imię*",
+        "surname": "Nazwisko*",
+        "phone": "Numer Telefonu*"
+      },
+      "billing": {
+        "title": "Dane Rozliczeniowe",
+        "country": "Kraj*",
+        "city": "Miasto*",
+        "street": "Ulica*",
+        "building": "Numer Budynku*",
+        "flat": "Numer Mieszkania",
+        "postalcode": "Kod Pocztowy*"
+      },
+      "delivery": {
+        "courier": {
+          "label": "Kurier InPost, UPS, DPD, DTS",
+          "content": "Oczekuje się, że zostanie dostarczone"
+        },
+        "pickup": {
+          "label": "Punkt Odbioru",
+          "content": "Oczekuje się, że zostanie dostarczone",
+          "buttonText": "Wybierz punkt odbioru"
+        }
+      },
+      "payment": {
+        "online": {
+          "label": "Płatność online (PayU)",
+          "content": "Szybki przelew, karta, BLIK"
+        },
+        "payPo": {
+          "label": "PayPo - kup teraz, zapłać za 30 dni",
+          "content": "Kup teraz, sprawdź produkt i zapłać do 30 dni bez odsetek"
+        },
+        "delivery": {
+          "label": "Płatność przy odbiorze",
+          "content": "Płatność po otrzymaniu zamówienia"
+        }
+      },
+      "update": "Aktualizuj"
     }
   }
 }

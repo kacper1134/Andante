@@ -12,6 +12,7 @@ import { cartActions } from "../../../store/cart/cartSlice";
 import { useKeycloak } from "@react-keycloak/web";
 import add_interaction, { InteractionType } from "../../../functions/recommendation-functions";
 import useUserProfile from "../../../hooks/useUserProfile";
+import { useTranslation } from "react-i18next";
 
 type NewItemProps = {
   product: ProductOutputDTO;
@@ -61,7 +62,7 @@ const NewItem = ({ product }: NewItemProps) => {
       })  
     }
   }
-
+  const {t} = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -109,7 +110,7 @@ const NewItem = ({ product }: NewItemProps) => {
               disabled={product.variants.length === 0 || product.variants[0].availableQuantity === 0}
               onClick={addToCart}
             >
-              ADD TO CART
+              {t("homePage.products.buttonText")}
             </Button>}
             </HStack>
       </VStack>
