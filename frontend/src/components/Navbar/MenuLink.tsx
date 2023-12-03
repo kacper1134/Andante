@@ -1,5 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useToken } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export interface MenuLinkProps {
@@ -20,6 +21,8 @@ const MenuLink = ({ to, text }: MenuLinkProps) => {
 
   const [basicColor, hoverColor] = useToken("colors", ["primary.300", "primary.700"]);
 
+  const { t } = useTranslation();
+
   return (
     <Box h="inherit" lineHeight="inherit">
       <Text
@@ -31,7 +34,7 @@ const MenuLink = ({ to, text }: MenuLinkProps) => {
         cursor="pointer"
         userSelect="none"
       >
-        {text.toUpperCase()}
+        {t(text).toUpperCase()}
       </Text>
     </Box>
   );

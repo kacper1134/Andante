@@ -1,0 +1,71 @@
+{
+  "home": "home",
+  "shop": "shop",
+  "music": "music",
+  "reviews": "reviews",
+  "recommended": "recommended",
+  "forum": "forum",
+  "about": "about",
+  "copyright": "Andante 2023 - All Rights Reserved",
+  "alternativeVersion": "Show alternative version?",
+  "aboutPage": {
+    "offer": {
+      "first": {
+        "title": "All about music",
+        "description": "The andante portal is aimed at music fans and is all about music"
+      },
+      "second": {
+        "title": "Made with love",
+        "description": "Our team believes that if we create our product with passion then users can feel it."
+      },
+      "third": {
+        "title": "Talk about your passion",
+        "description": "Andante provides opportunity to discuss music with other music fans"
+      },
+      "fourth": {
+        "title": "Amazing devices",
+        "description": "Pamper yourself with our high quality music devices"
+      }
+    },
+    "slide": {
+      "first": {
+        "title": "Localizations",
+        "content": "We are present all around the world"
+      },
+      "second": {
+        "title": "International collaboration",
+        "content": "All decisions and business activities we make are characterized by honesty towards our employees, associates and contractors"
+      },
+      "third": {
+        "title": "Advanced technology",
+        "content": "Technological peace of mind"
+      },
+      "fourth": {
+        "title": "Main office",
+        "content": "Main headquarters of our company"
+      }
+    },
+    "statistics": {
+      "first": {
+        "caption": "Certificates",
+        "description": "Quality of our products is guaranteed by a lot of certificates"
+      },
+      "second": {
+        "caption": "countries of origin",
+        "description": "We have our officies all around the world"
+      },
+      "third": {
+        "caption": "years on the market",
+        "description": "Andante has long history on the market a a lot of happy users"
+      },
+      "fourth": {
+        "caption": "IT specialists",
+        "description": "Our team is dedicated in developing our portal"
+      }
+    },
+    "main": {
+      "title": "about us",
+      "content": "The culture of our company, which is based on openness and orientation to employees and customers, makes cooperation with us effective, we achieve goals faster and we overcome difficulties much more efficiently. We are choice in the digital transformation of business and affects the level of customer satisfaction."
+    }
+  }
+}

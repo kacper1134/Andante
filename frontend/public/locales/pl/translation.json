@@ -1,0 +1,71 @@
+{
+  "home": "strona główna",
+  "shop": "sklep",
+  "music": "muzyka",
+  "reviews": "recenzje",
+  "recommended": "rekomendowane",
+  "forum": "forum",
+  "about": "o nas",
+  "copyright": "Andante 2023 - Wszelkie prawa zastrzeżone",
+  "alternativeVersion": "Pokazać alternatywną wersję?",
+  "aboutPage": {
+    "offer": {
+      "first": {
+        "title": "Wszystko o muzyce",
+        "description": "Portal andante jest skierowany do fanów muzyki i jest w całości poświęcony muzyce"
+      },
+      "second": {
+        "title": "Wykonane z miłością",
+        "description": "Nasz zespół wierzy, że jeśli tworzymy nasz produkt z pasją, użytkownicy mogą to poczuć."
+      },
+      "third": {
+        "title": "Mów o swojej pasji",
+        "description": "Andante zapewnia możliwość dyskusji o muzyce z innymi fanami muzyki"
+      },
+      "fourth": {
+        "title": "Niesamowite urządzenia",
+        "description": "Rozpieszczaj się naszymi wysokiej jakości urządzeniami muzycznymi"
+      }
+    },
+    "slide": {
+      "first": {
+        "title": "Lokalizacje",
+        "content": "Jesteśmy obecni na całym świecie"
+      },
+      "second": {
+        "title": "Współpraca międzynarodowa",
+        "content": "Wszystkie podejmowane przez nas decyzje i działania biznesowe charakteryzują się uczciwością wobec naszych pracowników, współpracowników i kontrahentów"
+      },
+      "third": {
+        "title": "Zaawansowana technologia",
+        "content": "Technologiczny spokój ducha"
+      },
+      "fourth": {
+        "title": "Główne biuro",
+        "content": "Główna siedziba naszej firmy"
+      }
+    },
+    "statistics": {
+      "first": {
+        "caption": "Certyfikaty",
+        "description": "Jakość naszych produktów jest gwarantowana przez wiele certyfikatów"
+      },
+      "second": {
+        "caption": "kraje pochodzenia",
+        "description": "Mamy swoje biura na całym świecie"
+      },
+      "third": {
+        "caption": "lata na rynku",
+        "description": "Andante ma długą historię na rynku i wielu zadowolonych użytkowników"
+      },
+      "fourth": {
+        "caption": "Specjaliści IT",
+        "description": "Nasz zespół jest oddany rozwijaniu naszego portalu"
+      }
+    },
+    "main": {
+      "title": "o nas",
+      "content": "Kultura naszej firmy, która opiera się na otwartości i nastawieniu na pracowników i klientów, sprawia, że współpraca z nami jest efektywna, szybciej osiągamy cele i znacznie sprawniej pokonujemy trudności. Jesteśmy wyborem w cyfrowej transformacji biznesu i wpływamy na poziom satysfakcji klientów."
+    }
+  }
+}

@@ -3,13 +3,16 @@ import {
   MdOutlinePersonOutline,
   MdShoppingCart,
 } from "react-icons/md";
-import { AiFillMessage } from "react-icons/ai";
 import MenuIcon from "./MenuIcon";
 import { ReactElement, JSXElementConstructor } from 'react';
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { LINKS } from "./MenuLinks";
 import { useNavigate } from "react-router-dom";
-import { IoIosNotifications } from "react-icons/io";
+import { PL, US } from 'country-flag-icons/react/3x2'
+import { RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth/auth-slice";
+import { useTranslation } from "react-i18next";
 
 export interface IconDescription {
   label: string,
@@ -40,15 +43,11 @@ const MenuIcons: React.FC<{ isDropdown: boolean }> = ({ isDropdown }) => {
     navigate("/cart");
   }
 
-  const notificationsHandler = () => {
-    navigate("/notifications");
-  }
+  const language = useSelector((state: RootState) => state.auth.language);
+  const { i18n } = useTranslation();
+  const dispatch = useDispatch();
 
   const icons: IconDescription[] = [
-    {
-      label: "Check your notifications",
-      icon: <Icon as={IoIosNotifications} boxSize={iconSize} onClick={notificationsHandler} />
-    },
     {
       label: "Go to user settings",
       icon: <Icon as={MdOutlinePersonOutline} boxSize={iconSize} onClick={profileHandler} />
@@ -59,8 +58,11 @@ const MenuIcons: React.FC<{ isDropdown: boolean }> = ({ isDropdown }) => {
     },
     {
       label: "Check user messages",
-      icon: <Icon as={AiFillMessage} boxSize={iconSize} onClick={() => navigate("/chat")} />
-    }
+      icon: <Icon as={language === "pl" ? US : PL} boxSize={iconSize} onClick={() => {
+        i18n.changeLanguage(language);
+        dispatch(authActions.changeLanguage())
+      }} />
+    },
   ];
 
 
@@ -74,6 +76,7 @@ const MenuIcons: React.FC<{ isDropdown: boolean }> = ({ isDropdown }) => {
 
 const DropdownMenu: React.FC<{ iconSize: string }> = ({ iconSize }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const capitalize = (word: string) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -88,7 +91,7 @@ const DropdownMenu: React.FC<{ iconSize: string }> = ({ iconSize }) => {
         icon={<DropdownIcon iconSize={iconSize} />}
       />
       <MenuList zIndex="dropdown">
-        {LINKS.map(link => <MenuItem key={link.text} onClick={() => navigate(link.path)} color="purple.300">{capitalize(link.text)}</MenuItem>)}
+        {LINKS.map(link => <MenuItem key={link.text} onClick={() => navigate(link.path)} color="purple.300">{capitalize(t(link.text))}</MenuItem>)}
       </MenuList>
     </Menu>
   </Box>

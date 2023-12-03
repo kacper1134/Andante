@@ -6,6 +6,7 @@ import { slideShowVariants } from './variants/slideShowVariants';
 import { titleVariants, descriptionVariants } from './variants/slideInfoVariants';
 import Utils from '../../../utils/Utils';
 import { hexToRGB } from '../../../functions/style-functions';
+import { useTranslation } from 'react-i18next';
 
 export type Slide = {
     URL: string,
@@ -140,6 +141,8 @@ const SlideInfo: React.FC<{slideContent: SlideContent, color: string}> = ({slide
     const [primary200] = useToken("colors", ["primary.200"]);
     const backgroundColor = hexToRGB(primary200, 0.4);
 
+    const {t} = useTranslation();
+
     return (
     <VStack position="absolute" bg={`linear-gradient(${backgroundColor},${backgroundColor})`} w="100%" h="100%">
         <VStack as={Center} h="100%">
@@ -151,7 +154,7 @@ const SlideInfo: React.FC<{slideContent: SlideContent, color: string}> = ({slide
             color={color}
             noOfLines={1}
             >
-                {slideContent.title}
+                {t(slideContent.title)}
             </Text>
             <Text as={motion.div}
             variants={descriptionVariants}
@@ -162,7 +165,7 @@ const SlideInfo: React.FC<{slideContent: SlideContent, color: string}> = ({slide
             w="75vw"
             textAlign="center"
             noOfLines={3}>
-                {slideContent.content}
+                {t(slideContent.content)}
             </Text>
         </VStack>
     </VStack>
