@@ -8,6 +8,7 @@ import { useLazyGetOrderEntriesQuery, useLazyGetOrderQuery } from "../../store/a
 import { OrderResultType } from "../Profile/History/OrderHistory";
 import CartEntry, { CartEntryData } from "./CartEntry";
 import { DeliveryMethod, PaymentMethodData } from "./CartForms";
+import { useTranslation } from "react-i18next";
 
 export interface OrderDetails {
     personal: {
@@ -89,6 +90,7 @@ const CartConfirmation: React.FC<CartConfirmationProps> = () => {
 
     const paymentMethod = order ? (order as any).paymentMethod : undefined;
     console.log(order);
+    const {t} = useTranslation();
     return <VStack w={baseSize + "px"} margin="auto" spacing={0}>
         <Heading color="primary.400" textStyle="h2" fontSize={headingSize}>Thank You For Submitting Your Order</Heading>
         <Text color="gray.500" textStyle="p" fontSize={fontSize - 4} textAlign="center" pt={fontSize / 3} pb={fontSize / 3}>We have sent confirmation of the order to the provided e-mail address</Text>
@@ -128,15 +130,15 @@ const CartConfirmation: React.FC<CartConfirmationProps> = () => {
         </HStack>
         <HStack w="inherit" justifyContent="space-between" pt="16px">
             <VStack>
-                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.deliveryMethod.provider}</Text>
+                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{t(orderData.deliveryMethod.provider)}</Text>
                 <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">Expected to be delivered on {orderData.deliveryDate?.toLocaleString(DateTime.DATE_MED)}</Text>
             </VStack>
             <Text fontSize={fontSize} textStyle="p" alignSelf="start">{currency}{orderData.deliveryMethod.price}</Text>
         </HStack>
         <HStack w="inherit" justifyContent="space-between" pt="16px">
             <VStack>
-                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.paymentMethod.provider}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{orderData.paymentMethod.description}</Text>
+                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{t(orderData.paymentMethod.provider)}</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{t(orderData.paymentMethod.description)}</Text>
             </VStack>
             <Text fontSize={fontSize} textStyle="p" alignSelf="start">{currency}{orderData.paymentMethod.cost}</Text>
         </HStack>

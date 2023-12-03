@@ -42,17 +42,17 @@ const deliveryMethods: DeliveryMethod[] = [
 
 const mockPaymentMethods: PaymentMethodData[] = [
   {
-    provider: "profilePage.preferences.payment.online.label",
+    provider: "Online payment(PayU)",
     description: "profilePage.preferences.payment.online.content",
     cost: 0,
   },
   {
-    provider: "profilePage.preferences.payment.payPo.label",
+    provider: "PayPo - buy now, pay in 30 days",
     description: "profilePage.preferences.payment.payPo.content",
     cost: 0,
   },
   {
-    provider: "profilePage.preferences.payment.delivery.label",
+    provider: "Pay on delivery",
     description: "profilePage.preferences.payment.delivery.content",
     cost: 3,
   },
