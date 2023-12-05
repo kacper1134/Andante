@@ -8,6 +8,7 @@ import {
 } from "../BlogPostPageSizes";
 import NewPostComment from "./NewPostComment";
 import PostComment from "./PostComment";
+import { useTranslation } from "react-i18next";
 
 type PostCommentsProps = {
   postCommentsData: any[];
@@ -47,6 +48,8 @@ const PostComments = ({
     setPage(0);
   }
 
+  const { t } = useTranslation();
+
   return (
     <Box position="relative">
       <HStack>
@@ -57,7 +60,7 @@ const PostComments = ({
           my="16px"
           textStyle="p"
         >
-          Comments
+          {t("blog-section.comments-block")}
         </Text>
         <Button
           colorScheme="primary"
@@ -67,7 +70,7 @@ const PostComments = ({
           fontSize={blogContentFontSize}
           textStyle="p"
         >
-          New <Icon as={IoAddCircleSharp} ml="3" />
+          {t("blog-section.comments-new")} <Icon as={IoAddCircleSharp} ml="3" />
         </Button>
       </HStack>
       <NewPostComment

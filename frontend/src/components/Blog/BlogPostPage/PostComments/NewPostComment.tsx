@@ -16,6 +16,7 @@ import { writeClient } from "../../../../client";
 import { RootState } from "../../../../store";
 import UserTextEditor from "../../../common/UserTextEditor";
 import { blogContentFontSize } from "../BlogPostPageSizes";
+import { useTranslation } from "react-i18next";
 
 type NewPostCommentProps = {
   isOpen: boolean;
@@ -49,7 +50,7 @@ const NewPostComment = ({
     }
 
     setSaving(true);
-    
+
     const newBlogPostCommentQuery = {
       _type: "comment",
       author: userData?.personal.name + " " + userData?.personal.surname,
@@ -92,17 +93,19 @@ const NewPostComment = ({
     });
   };
 
+  const { t } = useTranslation();
+
   return (
-    <VStack 
-    as={Collapse} 
-    in={isOpen}
-    w="100%"
-    rounded="2xl"
-    mt="10px"
-    p="2"
-    bg="white"
-    boxShadow="1px 2px 2px 1px rgba(0,0,0,0.25)"
-    textStyle="p">
+    <VStack
+      as={Collapse}
+      in={isOpen}
+      w="100%"
+      rounded="2xl"
+      mt="10px"
+      p="2"
+      bg="white"
+      boxShadow="1px 2px 2px 1px rgba(0,0,0,0.25)"
+      textStyle="p">
       <Text
         w="95%"
         fontSize="1.8rem"
@@ -110,7 +113,7 @@ const NewPostComment = ({
         my="10px"
         textStyle="h1"
       >
-        Add your comment
+        {t("blog-section.add-comment")}
       </Text>
       <UserTextEditor content={content} setContent={setContent} />
       <Flex direction="column" align="flex-end">
@@ -127,7 +130,7 @@ const NewPostComment = ({
         >
           {!saving ? (
             <>
-              Send <Icon as={IoMdSend} ml="3" />
+              {t("blog-section.send-comment")} <Icon as={IoMdSend} ml="3" />
             </>
           ) : (
             <Spinner />

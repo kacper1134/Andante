@@ -19,6 +19,7 @@ import parse from "html-react-parser";
 import BlogPostOptions from "./BlogPostOptions";
 import { useKeycloak } from "@react-keycloak/web";
 import { KeycloakRole } from "../../../enums/KeycloakRole";
+import { useTranslation } from "react-i18next";
 
 type BlogPostProps = {
   post: any;
@@ -39,6 +40,8 @@ const BlogPost = ({ post, setUpdated }: BlogPostProps) => {
   const publishDay = new Date(post.publishedAt);
   const photoVisible = useBreakpointValue({ base: false, md: true });
   const { keycloak } = useKeycloak();
+
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -105,13 +108,13 @@ const BlogPost = ({ post, setUpdated }: BlogPostProps) => {
             w="100%"
           >
             <Text ml="6px" mr="6px" color="gray">
-              By
+              {t("blog-section.blog-by")}
             </Text>
             <Text color="primary.500" fontWeight="bold" mr="6px">
               {post.author}
             </Text>
             <Text color="gray">
-              on {weekday[publishDay.getDay()]}, {publishDay.getDate()}{" "}
+              {t("blog-section.blog-on")} {weekday[publishDay.getDay()]}, {publishDay.getDate()}{" "}
               {publishDay.toLocaleString("default", { month: "long" })}{" "}
               {publishDay.getFullYear()} at{" "}
               {publishDay.getHours().toString().padStart(2, "0")}:

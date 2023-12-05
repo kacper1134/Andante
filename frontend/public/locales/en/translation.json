@@ -344,5 +344,21 @@
     "posts": "Posts",
     "no-posts": "There are no posts within this topic yet. Be the first person to write something!",
     "show-more": "Show More"
+  },
+  "blog-section": {
+    "delete-blog-post": "Are you sure you want to delete blog post with title",
+    "delete-irreversible": "Please note that this action is irreversible!",
+    "delete-confirm":"Confirm",
+    "delete-cancel":"Cancel",
+    "blog-by": "By",
+    "blog-on": "on",
+    "add-new-post": "Add new post",
+    "latest-posts": "Latest posts",
+    "no-posts": "There is nothing here yet",
+    "comments": "comments",
+    "comments-block": "Comments",
+    "comments-new": "New",
+    "add-comment": "Add your comment",
+    "send-comment": "Send"
   }
 }

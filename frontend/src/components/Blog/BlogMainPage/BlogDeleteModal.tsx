@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { writeClient } from "../../../client";
+import { useTranslation } from "react-i18next";
 
 type BlogDeleteModalProps = {
   isOpen: boolean;
@@ -43,7 +44,7 @@ const BlogDeleteModal = ({
         setIsOpen(false);
         setUpdated(true);
         showToast("Delete post", "success", "Post was deleted successfully!");
-        writeClient.delete(assetRef).catch(() => {});
+        writeClient.delete(assetRef).catch(() => { });
         const deleteCommentsQuery = `*[_type == "comment" && postTitle == "${title}"]`;
         writeClient.delete({ query: deleteCommentsQuery });
       })
@@ -67,6 +68,8 @@ const BlogDeleteModal = ({
     });
   };
 
+  const { t } = useTranslation();
+
   return (
     <Modal
       isOpen={isOpen}
@@ -80,9 +83,9 @@ const BlogDeleteModal = ({
         <ModalCloseButton disabled={saving} />
         <ModalBody>
           <Text>
-            Are you sure you want to delete blog post with title {title}?
+            {t("blog-section.delete-blog-post")} {title}?
           </Text>
-          <Text as="sub">Please note that this action is irreversible!</Text>
+          <Text as="sub">{t("blog-section.delete-irreversible")}</Text>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -91,14 +94,14 @@ const BlogDeleteModal = ({
             mr={3}
             disabled={saving}
           >
-            {!saving ? <Text>Confirm</Text> : <Spinner />}
+            {!saving ? <Text>{t("blog-section.delete-confirm")}</Text> : <Spinner />}
           </Button>
           <Button
             colorScheme="gray"
             onClick={() => setIsOpen(false)}
             disabled={saving}
           >
-            {!saving ? <Text>Cancel</Text> : <Spinner />}
+            {!saving ? <Text>{t("blog-section.delete-cancel")}</Text> : <Spinner />}
           </Button>
         </ModalFooter>
       </ModalContent>

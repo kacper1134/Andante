@@ -344,5 +344,23 @@
     "posts": "Posty",
     "no-posts": "Nie ma jeszcze postów na ten temat. Bądź pierwszą osobą, która coś napisze!",
     "show-more": "Pokaż więcej"
+  },
+  "blog-section": {
+    "delete-blog-post": "Czy jesteś pewny, że chcesz usunąć z bloga wpis o tytule",
+    "delete-irreversible": "Uwaga! Tej akcji nie da się cofnąć!",
+    "delete-confirm":"Potwierdź",
+    "delete-cancel":"Anuluj",
+    "blog-by": "Przez",
+    "blog-on": "w",
+    "add-new-post": "Dodaj nowy post",
+    "latest-posts": "Ostatnie posty",
+    "no-posts": "Jeszcze nic tutaj nie ma",
+    "comments": "komentarze",
+    "comments-block": "Komentarze",
+    "comments-new": "Dodaj",
+    "add-comment": "Dodaj swój komentarz",
+    "send-comment": "Wyślij",
+    "post-create": "Stwórz wpis",
+    "post-edit": "Edytuj swój wpis"
   }
 }
