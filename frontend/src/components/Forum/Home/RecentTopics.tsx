@@ -21,6 +21,7 @@ import TopCategories from "../../Carousel/TopCategories";
 import CategoriesCarousel from "../../Carousel/CategoriesCarousel";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
 
 type RecentTopicsProps = {
   width: number;
@@ -60,10 +61,12 @@ const RecentTopics = ({ width }: RecentTopicsProps) => {
     (state: RootState) => state.auth.alternativeVersionOfInterface
   );
 
+  const { t } = useTranslation();
+
   return (
     <VStack width={width}>
       <Text color="primary.300" fontSize={topicHeaderFontSize} textStyle="h1">
-        Recent Topics
+        {t("forum-section.recent-topics")}
       </Text>
       <Box width="100%">
         {!alternativeVersionOfInterface ? (

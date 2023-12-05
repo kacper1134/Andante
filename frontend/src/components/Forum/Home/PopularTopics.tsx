@@ -17,6 +17,7 @@ import TopCategories from "../../Carousel/TopCategories";
 import CategoriesCarousel from "../../Carousel/CategoriesCarousel";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
 
 type PopularTopicsProps = {
   width: number;
@@ -49,10 +50,12 @@ const PopularTopics = ({ width }: PopularTopicsProps) => {
     (state: RootState) => state.auth.alternativeVersionOfInterface
   );
 
+  const { t } = useTranslation();
+
   return (
     <VStack width={width}>
       <Text color="primary.300" fontSize={topicHeaderFontSize} textStyle="h1">
-        Popular Topics
+        {t("forum-section.popular-topics")}
       </Text>
       <Box width="100%">
         {!alternativeVersionOfInterface ? (

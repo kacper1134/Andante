@@ -317,5 +317,32 @@
       },
       "update": "Update"
     }
+  },
+  "forum-section":{
+    "all-topics": "All topics",
+    "showing": "Showing",
+    "showing-of": "of",
+    "recent-topics": "Recent Topics",
+    "popular-topics": "Popular Topics",
+    "delete-forum-post": "Delete forum post",
+    "delete-post-confirmation": "Are you sure you want to delete forum post with title",
+    "delete-irreversible": "Please note that this action is irreversible!",
+    "delete-confirm": "Confirm",
+    "delete-cancel": "Cancel",
+    "created-on": "Post created on",
+    "created-in": "in",
+    "created-by": "by",
+    "post-edit": "Edit",
+    "post-delete": "Delete",
+    "post-reply": "Reply",
+    "post-replies": "replies",
+    "post-likes": "likes",
+    "replied-on": "replied on",
+    "your-reply": "Your reply",
+    "post-save": "Save",
+    "new-button": "New",
+    "posts": "Posts",
+    "no-posts": "There are no posts within this topic yet. Be the first person to write something!",
+    "show-more": "Show More"
   }
 }

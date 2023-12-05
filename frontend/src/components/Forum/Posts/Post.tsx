@@ -4,6 +4,7 @@ import {
   postHeaderFontSize,
   postTitleFontSize,
 } from "../common/ForumDimensions";
+import { useTranslation } from "react-i18next";
 
 export type PostType = {
   id: number;
@@ -50,6 +51,8 @@ export const formatDate = (dateString: string) => {
 const Post = ({ post }: PostProps) => {
   const postDate = formatDate(post.date);
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   return (
     <VStack
@@ -98,7 +101,7 @@ const Post = ({ post }: PostProps) => {
         fontSize={postHeaderFontSize}
         textStyle="p"
       >
-        {post.numberOfComments} replies
+        {post.numberOfComments} {t("forum-section.post-replies")}
       </Text>
     </VStack>
   );

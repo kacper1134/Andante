@@ -18,6 +18,7 @@ import {
 import { useKeycloak } from "@react-keycloak/web";
 import { TopicOutputDTO } from "../../../store/api/result/dto/forum/TopicOutputDTO";
 import { Page } from "../../../store/api/result/Page";
+import { useTranslation } from "react-i18next";
 
 const PAGE_AMOUNT = 4;
 
@@ -90,6 +91,8 @@ const AllTopics = React.forwardRef<HTMLDivElement>((_, ref) => {
     }
   }, [fetchTopics, initialized, keycloak.authenticated, sortingOrder, searchPhrase]);
 
+  const { t } = useTranslation();
+
   return (
     <VStack ref={ref} width="fit-content">
       <Text
@@ -98,7 +101,7 @@ const AllTopics = React.forwardRef<HTMLDivElement>((_, ref) => {
         mb="3%"
         textStyle="h1"
       >
-        All topics
+        {t("forum-section.all-topics")}
       </Text>
       <TopicsFilterAndSort
         setSortingOrder={setSortingOrder}
@@ -131,7 +134,7 @@ const AllTopics = React.forwardRef<HTMLDivElement>((_, ref) => {
       {!showMore && (
         <VStack width="100%">
           <Text fontSize={buttonTextFontSize} fontWeight="bold" textStyle="p">
-            Showing {topics.length} of {numberOfTopics}
+            {t("forum-section.showing")} {topics.length} {t("forum-section.showing-of")} {numberOfTopics}
           </Text>
           <Button
             fontSize={buttonTextFontSize}
@@ -143,7 +146,7 @@ const AllTopics = React.forwardRef<HTMLDivElement>((_, ref) => {
             textStyle="p"
             onClick={() => setShowMore(true)}
           >
-            Show More
+            {t("forum-section.all-topics")}
           </Button>
         </VStack>
       )}

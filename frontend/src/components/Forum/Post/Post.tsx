@@ -29,6 +29,7 @@ import { FaReply } from "react-icons/fa";
 import NewPostForm from "../Posts/NewPost/NewPostForm";
 import { PostResponseLikeDTO } from "../../../store/api/result/dto/forum/PostResponseLikeDTO";
 import DeletePostModal from "./DeletePostModal";
+import { useTranslation } from "react-i18next";
 
 export type PostType = {
   title: string;
@@ -55,6 +56,8 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
   const profileImage = useFirebase(post.image, noprofile);
   const userDetails = useSelector((state: RootState) => state.auth.userDetails);
   const isCurrentUserAuthor = userDetails?.personal.username === post.user;
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -85,7 +88,7 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
             fontSize={postHeaderFontSize}
             alignSelf="flex-start"
           >
-            Post created on {post.date} in{" "}
+            {t("forum-section.created-on")} {post.date} {t("forum-section.created-in")}{" "}
             <Text
               as="strong"
               color="primary.600"
@@ -94,7 +97,7 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
             >
               {post.category.name}
             </Text>{" "}
-            by{" "}
+            {t("forum-section.created-by")}{" "}
             <Text as="strong" color="primary.600" cursor="pointer">
               {post.user}
             </Text>
@@ -133,14 +136,14 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
             <HStack w="100%" onClick={() => setIsEdit((prev) => !prev)}>
               <Spacer />
               <Icon as={AiFillEdit} color="orange" />
-              <Text>Edit</Text>
+              <Text>{t("forum-section.post-edit")}</Text>
             </HStack>
           )}
           {isCurrentUserAuthor && (
             <HStack w="100%" onClick={() => setIsDeleteModalOpen(true)}>
               <Spacer />
               <Icon as={AiFillDelete} color="red" />
-              <Text>Delete</Text>
+              <Text>{t("forum-section.post-delete")}</Text>
             </HStack>
           )}
           <Spacer />
@@ -151,7 +154,7 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
             fontSize={buttonTextFontSize}
             onClick={() => setIsOpen((prev) => !prev)}
           >
-            Reply <Icon ml="10px" as={FaReply} />
+            {t("forum-section.post-reply")} <Icon ml="10px" as={FaReply} />
           </Button>
         </VStack>
       </HStack>

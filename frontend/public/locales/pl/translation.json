@@ -317,5 +317,32 @@
       },
       "update": "Aktualizuj"
     }
+  },
+  "forum-section":{
+    "all-topics": "Wszystkie tematy",
+    "showing": "Wyświetlono",
+    "showing-of": "z",
+    "recent-topics": "Ostatnio aktywne tematy",
+    "popular-topics": "Popularne tematy",
+    "delete-forum-post": "Usuwanie wpisu z forum",
+    "delete-post-confirmation": "Czy na pewno chcesz usunąć wpis o nazwie",
+    "delete-irreversible": "Uwaga! Tej akcji nie da się cofnąć!",
+    "delete-confirm": "Potwierdź",
+    "delete-cancel": "Anuluj",
+    "created-on": "Post stworzony",
+    "created-in": "w",
+    "created-by": "przez",
+    "post-edit": "Edytuj",
+    "post-delete": "Usuń",
+    "post-reply": "Odpowiedz",
+    "post-replies": "odpowiedzi",
+    "post-likes": "polubień",
+    "replied-on": "odpowiedziano",
+    "your-reply": "Twoja odpowiedź",
+    "post-save": "Zapisz",
+    "new-button": "Dodaj",
+    "posts": "Posty",
+    "no-posts": "Nie ma jeszcze postów na ten temat. Bądź pierwszą osobą, która coś napisze!",
+    "show-more": "Pokaż więcej"
   }
 }

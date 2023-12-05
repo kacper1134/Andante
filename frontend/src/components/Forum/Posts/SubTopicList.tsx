@@ -11,6 +11,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import { TopicOutputDTO } from "../../../store/api/result/dto/forum/TopicOutputDTO";
 import { useParams } from "react-router-dom";
 import { SearchIcon } from "@chakra-ui/icons";
+import { useTranslation } from "react-i18next";
 
 
 const PAGE_AMOUNT = 4;
@@ -79,6 +80,8 @@ const SubTopicList = React.forwardRef<HTMLDivElement>((_, ref) => {
         topic.text.toLowerCase().includes(searchPhrase.toLowerCase())
     );
 
+    const { t } = useTranslation();
+
     return (
         <VStack ref={ref} width="fit-content">
             <Box
@@ -138,7 +141,7 @@ const SubTopicList = React.forwardRef<HTMLDivElement>((_, ref) => {
             {!showMore && topics.length != numberOfTopics && (
                 <VStack width="100%">
                     <Text fontSize={buttonTextFontSize} fontWeight="bold" textStyle="p">
-                        Showing {topics.length} of {numberOfTopics}
+                        {t("forum-section.showing")} {topics.length} {t("forum-section.showing-of")} {numberOfTopics}
                     </Text>
                     <Button
                         fontSize={buttonTextFontSize}
@@ -150,7 +153,7 @@ const SubTopicList = React.forwardRef<HTMLDivElement>((_, ref) => {
                         textStyle="p"
                         onClick={() => { setShowMore(true); fetchMoreData(setIsBottom) }}
                     >
-                        Show More
+                        {t("forum-section.show-more")}
                     </Button>
                 </VStack>
             )}

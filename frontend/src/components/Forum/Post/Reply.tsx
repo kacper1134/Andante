@@ -24,6 +24,7 @@ import NewPostReply from "./NewPostReply";
 import { useLikeResponseMutation } from "../../../store/api/forum-api-slice";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostResponseLikeDTO } from "../../../store/api/result/dto/forum/PostResponseLikeDTO";
+import { useTranslation } from "react-i18next";
 
 export type ReplyType = {
   id: number;
@@ -63,6 +64,8 @@ const Reply = ({ reply, index, setReloadReplies }: ReplyProps) => {
     }).then(() => setReloadReplies(true));
   };
 
+  const { t } = useTranslation();
+
   return (
     <HStack bg="primary.50" w="100%" p="20px" rounded="xl" textStyle="p">
       <VStack h="100%" minWidth={postImageSize}>
@@ -81,7 +84,7 @@ const Reply = ({ reply, index, setReloadReplies }: ReplyProps) => {
           <Text as="strong" color="primary.600" cursor="pointer">
             {reply.user}
           </Text>{" "}
-          replied on {reply.date}
+          {t("forum-section.replied-on")} {reply.date}
         </Text>
         {!isEdit && (
           <Box
@@ -122,7 +125,7 @@ const Reply = ({ reply, index, setReloadReplies }: ReplyProps) => {
         >
           <Spacer />
           <Icon as={AiFillEdit} color="orange" />
-          <Text>Edit</Text>
+          <Text>{t("forum-section.post-edit")}</Text>
         </HStack>
       )}
     </HStack>

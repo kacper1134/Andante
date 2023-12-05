@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { Input, Text, HStack, Spacer } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 type PageChangerProps = {
   page: number;
@@ -48,6 +49,8 @@ const PageChanger = ({
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <HStack pb={margin} alignSelf="flex-end" pe="16px">
       <Spacer />
@@ -70,7 +73,7 @@ const PageChanger = ({
         textStyle="p"
       />
       <Text fontSize={fontSize} textStyle="p">
-        of {numberOfPages}
+        {t("forum-section.showing-of")} {numberOfPages}
       </Text>
       {page < numberOfPages - 1 && (
         <ChevronRightIcon
