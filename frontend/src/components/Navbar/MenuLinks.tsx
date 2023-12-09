@@ -41,6 +41,10 @@ export const LINKS: Link[] = [
     text: "about",
     path: "/about",
   },
+  {
+    text: "faq",
+    path: "/faq",
+  }
 ];
 
 const MenuLinks: React.FC<{}> = () => {

@@ -14,6 +14,7 @@ import About from "./pages/About";
 import ChatPage from "./pages/ChatPage";
 import BlogMainPage from "./pages/BlogMainPage";
 import NotificationsPage from "./pages/NotificationsPage";
+import FAQPage from "./pages/FAQPage";
 
 const App = () => {
   const location = useLocation();
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/about/*" element={<About />} />
           <Route path="/cart/*" element={<CartPage />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
         {location.pathname !== "/chat" && (
