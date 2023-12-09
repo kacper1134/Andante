@@ -25,6 +25,7 @@ import {
   postDescriptionFontSize,
   slideTextFontSize,
 } from "../common/ForumDimensions";
+import { useTranslation } from "react-i18next";
 
 type NewPostReplyProps = {
   isOpen: boolean;
@@ -144,6 +145,8 @@ const NewPostReply = ({
     });
   };
 
+  const { t } = useTranslation();
+
   return (
     <VStack
       as={Collapse}
@@ -162,7 +165,7 @@ const NewPostReply = ({
         my="10px"
         textStyle="h1"
       >
-        Your reply
+        {t("forum-section.your-reply")}
       </Text>
 
       <Box w="100%" px="2.5%">
@@ -186,7 +189,7 @@ const NewPostReply = ({
           {saving && <Spinner />}
           {!saving && (
             <>
-              {isEdit ? "Edit" : "Save"}
+              {isEdit ? t("forum-section.post-edit") : t("forum-section.post-save")}
               <Icon ml="10px" as={BiCommentAdd} />
             </>
           )}

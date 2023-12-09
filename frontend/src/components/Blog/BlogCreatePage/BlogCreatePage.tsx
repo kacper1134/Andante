@@ -2,6 +2,7 @@ import { Center, Text, useToken, VStack } from "@chakra-ui/react";
 import { hexToRGB } from "../../../functions/style-functions";
 import BlogContentForm from "./BlogContentForm";
 import { headerSize } from "./BlogCreatePageSizes";
+import { useTranslation } from "react-i18next";
 
 type BlogCreatePageProps = {
   topic: string;
@@ -11,6 +12,8 @@ type BlogCreatePageProps = {
 const BlogCreatePage = ({ topic, mode }: BlogCreatePageProps) => {
   const [color] = useToken("colors", ["primary.600"]);
   const backgroundColor = hexToRGB(color, 0.15);
+
+  const { t } = useTranslation();
   return (
     <VStack w="100%" h="100%" mb="10px">
       <Text
@@ -27,9 +30,9 @@ const BlogCreatePage = ({ topic, mode }: BlogCreatePageProps) => {
         as={Center}
       >
         {mode === "create" ? (
-          <Text>Create a post</Text>
+          <Text>{t("blog-section.post-create")}</Text>
         ) : (
-          <Text>Edit your post</Text>
+          <Text>{t("blog-section.post-edit")}</Text>
         )}
       </Text>
       <BlogContentForm topic={topic} mode={mode} />

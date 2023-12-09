@@ -6,7 +6,18 @@ import { TopicOutputDTO } from "../../../store/api/result/dto/forum/TopicOutputD
 import { Page } from "../../../store/api/result/Page";
 import { SlideType } from "../../Carousel/Slide";
 import { topicHeaderFontSize } from "../common/ForumDimensions";
-import TopicsCarousel from "../common/TopicsCarousel";
+import {
+  slideTextFontSize,
+  topicCarouselHeight,
+  topicCarouselMarginX,
+  topicHeight,
+  topicWidth,
+} from "../common/ForumDimensions";
+import TopCategories from "../../Carousel/TopCategories";
+import CategoriesCarousel from "../../Carousel/CategoriesCarousel";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
 
 type PopularTopicsProps = {
   width: number;
@@ -35,16 +46,41 @@ const PopularTopics = ({ width }: PopularTopicsProps) => {
     }
   }, [fetchPopularTopics, initialized, keycloak.authenticated]);
 
+  const alternativeVersionOfInterface = useSelector(
+    (state: RootState) => state.auth.alternativeVersionOfInterface
+  );
+
+  const { t } = useTranslation();
+
   return (
     <VStack width={width}>
       <Text color="primary.300" fontSize={topicHeaderFontSize} textStyle="h1">
-        Popular Topics
+        {t("forum-section.popular-topics")}
       </Text>
       <Box width="100%">
-        <TopicsCarousel
-          topics={popularTopics}
-          otherComponentsWidth={window.innerWidth - width}
-        />
+        {!alternativeVersionOfInterface ? (
+          <CategoriesCarousel
+            categories={popularTopics}
+            slideWidth={topicWidth}
+            slideHeight={topicHeight}
+            slideMargin={topicCarouselMarginX}
+            carouselHeight={topicCarouselHeight}
+            slideTextFontSize={slideTextFontSize}
+            otherComponentsWidth={window.innerWidth - width}
+            isTextVisible
+          />
+        ) : (
+          <TopCategories
+            categories={popularTopics}
+            slideWidth={topicWidth}
+            slideHeight={topicHeight}
+            slideMargin={topicCarouselMarginX}
+            carouselHeight={topicCarouselHeight}
+            slideTextFontSize={slideTextFontSize}
+            otherComponentsWidth={window.innerWidth - width}
+            isTextVisible
+          />
+        )}
       </Box>
     </VStack>
   );

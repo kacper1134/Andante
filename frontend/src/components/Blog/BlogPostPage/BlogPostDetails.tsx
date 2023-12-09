@@ -21,6 +21,7 @@ import PostContent from "./PostContent";
 import { useLazyGetUsersImageQuery } from "../../../store/api/profile-api-slice";
 import { useKeycloak } from "@react-keycloak/web";
 import useGetFirebaseImage from "../../../hooks/useGetFirebaseImage";
+import { useTranslation } from "react-i18next";
 
 const BlogPostDetails = () => {
   const [postData, setPostData] = useState<any>();
@@ -112,6 +113,7 @@ const BlogPostDetails = () => {
 
   const publishDay = new Date(postData.publishedAt);
 
+  // const { t } = useTranslation();
   return (
     <>
       <Box

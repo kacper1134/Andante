@@ -1,9 +1,8 @@
-import { Flex, HStack, useBreakpointValue } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
-import { slideOverlayVariants } from "./AnimationVariants";
-import Carousel from "./Carousel";
 import Slide, { ResponsiveStyle, SlideType } from "./Slide";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 type CategoriesCarouselProps = {
   categories: SlideType[];
@@ -16,50 +15,45 @@ type CategoriesCarouselProps = {
   slideTextFontSize: ResponsiveStyle;
 };
 
-const CategoriesCarousel = ({ categories, slideWidth, slideHeight, slideMargin, carouselHeight, slideTextFontSize, isTextVisible, otherComponentsWidth }: CategoriesCarouselProps) => {
-  const width = parseFloat(useBreakpointValue(slideWidth)!);
+const CategoriesCarousel = ({ categories, slideWidth, slideHeight, slideMargin, slideTextFontSize, isTextVisible }: CategoriesCarouselProps) => {
+  const width = parseFloat(slideWidth.lg);
   const margin = parseFloat(useBreakpointValue(slideMargin)!);
   const slideCompleteWidth = width + 2 * margin;
   const [isDragOn, setIsDragOn] = useState(false);
-  
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
   return (
-    <HStack
-      as={Flex}
-      minHeight={carouselHeight}
-      overflowX="hidden"
-      position="relative"
-      py={10}
-    >
-      <Carousel
-        key={slideCompleteWidth}
-        componentWidth={slideCompleteWidth}
-        numberOfComponents={categories.length}
-        margin={2 * margin}
-        toggleDragOn={setIsDragOn}
-        otherComponentsWidth={otherComponentsWidth}
-      >
-        <HStack
-          as={motion.div}
-          variants={slideOverlayVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          {categories.map((category, index) => (
-            <Slide
-              key={index}
-              fontSize={slideTextFontSize}
-              slide={category}
-              isDragOn={isDragOn}
-              slideHeight={slideHeight}
-              slideWidth={slideWidth}
-              slideMarginX={slideMargin}
-              isTextVisible={isTextVisible}
-            />
-          ))}
-        </HStack>
-      </Carousel>
-    </HStack>
+    <Carousel responsive={responsive}>
+      {categories.map((category, index) => (
+        <Slide
+          key={index}
+          fontSize={slideTextFontSize}
+          slide={category}
+          isDragOn={isDragOn}
+          slideHeight={slideHeight}
+          slideWidth={slideWidth}
+          slideMarginX={slideMargin}
+          isTextVisible={isTextVisible}
+        />
+      ))}
+    </Carousel>
   );
 };
 

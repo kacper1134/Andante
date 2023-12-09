@@ -5,6 +5,7 @@ import {
   postDescriptionFontSize,
   postHeaderFontSize,
 } from "../common/ForumDimensions";
+import { useTranslation } from "react-i18next";
 
 type PostLikeButtonProps = {
   isLiked: boolean;
@@ -19,6 +20,7 @@ const PostLikeButton = ({
   onLikeHandler,
   disabled,
 }: PostLikeButtonProps) => {
+  const { t } = useTranslation();
   return (
     <HStack alignSelf="flex-start">
       <Tooltip
@@ -62,7 +64,7 @@ const PostLikeButton = ({
       </Tooltip>
       <Spacer />
       <Text fontSize={postHeaderFontSize} textStyle="p">
-        {numberOfLikes} likes
+        {numberOfLikes} {t("forum-section.post-likes")}
       </Text>
     </HStack>
   );

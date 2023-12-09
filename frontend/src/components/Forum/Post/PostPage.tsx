@@ -19,6 +19,7 @@ import NewPostReply from "./NewPostReply";
 
 import Post, { PostType } from "./Post";
 import Reply, { ReplyType } from "./Reply";
+import { useTranslation } from "react-i18next";
 
 const REPLIES_PER_PAGE = 5;
 
@@ -83,28 +84,28 @@ const ForumPostPage = () => {
           usernames.length === 0
             ? Promise.resolve()
             : getImages(usernames.toString()).then((response) => {
-                const images: any = response.data?.map((image) => [
-                  image.username,
-                  image.imageUrl,
-                ]);
-                const userImages = new Map<string, string>(images);
-                setReplies(
-                  repliesData.content?.map((reply) => {
-                    const username = reply.user.username;
-                    return {
-                      id: reply.id,
-                      date: formatDate(reply.creationTimestamp),
-                      image: userImages.has(username)
-                        ? userImages.get(username)!
-                        : "",
-                      user: username,
-                      content: reply.content,
-                      likes: reply.likes,
-                      numberOfLikes: reply.likesAmount,
-                    };
-                  })
-                );
-              });
+              const images: any = response.data?.map((image) => [
+                image.username,
+                image.imageUrl,
+              ]);
+              const userImages = new Map<string, string>(images);
+              setReplies(
+                repliesData.content?.map((reply) => {
+                  const username = reply.user.username;
+                  return {
+                    id: reply.id,
+                    date: formatDate(reply.creationTimestamp),
+                    image: userImages.has(username)
+                      ? userImages.get(username)!
+                      : "",
+                    user: username,
+                    content: reply.content,
+                    likes: reply.likes,
+                    numberOfLikes: reply.likesAmount,
+                  };
+                })
+              );
+            });
           setNumberOfPages(repliesData.totalPages);
           setNumberOfReplies(repliesData.totalElements);
         })
@@ -120,6 +121,8 @@ const ForumPostPage = () => {
     reloadReplies,
   ]);
 
+  const { t } = useTranslation();
+
   return (
     <VStack w="90%" mt="2%">
       {post && (
@@ -133,7 +136,7 @@ const ForumPostPage = () => {
         fontWeight="bold"
         textStyle="p"
       >
-        {numberOfReplies} replies
+        {numberOfReplies} {t("forum-section.post-replies")}
       </Text>
       <NewPostReply
         isEdit={false}
@@ -151,6 +154,13 @@ const ForumPostPage = () => {
               setReloadReplies={setReloadReplies}
             />
           ))}
+
+        <NewPostReply
+          isEdit={false}
+          isOpen={!isOpen}
+          setIsOpen={setIsOpen}
+          setReloadReplies={setReloadReplies}
+        />
       </VStack>
       {replies && replies.length > 0 && (
         <PageChanger

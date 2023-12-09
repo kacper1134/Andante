@@ -24,6 +24,7 @@ import BlogFilter from "./BlogFilter";
 import PageChanger from "../../Shop/ProductPage/ProductComments/PageChanger";
 import { useKeycloak } from "@react-keycloak/web";
 import { KeycloakRole } from "../../../enums/KeycloakRole";
+import { useTranslation } from "react-i18next";
 
 export interface BlogPostsProps {
   topic: "music" | "reviews" | "recommended";
@@ -63,9 +64,8 @@ const BlogPosts: React.FC<BlogPostsProps> = ({ topic }) => {
   const [isDownload, setIsDownload] = useState(false);
 
   useEffect(() => {
-    const query = `*[_type == "post" && category == "${topic}" ${
-      searchTerm && `&& title match "${searchTerm}*"`
-    }] | order(publishedAt desc) {
+    const query = `*[_type == "post" && category == "${topic}" ${searchTerm && `&& title match "${searchTerm}*"`
+      }] | order(publishedAt desc) {
         _id,
         title,
         description,
@@ -98,6 +98,8 @@ const BlogPosts: React.FC<BlogPostsProps> = ({ topic }) => {
     setPage(0);
   }
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Box
@@ -121,20 +123,20 @@ const BlogPosts: React.FC<BlogPostsProps> = ({ topic }) => {
             fontSize={postTitleMainPageFontSize}
             color="primary.600"
           >
-            {isNotEmpty ? "Latest posts" : "There is nothing here yet"}
+            {isNotEmpty ? t("blog-section.latest-posts") : t("blog-section.no-posts")}
           </Text>
           {keycloak.hasRealmRole(KeycloakRole.BLOGGER) &&
-          <Button
-            as={Link}
-            to="create"
-            colorScheme="primary"
-            fontSize={postAuthorFontSize}
-            h="fit-content"
-            py="5px"
-            textStyle="p"
-          >
-            Add new post <Icon as={IoAddCircleSharp} ml="3" />
-          </Button>}
+            <Button
+              as={Link}
+              to="create"
+              colorScheme="primary"
+              fontSize={postAuthorFontSize}
+              h="fit-content"
+              py="5px"
+              textStyle="p"
+            >
+              {t("blog-section.add-new-post")} <Icon as={IoAddCircleSharp} ml="3" />
+            </Button>}
         </HStack>
         {isNotEmpty && <BlogFilter setSearch={setSearchTerm} />}
         {isDownload && (

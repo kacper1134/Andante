@@ -3,7 +3,8 @@ import MenuLink from "./MenuLink";
 
 export type Link = {
   text: string;
-  path: string;
+  path?: string;
+  submenu?: Link[];
 };
 
 export const LINKS: Link[] = [
@@ -16,16 +17,21 @@ export const LINKS: Link[] = [
     path: "/shop",
   },
   {
-    text: "music",
-    path: "/music",
-  },
-  {
-    text: "reviews",
-    path: "/reviews",
-  },
-  {
-    text: "recommended",
-    path: "/recommended",
+    text: "blog",
+    submenu: [
+      {
+        text: "music",
+        path: "/music",
+      },
+      {
+        text: "reviews",
+        path: "/reviews",
+      },
+      {
+        text: "recommended",
+        path: "/recommended",
+      },
+    ],
   },
   {
     text: "forum",
@@ -35,6 +41,10 @@ export const LINKS: Link[] = [
     text: "about",
     path: "/about",
   },
+  {
+    text: "faq",
+    path: "/faq",
+  }
 ];
 
 const MenuLinks: React.FC<{}> = () => {
@@ -43,8 +53,7 @@ const MenuLinks: React.FC<{}> = () => {
     {LINKS.map((link) => (
       <MenuLink
         key={link.text}
-        to={link.path}
-        text={link.text} />
+        link={link} />
     ))}
   </HStack>
 }

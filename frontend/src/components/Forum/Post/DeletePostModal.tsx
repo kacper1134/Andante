@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDeletePostMutation } from "../../../store/api/forum-api-slice";
+import { useTranslation } from "react-i18next";
 
 type DeletePostModalProps = {
   isOpen: boolean;
@@ -50,6 +51,8 @@ const DeletePostModal = ({
       .finally(() => setSaving(false));
   };
 
+  const { t } = useTranslation();
+
   return (
     <Modal
       isOpen={isOpen}
@@ -59,13 +62,13 @@ const DeletePostModal = ({
     >
       <ModalOverlay backdropFilter="blur(2px)" />
       <ModalContent>
-        <ModalHeader>Delete forum post</ModalHeader>
+        <ModalHeader>{t("forum-section.delete-forum-post")}</ModalHeader>
         <ModalCloseButton disabled={saving} />
         <ModalBody>
           <Text>
-            Are you sure you want to delete forum post with title {title}?
+            {t("forum-section.delete-post-confirmation")} {title}?
           </Text>
-          <Text as="sub">Please note that this action is irreversible!</Text>
+          <Text as="sub">{t("forum-section.delete-irreversible")}</Text>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -74,14 +77,14 @@ const DeletePostModal = ({
             mr={3}
             disabled={saving}
           >
-            {!saving ? <Text>Confirm</Text> : <Spinner />}
+            {!saving ? <Text>{t("forum-section.delete-confirm")}</Text> : <Spinner />}
           </Button>
           <Button
             colorScheme="gray"
             onClick={() => setIsOpen(false)}
             disabled={saving}
           >
-            {!saving ? <Text>Cancel</Text> : <Spinner />}
+            {!saving ? <Text>{t("forum-section.delete-cancel")}</Text> : <Spinner />}
           </Button>
         </ModalFooter>
       </ModalContent>

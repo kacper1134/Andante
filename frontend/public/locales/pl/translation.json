@@ -6,6 +6,7 @@
   "recommended": "rekomendowane",
   "forum": "forum",
   "about": "o nas",
+  "faq": "czp",
   "copyright": "Andante 2023 - Wszelkie prawa zastrzeżone",
   "alternativeVersion": "Pokazać alternatywną wersję?",
   "Male": "Mężczyzna",
@@ -316,6 +317,122 @@
         }
       },
       "update": "Aktualizuj"
+    }
+  },
+  "forum-section": {
+    "all-topics": "Wszystkie tematy",
+    "showing": "Wyświetlono",
+    "showing-of": "z",
+    "recent-topics": "Ostatnio aktywne tematy",
+    "popular-topics": "Popularne tematy",
+    "delete-forum-post": "Usuwanie wpisu z forum",
+    "delete-post-confirmation": "Czy na pewno chcesz usunąć wpis o nazwie",
+    "delete-irreversible": "Uwaga! Tej akcji nie da się cofnąć!",
+    "delete-confirm": "Potwierdź",
+    "delete-cancel": "Anuluj",
+    "created-on": "Post stworzony",
+    "created-in": "w",
+    "created-by": "przez",
+    "post-edit": "Edytuj",
+    "post-delete": "Usuń",
+    "post-reply": "Odpowiedz",
+    "post-replies": "odpowiedzi",
+    "post-likes": "polubień",
+    "replied-on": "odpowiedziano",
+    "your-reply": "Twoja odpowiedź",
+    "post-save": "Zapisz",
+    "new-button": "Dodaj",
+    "posts": "Posty",
+    "no-posts": "Nie ma jeszcze postów na ten temat. Bądź pierwszą osobą, która coś napisze!",
+    "show-more": "Pokaż więcej"
+  },
+  "blog-section": {
+    "delete-blog-post": "Czy jesteś pewny, że chcesz usunąć z bloga wpis o tytule",
+    "delete-irreversible": "Uwaga! Tej akcji nie da się cofnąć!",
+    "delete-confirm": "Potwierdź",
+    "delete-cancel": "Anuluj",
+    "blog-by": "Przez",
+    "blog-on": "w",
+    "add-new-post": "Dodaj nowy post",
+    "latest-posts": "Ostatnie posty",
+    "no-posts": "Jeszcze nic tutaj nie ma",
+    "comments": "komentarze",
+    "comments-block": "Komentarze",
+    "comments-new": "Dodaj",
+    "add-comment": "Dodaj swój komentarz",
+    "send-comment": "Wyślij",
+    "post-create": "Stwórz wpis",
+    "post-edit": "Edytuj swój wpis"
+  },
+  "faqPage": {
+    "title": "CZP",
+    "content": "Często zadawane pytania",
+    "questions": {
+      "shop": {
+        "title": "Sklep",
+        "first": {
+          "title": "Jak mogę zapłacić za zamówienie?",
+          "content": "Za zamówienie można zapłacić za pomocą jednej z następujących metod: płatności online, PayPo, za pobraniem."
+        },
+        "second": {
+          "title": "Jak długo trwa dostawa zamówienia?",
+          "content": "Czas dostawy zależy od wybranej metody dostawy. Szacowany czas dostawy jest zawsze podany w koszyku."
+        },
+        "third": {
+          "title": "Jak mogę zwrócić moje zamówienie?",
+          "content": "Zamówienie można zwrócić w ciągu 14 dni od jego otrzymania. W tym celu należy skontaktować się z naszym działem obsługi klienta."
+        },
+        "fourth": {
+          "title": "Jak mogę skontaktować się z działem obsługi klienta?",
+          "content": "Możesz skontaktować się z naszym działem obsługi klienta telefonicznie lub mailowo. Dane kontaktowe można znaleźć w stopce strony."
+        },
+        "fifth": {
+          "title": "Jak mogę sprawdzić status mojego zamówienia?",
+          "content": "Status zamówienia można sprawdzić w zakładce historii zamówień w swoim profilu."
+        },
+        "sixth": {
+          "title": "Jak mogę anulować zamówienie?",
+          "content": "Zamówienie można anulować w zakładce historii zamówień w swoim profilu."
+        }
+      },
+      "forum": {
+        "title": "Forum",
+        "first": {
+          "title": "Jak mogę utworzyć nowy post?",
+          "content": "Aby utworzyć nowy temat, przejdź do wybranego tematu i kliknij przycisk nowego postu."
+        },
+        "second": {
+          "title": "Jak mogę odpowiedzieć na post?",
+          "content": "Aby odpowiedzieć na post, przejdź do wybranego postu i kliknij przycisk odpowiedzi."
+        },
+        "third": {
+          "title": "Jak mogę edytować swój post?",
+          "content": "Aby odpowiedzieć na post, przejdź do wybranego postu i kliknij przycisk edycji."
+        },
+        "fourth": {
+          "title": "Jak mogę usunąć swój post?",
+          "content": "Aby usunąć swój post, przejdź do wybranego posta i kliknij przycisk usuwania."
+        }
+      },
+      "blog": {
+        "title": "Blog",
+        "first": {
+          "title": "Jak mogę opublikować komentarz do wpisu na blogu?",
+          "content": "Aby dodać komentarz do posta na blogu, przejdź do wybranego posta i kliknij przycisk dodawania komentarza."
+        },
+        "second": {
+          "title": "Jak mogę utworzyć nowy wpis na blogu?",
+          "content": "Aby utworzyć wpis na blogu, musisz mieć uprawnienia bloggera. Jeśli je posiadasz, przejdź do sekcji bloga i kliknij przycisk dodawania nowego wpisu."
+        },
+        "third": {
+          "title": "Jak mogę znaleźć wpis na blogu?",
+          "content": "Aby znaleźć wpis na blogu, przejdź do sekcji bloga i użyj paska wyszukiwania."
+        },
+        "fourth": {
+          "title": "Jak przejść do określonej sekcji bloga?",
+          "content": "Aby przejść do konkretnej sekcji bloga, przesuń kursor do opcji bloga na pasku nawigacyjnym i wybierz sekcję z listy."
+        }
+      }
     }
   }
 }

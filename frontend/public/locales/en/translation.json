@@ -6,6 +6,7 @@
   "recommended": "recommended",
   "forum": "forum",
   "about": "about",
+  "faq": "faq",
   "copyright": "Andante 2023 - All Rights Reserved",
   "alternativeVersion": "Show alternative version?",
   "Male": "Male",
@@ -316,6 +317,120 @@
         }
       },
       "update": "Update"
+    }
+  },
+  "forum-section": {
+    "all-topics": "All topics",
+    "showing": "Showing",
+    "showing-of": "of",
+    "recent-topics": "Recent Topics",
+    "popular-topics": "Popular Topics",
+    "delete-forum-post": "Delete forum post",
+    "delete-post-confirmation": "Are you sure you want to delete forum post with title",
+    "delete-irreversible": "Please note that this action is irreversible!",
+    "delete-confirm": "Confirm",
+    "delete-cancel": "Cancel",
+    "created-on": "Post created on",
+    "created-in": "in",
+    "created-by": "by",
+    "post-edit": "Edit",
+    "post-delete": "Delete",
+    "post-reply": "Reply",
+    "post-replies": "replies",
+    "post-likes": "likes",
+    "replied-on": "replied on",
+    "your-reply": "Your reply",
+    "post-save": "Save",
+    "new-button": "New",
+    "posts": "Posts",
+    "no-posts": "There are no posts within this topic yet. Be the first person to write something!",
+    "show-more": "Show More"
+  },
+  "blog-section": {
+    "delete-blog-post": "Are you sure you want to delete blog post with title",
+    "delete-irreversible": "Please note that this action is irreversible!",
+    "delete-confirm": "Confirm",
+    "delete-cancel": "Cancel",
+    "blog-by": "By",
+    "blog-on": "on",
+    "add-new-post": "Add new post",
+    "latest-posts": "Latest posts",
+    "no-posts": "There is nothing here yet",
+    "comments": "comments",
+    "comments-block": "Comments",
+    "comments-new": "New",
+    "add-comment": "Add your comment",
+    "send-comment": "Send"
+  },
+  "faqPage": {
+    "title": "FAQ",
+    "content": "Frequently Asked Questions",
+    "questions": {
+      "shop": {
+        "title": "Shop",
+        "first": {
+          "title": "How can I pay for my order?",
+          "content": "You can pay for your order using one of the following methods: online payment, PayPo, cash on delivery."
+        },
+        "second": {
+          "title": "How long does it take to deliver my order?",
+          "content": "The delivery time depends on the chosen method of delivery. The estimated delivery time is always given in the basket."
+        },
+        "third": {
+          "title": "How can I return my order?",
+          "content": "You can return your order within 14 days of receiving it. To do this, please contact our customer service."
+        },
+        "fourth": {
+          "title": "How can I contact customer service?",
+          "content": "You can contact our customer service by phone or email. You can find the contact details in the footer of the page."
+        },
+        "fifth": {
+          "title": "How can I check the status of my order?",
+          "content": "You can check the status of your order in the order history tab in your profile."
+        },
+        "sixth": {
+          "title": "How can I cancel my order?",
+          "content": "You can cancel your order in the order history tab in your profile."
+        }
+      },
+      "forum": {
+        "title": "Forum",
+        "first": {
+          "title": "How can I create a new post?",
+          "content": "To create a new topic, go to chosen topic and click the new post button."
+        },
+        "second": {
+          "title": "How can I reply to a post?",
+          "content": "To reply to a post, go to the chosen post and click the reply button."
+        },
+        "third": {
+          "title": "How can I edit my post?",
+          "content": "To reply to a post, go to the chosen post and click the edit button."
+        },
+        "fourth": {
+          "title": "How can I delete my post?",
+          "content": "To delete your post, go to the chosen post and click the delete button."
+        }
+      },
+      "blog": {
+        "title": "Blog",
+        "first": {
+          "title": "How can I post comment to blog post?",
+          "content": "To post comment to blog post, go to the chosen post and click the add comment button."
+        },
+        "second": {
+          "title": "How can I create new blog post?",
+          "content": "To create blog post first you must have blogger privileges. If you have them, go to the blog section and click the add new post button."
+        },
+        "third": {
+          "title": "How can I find blog post?",
+          "content": "To find blog post, go to the blog section and use search bar."
+        },
+        "fourth": {
+          "title": "How go to specific section of blog?",
+          "content": "To go to the specific section of blog, move your cursor to the blog option in navbar and choose section from the list."
+        }
+      }
     }
   }
 }

@@ -13,6 +13,7 @@ import NewPostButton from "./NewPost/NewPostButton";
 import NewPostForm from "./NewPost/NewPostForm";
 import Post, { PostType } from "./Post";
 import PostsFilterAndSort from "./PostsFilterAndSort";
+import { useTranslation } from "react-i18next";
 
 const Posts = () => {
   const { id } = useParams();
@@ -78,6 +79,8 @@ const Posts = () => {
     sortingOrder,
   ]);
 
+  const { t } = useTranslation();
+
   return (
     <VStack mt="1%" w="80%" alignItems="flex-start" spacing={10}>
       <VStack align="flex-start" w="100%">
@@ -93,7 +96,7 @@ const Posts = () => {
             }}
             textStyle="h1"
           >
-            Posts
+            {t("forum-section.posts")}
           </Text>
           <NewPostButton setIsOpen={setIsOpen} />
         </HStack>
@@ -124,8 +127,7 @@ const Posts = () => {
           alignSelf="center"
           color="primary.500"
         >
-          There are no posts within this topic yet. Be the first person to write
-          something!
+          {t("forum-section.no-posts")}
         </Text>
       )}
       {posts.length === 0 && reload === true && <Spinner />}

@@ -91,7 +91,7 @@ const DropdownMenu: React.FC<{ iconSize: string }> = ({ iconSize }) => {
         icon={<DropdownIcon iconSize={iconSize} />}
       />
       <MenuList zIndex="dropdown">
-        {LINKS.map(link => <MenuItem key={link.text} onClick={() => navigate(link.path)} color="purple.300">{capitalize(t(link.text))}</MenuItem>)}
+        {LINKS.map(link => <MenuItem key={link.text} onClick={() => navigate(link.path || "")} color="purple.300">{capitalize(t(link.text))}</MenuItem>)}
       </MenuList>
     </Menu>
   </Box>
