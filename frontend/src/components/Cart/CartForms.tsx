@@ -501,7 +501,7 @@ export const DeliveryDetails: React.FC<DeliveryDetailsProps> = ({
       setDeliveryMethod(selectedMethod);
     }
   }
-
+  const {t} = useTranslation();
   return (
     <VStack w={userDetailsWidth} alignSelf="start">
       <Heading
@@ -510,7 +510,7 @@ export const DeliveryDetails: React.FC<DeliveryDetailsProps> = ({
         fontSize={headingSize}
         color="primary.400"
       >
-        Delivery Method
+        {t("profilePage.preferences.delivery.title")}
       </Heading>
       <RadioGroup
         onChange={handleDeliveryMethod}
@@ -643,7 +643,7 @@ export const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         fontSize={headerSize}
         color="primary.400"
       >
-        {t("profilePage.preferences.title")}
+        {t("profilePage.preferences.payment.title")}
       </Heading>
       <RadioGroup
         onChange={handlePaymentMethod}

@@ -50,7 +50,7 @@ const Statistics: React.FC<StatisticsProps> = () => {
                 </Box>
             </AspectRatio>
             <SimpleGrid columns={{base: 1, md: 2, lg: 4}} spacing={{md: 10}} w="90%" alignSelf="center">
-                {GRID_ITEMS.map(item => <GridText key={item.caption} count={item.count} caption={t(item.caption)} description={t(item.description)} />)}
+                {GRID_ITEMS.map((item, index) => <GridText key={index} count={item.count} caption={t(item.caption)} description={t(item.description)} />)}
             </SimpleGrid>
         </>
     );

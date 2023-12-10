@@ -2,6 +2,7 @@
   "home": "home",
   "shop": "shop",
   "music": "music",
+  "blog": "blog",
   "reviews": "reviews",
   "recommended": "recommended",
   "forum": "forum",
@@ -155,7 +156,32 @@
         "update": "Update",
         "edit": "Edit"
       },
-      "about": "About"
+      "about": "About",
+      "modal": {
+        "title": "Update profile",
+        "content": "Are you sure you want to change the information for your account?",
+        "subcontent": "Please note that this action is irreversible!",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "toast": {
+          "success": {
+            "title": "Update Account",
+            "content": "Your account has been updated"
+          }
+        }
+      },
+      "image": {
+        "title": "Edit profile image",
+        "content": "Upload a picture",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "toast": {
+          "error": {
+            "title": "Upload image",
+            "content": "Uploaded file is not an image!"
+          }
+        }
+      }
     },
     "navigation": {
       "edit": "Edit account",
@@ -244,7 +270,24 @@
         "invoice": "INVOICE",
         "cancel": "CANCEL ORDER"
       },
-      "nothingContent": "You have no orders of a given type!"
+      "nothingContent": "You have no orders of a given type!",
+      "modal": {
+        "title": "Cancel your order",
+        "content": "Are you sure you want to cancel order with id",
+        "subcontent": "Please note that this action is irreversible!",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "toast": {
+          "success": {
+            "title": "Cancel order",
+            "content": "Order was successfully canceled!"
+          },
+          "error": {
+            "title": "Cancel order",
+            "content": "Unexpected error"
+          }
+        }
+      }
     },
     "community": {
       "baner": {
@@ -292,6 +335,7 @@
         "postalcode": "Postal code*"
       },
       "delivery": {
+        "title": "Delivery Method",
         "courier": {
           "label": "Courier InPost, UPS, DPD, DTS",
           "content": "Expected to be delivered on"
@@ -303,6 +347,7 @@
         }
       },
       "payment": {
+        "title": "Payment Method",
         "online": {
           "label": "Online payment(PayU)",
           "content": "Quick transfer, card, BLIK"
@@ -360,7 +405,9 @@
     "comments-block": "Comments",
     "comments-new": "New",
     "add-comment": "Add your comment",
-    "send-comment": "Send"
+    "send-comment": "Send",
+    "post-create": "Create post",
+    "post-edit": "Edit your post"
   },
   "faqPage": {
     "title": "FAQ",
@@ -431,6 +478,90 @@
           "content": "To go to the specific section of blog, move your cursor to the blog option in navbar and choose section from the list."
         }
       }
+    }
+  },
+  "orderPage": {
+    "steps": {
+      "first": "YOUR CART",
+      "second": "PLACE ORDER",
+      "third": "CONFIRMATION"
+    },
+    "cart": {
+      "content": {
+        "title": "CART CONTENT",
+        "warning": "DO NOT HESITATE TO BUY, ADDING PRODUCTS TO THE CART DOES NOT MEAN THEIR RESERVATION!",
+        "empty": "There is nothing here yet. Go back to shop and choose something you like",
+        "clear": "CLEAR CART",
+        "back": "BACK TO SHOP",
+        "dialog": {
+          "title": "Clear Cart",
+          "content": "Are you sure? You can't undo this action afterwards!",
+          "cancel": "Cancel",
+          "clear": "Clear"
+        }
+      },
+      "summary": {
+        "title": "CART SUMMARY",
+        "value": "PRODUCTS VALUE",
+        "discount": "INCLUDING DISCOUNT",
+        "price": "TOTAL PRICE",
+        "button": "Proceed To Place Order",
+        "toast": {
+          "error": {
+            "title": "Empty cart",
+            "content": "Your cart is empty!"
+          }
+        }
+      }
+    },
+    "order": {
+      "title": "Cart Summary",
+      "value": "Products Value",
+      "delivery": "Delivery Cost",
+      "payment": "Payment Cost",
+      "total": "Total Cost",
+      "discount": "Including Discount",
+      "button": "Place Order",
+      "modal": {
+        "title": "Place order",
+        "content": "Are you sure you want to place your order?",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      }
+    },
+    "confirmation": {
+      "title": "Thank You For Submitting Your Order",
+      "subtitle": "We have sent confirmation of the order to the provided e-mail address",
+      "labels": {
+        "order": "Order Number",
+        "date": "Order Date",
+        "status": "Order Status",
+        "name": "Full Name",
+        "country": "Country",
+        "building": "Building Number",
+        "email": "Email Address",
+        "city": "City",
+        "flat": "Flat Number",
+        "phone": "Phone Number",
+        "street": "Street",
+        "postalcode": "Postal Code"
+      },
+      "delivery": "Expected to be delivered on",
+      "notprovided": "Not provided",
+      "button": "Proceed To Payment",
+      "new": "New Order",
+      "awaitingPayment": "Awaiting Payment",
+      "summary": {
+        "value": "Products Value",
+        "delivery": "Delivery Cost",
+        "payment": "Payment Cost",
+        "total": "Total Price",
+        "discount": "Including Discount"
+      }
+    },
+    "checkout": {
+      "payNow": "Pay now",
+      "cancel": "Cancel"
     }
   }
 }

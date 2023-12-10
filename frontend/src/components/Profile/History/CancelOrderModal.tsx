@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useUpdateOrderMutation } from "../../../store/api/order-api-slice";
 import { OrderDetails } from "./OrdersList";
+import { useTranslation } from "react-i18next";
 
 type CancelOrderModalProps = {
   isOpen: boolean;
@@ -31,7 +32,7 @@ const CancelOrderModal = ({
   const [saving, setSaving] = useState(false);
   const [updateOrder] = useUpdateOrderMutation();
   const toast = useToast();
-
+  const {t} = useTranslation();
   const onSubmit = () => {
     setSaving(true);
     updateOrder({
@@ -53,14 +54,14 @@ const CancelOrderModal = ({
         setIsOpen(false);
         setReload(true);
         showToast(
-          "Cancel order",
+          t("profilePage.history.modal.toast.success.title"),
           "success",
-          "Order was successfully canceled!"
+          t("profilePage.history.modal.toast.success.content")
         );
       })
       .catch(() => {
         setSaving(false);
-        showToast("Cancel order", "error", "Unexpected error");
+        showToast(t("profilePage.history.modal.toast.error.title"), "error", t("profilePage.history.modal.toast.error.content"));
       });
   };
 
@@ -86,13 +87,13 @@ const CancelOrderModal = ({
     >
       <ModalOverlay backdropFilter="blur(2px)" />
       <ModalContent>
-        <ModalHeader>Cancel your order</ModalHeader>
+        <ModalHeader>{t("profilePage.history.modal.title")}</ModalHeader>
         <ModalCloseButton disabled={saving} />
         <ModalBody>
           <Text>
-            Are you sure you want to cancel order with id {order.orderId}?
+            {t("profilePage.history.modal.content")} {order.orderId}?
           </Text>
-          <Text as="sub">Please note that this action is irreversible!</Text>
+          <Text as="sub">{t("profilePage.history.modal.subcontent")}</Text>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -101,14 +102,14 @@ const CancelOrderModal = ({
             disabled={saving}
             onClick={onSubmit}
           >
-            {!saving ? <Text>Confirm</Text> : <Spinner />}
+            {!saving ? <Text>{t("profilePage.history.modal.confirm")}</Text> : <Spinner />}
           </Button>
           <Button
             colorScheme="gray"
             onClick={() => setIsOpen(false)}
             disabled={saving}
           >
-            {!saving ? <Text>Cancel</Text> : <Spinner />}
+            {!saving ? <Text>{t("profilePage.history.modal.cancel")}</Text> : <Spinner />}
           </Button>
         </ModalFooter>
       </ModalContent>

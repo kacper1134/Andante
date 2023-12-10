@@ -45,12 +45,12 @@ const ProfileEditImage = ({
   }, [picture]);
 
   const toast = useToast();
-
+  const {t} = useTranslation();
   const onSubmit = () => {
     if (!(currentPicture && currentPicture.type.match("image/*"))) {
       toast({
-        title: "Upload image",
-        description: "Uploaded file is not an image!",
+        title: t("profilePage.edit.image.toast.error.title"),
+        description: t("profilePage.edit.image.toast.error.content"),
         status: "error",
         isClosable: true,
       });
@@ -65,7 +65,7 @@ const ProfileEditImage = ({
     setIsOpen(false);
     setCurrentPicture(picture);
   };
-  const {t} = useTranslation();
+  
   return (
     <VStack>
       <Avatar
@@ -93,7 +93,7 @@ const ProfileEditImage = ({
       >
         <ModalOverlay backdropFilter="blur(2px)" />
         <ModalContent>
-          <ModalHeader>Edit profile image</ModalHeader>
+          <ModalHeader>{t("profilePage.edit.image.title")}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Input
@@ -117,17 +117,17 @@ const ProfileEditImage = ({
                 colorScheme="primary"
                 w="100%"
               >
-                Upload a picture <Icon as={RiImageAddFill} ml="10px" />
+                {t("profilePage.edit.image.content")} <Icon as={RiImageAddFill} ml="10px" />
               </Button>
               <Text>{currentPicture?.name}</Text>
             </HStack>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="primary" mr={3} onClick={onSubmit}>
-              Confirm
+            {t("profilePage.edit.image.confirm")}
             </Button>
             <Button colorScheme="gray" onClick={onClose}>
-              Cancel
+            {t("profilePage.edit.image.cancel")}
             </Button>
           </ModalFooter>
         </ModalContent>

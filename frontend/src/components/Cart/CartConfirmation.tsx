@@ -89,49 +89,49 @@ const CartConfirmation: React.FC<CartConfirmationProps> = () => {
     }, [fetchOrder, fetchOrderEntries, orderData.orderId])
 
     const paymentMethod = order ? (order as any).paymentMethod : undefined;
-    console.log(order);
+    
     const {t} = useTranslation();
     return <VStack w={baseSize + "px"} margin="auto" spacing={0}>
-        <Heading color="primary.400" textStyle="h2" fontSize={headingSize}>Thank You For Submitting Your Order</Heading>
-        <Text color="gray.500" textStyle="p" fontSize={fontSize - 4} textAlign="center" pt={fontSize / 3} pb={fontSize / 3}>We have sent confirmation of the order to the provided e-mail address</Text>
+        <Heading color="primary.400" textStyle="h2" fontSize={headingSize}>{t("orderPage.confirmation.title")}</Heading>
+        <Text color="gray.500" textStyle="p" fontSize={fontSize - 4} textAlign="center" pt={fontSize / 3} pb={fontSize / 3}>{t("orderPage.confirmation.subtitle")}</Text>
         <Divider borderColor="gray.600" />
-        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">Order Number</Text>
+        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">{t("orderPage.confirmation.labels.order")}</Text>
         <Text color="black" textStyle="p" fontSize={fontSize + 2} alignSelf="start">{orderData.orderId}</Text>
-        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">Order Date</Text>
+        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">{t("orderPage.confirmation.labels.date")}</Text>
         <Text color="black" textStyle="p" fontSize={fontSize + 2} alignSelf="start">{orderData.orderDate?.toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS)}</Text>
-        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">Order Status</Text>
-        <Text color="black" textStyle="p" fontSize={fontSize + 2} alignSelf="start" pb="4px">New Order</Text>
+        <Text color="gray.500" textStyle="p" fontSize={fontSize - 2} alignSelf="start" pt="4px">{t("orderPage.confirmation.labels.status")}</Text>
+        <Text color="black" textStyle="p" fontSize={fontSize + 2} alignSelf="start" pb="4px">{t("orderPage.confirmation.new")}</Text>
         <Divider borderColor="gray.600" />
         <HStack w="inherit" justifyContent="space-between" pt="16px">
             <VStack alignSelf="start">
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">Full Name</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{t("orderPage.confirmation.labels.name")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.personal.name} {orderData.orderDetails.personal.surname}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">Email Address</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.email")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.personal.emailAddress}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">Phone Number</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.phone")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.personal.phoneNumber}</Text>
             </VStack>
             <VStack alignSelf="start">
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">Country</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{t("orderPage.confirmation.labels.country")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.location.country}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">City</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.city")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.location.city}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">Street</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.street")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.location.street}</Text>
             </VStack>
             <VStack alignSelf="start">
-            <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">Building Number</Text>
+            <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{t("orderPage.confirmation.labels.building")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.location.buildingNumber}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">Flat Number</Text>
-                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{!orderData.orderDetails.location.flatNumber || orderData.orderDetails.location.flatNumber === "" ? "Not Provided" : orderData.orderDetails.location.flatNumber!}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">Postal Code</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.flat")}</Text>
+                <Text fontSize={fontSize} textStyle="p" alignSelf="start">{!orderData.orderDetails.location.flatNumber || orderData.orderDetails.location.flatNumber === "" ? t("orderPage.confirmation.notprovided") : orderData.orderDetails.location.flatNumber!}</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start" pt="8px">{t("orderPage.confirmation.labels.postalcode")}</Text>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{orderData.orderDetails.location.postalCode}</Text>
             </VStack>
         </HStack>
         <HStack w="inherit" justifyContent="space-between" pt="16px">
             <VStack>
                 <Text fontSize={fontSize} textStyle="p" alignSelf="start">{t(orderData.deliveryMethod.provider)}</Text>
-                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">Expected to be delivered on {orderData.deliveryDate?.toLocaleString(DateTime.DATE_MED)}</Text>
+                <Text fontSize={fontSize - 2} textStyle="p" color="gray.500" alignSelf="start">{t("orderPage.confirmation.delivery")} {orderData.deliveryDate?.toLocaleString(DateTime.DATE_MED)}</Text>
             </VStack>
             <Text fontSize={fontSize} textStyle="p" alignSelf="start">{currency}{orderData.deliveryMethod.price}</Text>
         </HStack>
@@ -143,34 +143,34 @@ const CartConfirmation: React.FC<CartConfirmationProps> = () => {
             <Text fontSize={fontSize} textStyle="p" alignSelf="start">{currency}{orderData.paymentMethod.cost}</Text>
         </HStack>
         {(paymentMethod && paymentMethod === "PayU") && <HStack w="inherit" justifyContent="space-between" pt="16px" pb="16px">
-            <Text fontSize={fontSize} textStyle="p" alignSelf="start">Awaiting Payment</Text> 
-            <Button onClick={() => navigate(`./payment?orderId=${orderData.orderId}`)} bg="primary.300" fontSize={fontSize} borderRadius={0} color="white" _hover={{bg: "primary.400"}} _active={{bg: "primary.400"}}>Proceed To Payment</Button>
+            <Text fontSize={fontSize} textStyle="p" alignSelf="start">{t("orderPage.confirmation.awaitingPayment")}</Text> 
+            <Button onClick={() => navigate(`./payment?orderId=${orderData.orderId}`)} bg="primary.300" fontSize={fontSize} borderRadius={0} color="white" _hover={{bg: "primary.400"}} _active={{bg: "primary.400"}}>{t("orderPage.confirmation.button")}</Button>
         </HStack>}
         <Divider borderColor="gray.500" pb="10px" />
         {entries.map((cartItem, index) => <CartEntry data={cartItem} baseSize={baseSize} includeIcons={false} key={index} />)}
         <Divider borderColor="gray.500" pt="10px" />
         <VStack w={baseSize + "px"} spacing={0} py="8px">
             <HStack w="inherit" justifyContent="space-between" textStyle="p" fontSize={fontSize}>
-                <Text fontWeight={600}>Products Value</Text>
+                <Text fontWeight={600}>{t("orderPage.confirmation.summary.value")}</Text>
                 <Text fontWeight={600} >{currency}{totalPrice}</Text>
             </HStack>
             <HStack w="inherit" justifyContent="space-between" textStyle="p" fontSize={fontSize} color="green.500">
-                <Text fontWeight={600}>Delivery Cost</Text>
+                <Text fontWeight={600}>{t("orderPage.confirmation.summary.delivery")}</Text>
                 <Text fontWeight={600}>{currency}{orderData.deliveryMethod.price}</Text>
             </HStack>
             <HStack w="inherit" justifyContent="space-between" textStyle="p" fontSize={fontSize} color="green.500">
-                <Text fontWeight={600}>Payment Cost</Text>
+                <Text fontWeight={600}>{t("orderPage.confirmation.summary.payment")}</Text>
                 <Text fontWeight={600}>{currency}{orderData.paymentMethod.cost}</Text>
             </HStack>
         </VStack>
         <Divider borderColor="gray.500" />
         <VStack w={baseSize + "px"} spacing={0} py="8px">
             <HStack w="inherit" justifyContent="space-between"  textStyle="p" fontSize={fontSize}>
-                <Text fontWeight={600}>Total Price</Text>
+                <Text fontWeight={600}>{t("orderPage.confirmation.summary.total")}</Text>
                 <Text fontWeight={600}>{currency}{finalPrice}</Text>
             </HStack>
             <HStack w="inherit" justifyContent="space-between" textStyle="p" fontSize={fontSize} color="green.500">
-                <Text fontWeight={600}>Including Discount</Text>
+                <Text fontWeight={600}>{t("orderPage.confirmation.summary.discount")}</Text>
                 <Text fontWeight={600}>{currency}{totalDiscount}</Text>
              </HStack>
         </VStack>

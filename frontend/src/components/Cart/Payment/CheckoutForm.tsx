@@ -13,6 +13,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import CancelModal from "./CancelModal";
+import { useTranslation } from "react-i18next";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -57,7 +58,7 @@ const CheckoutForm = () => {
 
     setIsLoading(false);
   };
-
+  const {t} = useTranslation();
   return (
     <Center mt="30px">
       <FormControl w="95%">
@@ -70,7 +71,7 @@ const CheckoutForm = () => {
           onClick={handleSubmit}
           textStyle="p"
         >
-          {isLoading ? <Spinner /> : <Text>Pay now</Text>}
+          {isLoading ? <Spinner /> : <Text>{t("orderPage.checkout.payNow")}</Text>}
         </Button>
         <Button
           mt="20px"
@@ -84,7 +85,7 @@ const CheckoutForm = () => {
           onClick={() => setIsOpen(true)}
           textStyle="p"
         >
-          {isLoading ? <Spinner /> : <Text>Cancel</Text>}
+          {isLoading ? <Spinner /> : <Text>{t("orderPage.checkout.cancel")}</Text>}
         </Button>
       </FormControl>
       <CancelModal isOpen={isOpen} setIsOpen={setIsOpen} />

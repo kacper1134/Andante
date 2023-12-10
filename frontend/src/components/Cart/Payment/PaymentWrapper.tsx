@@ -6,14 +6,18 @@ import { useEffect, useState } from "react";
 import { useStartPaymentMutation } from "../../../store/api/order-api-slice";
 import CheckoutForm from "./CheckoutForm";
 import { appearance } from "./PaymentApperance";
-
-const stripePromise = loadStripe(process.env.REACT_APP_PUBLIC_KEY as string);
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 type PaymentWrapperProps = {
   orderId: number;
 };
 
 const PaymentWrapper = ({ orderId }: PaymentWrapperProps) => {
+  const language = useSelector((state: RootState) => state.auth.language); 
+  
+  let stripePromise = loadStripe(process.env.REACT_APP_PUBLIC_KEY as string, {locale: language === "pl" ? "en" : "pl"});
+  
   const [clientSecret, setClientSecret] = useState("");
   const [startPayment] = useStartPaymentMutation();
   const { keycloak, initialized } = useKeycloak();
@@ -41,7 +45,7 @@ const PaymentWrapper = ({ orderId }: PaymentWrapperProps) => {
   return (
     <Box w="100%" h="100%" bg="primary.50">
       {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
+        <Elements options={options} stripe={stripePromise} key={language}>
           <CheckoutForm />
         </Elements>
       )}

@@ -15,6 +15,7 @@ import { deleteObject, ref, uploadBytes } from "firebase/storage";
 import { useState } from "react";
 import storage from "../../../config/firebase-config";
 import useUserProfile from "../../../hooks/useUserProfile";
+import { useTranslation } from "react-i18next";
 
 type UpdateProfileModalProps = {
   isOpen: boolean;
@@ -67,7 +68,7 @@ const UpdateProfileModal = ({
   const toast = useToast();
   const userProfile = useUserProfile();
   const [saving, setSaving] = useState(false);
-
+  const {t} = useTranslation();
   const onSubmit = async () => {
     if(!checkValidity()) return;
     let currentImageProfilePath: string | undefined = userProfile?.imageUrl;
@@ -89,8 +90,8 @@ const UpdateProfileModal = ({
     setIsOpen(false);
     setSaving(false);
     toast({
-      title: "Update Account",
-      description: "Your account has been updated",
+      title: t("profilePage.edit.modal.toast.success.title"),
+      description: t("profilePage.edit.modal.toast.success.content"),
       status: "success",
       isClosable: true,
     });
@@ -183,13 +184,13 @@ const UpdateProfileModal = ({
     >
       <ModalOverlay backdropFilter="blur(2px)" />
       <ModalContent>
-        <ModalHeader>Update profile</ModalHeader>
+        <ModalHeader>{t("profilePage.edit.modal.title")}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text>
-            Are you sure you want to change the information for your account?
+           {t("profilePage.edit.modal.content")}
           </Text>
-          <Text as="sub">Please note that this action is irreversible!</Text>
+          <Text as="sub">{t("profilePage.edit.modal.subcontent")}</Text>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -198,14 +199,14 @@ const UpdateProfileModal = ({
             onClick={() => setIsOpen(false)}
             disabled={saving}
           >
-            {!saving ? <Text>Cancel</Text> : <Spinner />}
+            {!saving ? <Text>{t("profilePage.edit.modal.cancel")}</Text> : <Spinner />}
           </Button>
           <Button
             colorScheme="primary"
             onClick={() => onSubmit()}
             disabled={saving}
           >
-            {!saving ? <Text>Confirm</Text> : <Spinner />}
+            {!saving ? <Text>{t("profilePage.edit.modal.confirm")}</Text> : <Spinner />}
           </Button>
         </ModalFooter>
       </ModalContent>

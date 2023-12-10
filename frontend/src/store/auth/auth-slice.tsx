@@ -13,7 +13,7 @@ export interface AuthSliceState {
   userDetails?: UserDetails,
   shouldLogout: boolean,
   alternativeVersionOfInterface: boolean,
-  language: string;
+  language: "pl" | "en";
 }
 
 const authSlice = createSlice({
