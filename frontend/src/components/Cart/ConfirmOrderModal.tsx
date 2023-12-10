@@ -24,6 +24,7 @@ import {
 import { CartSliceState } from "../../store/cart/cartSlice";
 import { OrderData } from "./CartConfirmation";
 import startOrder from "./startOrder";
+import { useTranslation } from "react-i18next";
 
 type ConfirmOrderModalProps = {
   isOpen: boolean;
@@ -69,7 +70,7 @@ const ConfirmOrderModal = ({
       userProfile?.username!
     );
   };
-
+  const {t} = useTranslation();
   return (
     <Modal
       isOpen={isOpen}
@@ -79,10 +80,10 @@ const ConfirmOrderModal = ({
     >
       <ModalOverlay backdropFilter="blur(2px)" />
       <ModalContent>
-        <ModalHeader>Place order</ModalHeader>
+        <ModalHeader>{t("orderPage.order.modal.title")}</ModalHeader>
         <ModalCloseButton disabled={isSaving} />
         <ModalBody>
-          <Text>Are you sure you want to place your order?</Text>
+          <Text>{t("orderPage.order.modal.content")}</Text>
         </ModalBody>
         <ModalFooter>
           <Button
@@ -91,14 +92,14 @@ const ConfirmOrderModal = ({
             onClick={onSubmitHandler}
             disabled={isSaving}
           >
-            {!isSaving ? <Text>Confirm</Text> : <Spinner />}
+            {!isSaving ? <Text>{t("orderPage.order.modal.confirm")}</Text> : <Spinner />}
           </Button>
           <Button
             colorScheme="gray"
             onClick={() => setIsOpen(false)}
             disabled={isSaving}
           >
-            {!isSaving ? <Text>Cancel</Text> : <Spinner />}
+            {!isSaving ? <Text>{t("orderPage.order.modal.cancel")}</Text> : <Spinner />}
           </Button>
         </ModalFooter>
       </ModalContent>

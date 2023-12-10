@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CartEntry, { CartEntryData } from "./CartEntry";
 import { cartActions } from "../../store/cart/cartSlice";
 import { FaRegSmileWink } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export interface CartContentProps {
     cartItems: CartEntryData[]
@@ -17,7 +18,7 @@ const CartContent: React.FC<CartContentProps> = ({cartItems}) => {
     const cancelRef = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const {t} = useTranslation();
     const headingSize = useBreakpointValue({
         base: "20px",
         md: "24px",
@@ -39,7 +40,7 @@ const CartContent: React.FC<CartContentProps> = ({cartItems}) => {
         xl: 800,
     })!;
 
-    const cartWarning = "DO NOT HESITATE TO BUY, ADDING PRODUCTS TO THE CART DOES NOT MEAN THEIR RESERVATION!";
+    const cartWarning = t("orderPage.cart.content.warning");
 
     function clearCart() {
         onClose();
@@ -48,7 +49,7 @@ const CartContent: React.FC<CartContentProps> = ({cartItems}) => {
             
     return <>
     <VStack spacing="12px" maxW={width + "px"} alignSelf="center">
-        <Heading color="primary.400" textStyle="h2" fontSize={headingSize} alignSelf="start">CART CONTENT</Heading>
+        <Heading color="primary.400" textStyle="h2" fontSize={headingSize} alignSelf="start">{t("orderPage.cart.content.title")}</Heading>
         <Text color="gray.600" textStyle="p" fontSize={textSize} alignSelf="start">{cartWarning}</Text>
         <Divider borderColor="primary.200" />
         {cartItems.map((cartItem, index) => 
@@ -58,31 +59,31 @@ const CartContent: React.FC<CartContentProps> = ({cartItems}) => {
         </Fragment>)}
         {cartItems.length === 0 &&
         <HStack color="gray.500" alignSelf="start">
-            <Text textStyle="p">There is nothing here yet. Go back to shop and choose something you like</Text>
+            <Text textStyle="p">{t("orderPage.cart.content.empty")}</Text>
             <Icon as={FaRegSmileWink} />
         </HStack> }
         <Divider borderColor="primary.300" />
         <HStack alignSelf="start" w={width}>
-            <Text fontSize="14px" textStyle="p" color="gray.400" userSelect="none" cursor={cartItems.length > 0 ? "pointer" : "auto"} onClick={ cartItems.length > 0 ? onOpen : () => {}}>CLEAR CART</Text>
+            <Text fontSize="14px" textStyle="p" color="gray.400" userSelect="none" cursor={cartItems.length > 0 ? "pointer" : "auto"} onClick={ cartItems.length > 0 ? onOpen : () => {}}>{t("orderPage.cart.content.clear")}</Text>
             <Spacer />
-            <Button textStyle="p" leftIcon={<Icon as={ChevronLeftIcon} />} colorScheme="whiteAlpha" color="black" fontSize="14px" onClick={() => navigate("/shop")}>BACK TO SHOP</Button>
+            <Button textStyle="p" leftIcon={<Icon as={ChevronLeftIcon} />} colorScheme="whiteAlpha" color="black" fontSize="14px" onClick={() => navigate("/shop")}>{t("orderPage.cart.content.back")}</Button>
         </HStack>
     </VStack>
     <AlertDialog leastDestructiveRef={cancelRef} isOpen={isOpen} onClose={onClose}>
             <AlertDialogOverlay>
                 <AlertDialogContent textStyle="p">
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                        Clear Cart
+                        {t("orderPage.cart.content.dialog.title")}
                     </AlertDialogHeader>
                     <AlertDialogBody>
-                        Are you sure? You can't undo this action afterwards!
+                        {t("orderPage.cart.content.dialog.content")}
                     </AlertDialogBody>
                     <AlertDialogFooter>
                         <Button ref={cancelRef} onClick={onClose}>
-                            Cancel
+                            {t("orderPage.cart.content.dialog.cancel")}
                         </Button>
                         <Button colorScheme="red" onClick={clearCart} ml={3}>
-                            Clear
+                            {t("orderPage.cart.content.dialog.clear")}
                         </Button>
                     </AlertDialogFooter>
                 </AlertDialogContent>

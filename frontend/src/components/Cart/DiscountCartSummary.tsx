@@ -15,6 +15,7 @@ import { OrderData, OrderDetails } from "./CartConfirmation";
 import CartEntry from "./CartEntry";
 import { cartActions } from "../../store/cart/cartSlice";
 import ConfirmOrderModal from "./ConfirmOrderModal";
+import { useTranslation } from "react-i18next";
 
 export interface DiscountCartSummaryProps {
     changeCurrentCartStep: Dispatch<SetStateAction<number>>,
@@ -123,7 +124,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
 
     return postalCodeRegex.test(postalCode);
   }
-
+  const {t} = useTranslation();
   return (
     <>
       <Heading
@@ -132,7 +133,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
         fontSize={headingSize}
         alignSelf="center"
       >
-        Cart Summary
+        {t("orderPage.order.title")}
       </Heading>
       <VStack border="1px solid black" borderRadius={0}>
         {cartItems.map((item, index) => (
@@ -149,7 +150,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
             textStyle="p"
             fontSize="18px"
           >
-            <Text fontWeight={600}>Products Value</Text>
+            <Text fontWeight={600}>{t("orderPage.order.value")}</Text>
             <Text fontWeight={600}>
               {currency}
               {totalPrice}
@@ -163,7 +164,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
             fontSize="18px"
             color="green.500"
           >
-            <Text fontWeight={600}>Delivery Cost</Text>
+            <Text fontWeight={600}>{t("orderPage.order.delivery")}</Text>
             <Text fontWeight={600}>
               {currency}
               {orderData.deliveryMethod.price}
@@ -177,7 +178,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
             fontSize="18px"
             color="green.500"
           >
-            <Text fontWeight={600}>Payment Cost</Text>
+            <Text fontWeight={600}>{t("orderPage.order.payment")}</Text>
             <Text fontWeight={600}>
               {currency}
               {orderData.paymentMethod.cost}
@@ -193,7 +194,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
             textStyle="p"
             fontSize="18px"
           >
-            <Text fontWeight={600}>Total Cost</Text>
+            <Text fontWeight={600}>{t("orderPage.order.total")}</Text>
             <Text fontWeight={600}>
               {currency}
               {finalPrice}
@@ -207,7 +208,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
             fontSize="18px"
             color="green.500"
           >
-            <Text fontWeight={600}>Including Discount</Text>
+            <Text fontWeight={600}>{t("orderPage.order.discount")}</Text>
             <Text fontWeight={600}>
               {currency}
               {totalDiscount}
@@ -224,7 +225,7 @@ const DiscountCartSummary: React.FC<DiscountCartSummaryProps> = ({
         _active={{ bg: "primary.400" }}
         onClick={placeOrder}
       >
-        Place Order
+        {t("orderPage.order.button")}
       </Button>
       <ConfirmOrderModal
         isOpen={isModalOpen}

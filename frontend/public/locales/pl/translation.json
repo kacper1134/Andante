@@ -2,6 +2,7 @@
   "home": "strona główna",
   "shop": "sklep",
   "music": "muzyka",
+  "blog": "blog",
   "reviews": "recenzje",
   "recommended": "rekomendowane",
   "forum": "forum",
@@ -155,7 +156,32 @@
         "update": "Aktualizuj",
         "edit": "Edytuj"
       },
-      "about": "O mnie"
+      "about": "O mnie",
+      "modal": {
+        "title": "Zaktualizuj profil",
+        "content": "Czy na pewno chcesz zmienić dane swojego konta?",
+        "subcontent": "Pamiętaj, że to działanie jest nieodwracalne!",
+        "cancel": "Anuluj",
+        "confirm": "Potwierdź",
+        "toast": {
+          "success": {
+            "title": "Aktualizacja konta",
+            "content": "Twoje konto zostało zaktualizowane"
+          }
+        }
+      },
+      "image": {
+        "title": "Edycja zdjęcia profilowego",
+        "content": "Prześlij zdjęcie",
+        "cancel": "Anuluj",
+        "confirm": "Potwierdź",
+        "toast": {
+          "error": {
+            "title": "Przesyłanie obrazu",
+            "content": "Przesłany plik nie jest obrazem!"
+          }
+        }
+      }
     },
     "navigation": {
       "edit": "Edytuj konto",
@@ -244,7 +270,24 @@
         "invoice": "FAKTURA",
         "cancel": "ANULUJ"
       },
-      "nothingContent": "Nie masz żadnych zamówień danego typu!"
+      "nothingContent": "Nie masz żadnych zamówień danego typu!",
+      "modal": {
+        "title": "Anuluj zamówienie",
+        "content": "Czy na pewno chcesz anulować zamówienie o identyfikatorze",
+        "subcontent": "Pamiętaj, że to działanie jest nieodwracalne!",
+        "cancel": "Anuluj",
+        "confirm": "Potwierdź",
+        "toast": {
+          "success": {
+            "title": "Anulowanie zamówienia",
+            "content": "Zamówienie zostało pomyślnie anulowane!"
+          },
+          "error": {
+            "title": "Anulowanie zamówienia",
+            "content": "Nieoczekiwany błąd"
+          }
+        }
+      }
     },
     "community": {
       "baner": {
@@ -292,6 +335,7 @@
         "postalcode": "Kod Pocztowy*"
       },
       "delivery": {
+        "title": "Sposób dostawy",
         "courier": {
           "label": "Kurier InPost, UPS, DPD, DTS",
           "content": "Oczekuje się, że zostanie dostarczone"
@@ -303,6 +347,7 @@
         }
       },
       "payment": {
+        "title": "Sposób płatności",
         "online": {
           "label": "Płatność online (PayU)",
           "content": "Szybki przelew, karta, BLIK"
@@ -433,6 +478,90 @@
           "content": "Aby przejść do konkretnej sekcji bloga, przesuń kursor do opcji bloga na pasku nawigacyjnym i wybierz sekcję z listy."
         }
       }
+    }
+  },
+  "orderPage": {
+    "steps": {
+      "first": "TWÓJ KOSZYK",
+      "second": "ZAMÓWIENIE",
+      "third": "POTWIERDZENIE"
+    },
+    "cart": {
+      "content": {
+        "title": "ZAWARTOŚĆ KOSZYKA",
+        "warning": "NIE ZWLEKAJ Z ZAKUPEM, DODANIE PRODUKTÓW DO KOSZYKA NIE OZNACZA ICH REZERWACJI!",
+        "empty": "Nic tu jeszcze nie ma. Wróć do sklepu i wybierz coś dla siebie",
+        "clear": "WYCZYŚĆ KOSZYK",
+        "back": "WRÓĆ DO SKLEPU",
+        "dialog": {
+          "title": "Wyczyść koszyk",
+          "content": "Czy na pewno? Nie możesz później cofnąć tej akcji!",
+          "cancel": "Anuluj",
+          "clear": "Wyczyść"
+        }
+      },
+      "summary": {
+        "title": "PODSUMOWANIE",
+        "value": "WARTOŚĆ PRODUKTÓW",
+        "discount": "W TYM RABAT",
+        "price": "CENA CAŁKOWITA",
+        "button": "Przejdź do składania zamówienia",
+        "toast": {
+          "error": {
+            "title": "Pusty koszyk",
+            "content": "Twój koszyk jest pusty!"
+          }
+        }
+      }
+    },
+    "order": {
+      "title": "Podsumowanie koszyka",
+      "value": "Wartość produktów",
+      "delivery": "Koszt dostawy",
+      "payment": "Koszt płatności",
+      "total": "Całkowity koszt",
+      "discount": "W tym rabat",
+      "button": "Złóż zamówienie",
+      "modal": {
+        "title": "Składanie zamówienia",
+        "content": "Czy na pewno chcesz złożyć zamówienie?",
+        "confirm": "Potwierdź",
+        "cancel": "Anuluj"
+      }
+    },
+    "confirmation": {
+      "title": "Dziękujemy za złożenie zamówienia",
+      "subtitle": "Wysłaliśmy potwierdzenie zamówienia na podany adres e-mail",
+      "labels": {
+        "order": "Numer zamówienia",
+        "date": "Data zamówienia",
+        "status": "Status zamówienia",
+        "name": "Imię i nazwisko",
+        "country": "Kraj",
+        "building": "Numer budynku",
+        "email": "Adres email",
+        "city": "Miasto",
+        "flat": "Numer mieszkania",
+        "phone": "Numer telefonu",
+        "street": "Ulica",
+        "postalcode": "Kod pocztowy"
+      },
+      "delivery": "Oczekuje się, że zostanie dostarczony w dniu",
+      "notprovided": "Not provided",
+      "button": "Przejdź do płatności",
+      "new": "Nowe zamówienie",
+      "awaitingPayment": "Oczekuje na płatność",
+      "summary": {
+        "value": "Wartość produktów",
+        "delivery": "Koszt dostawy",
+        "payment": "Koszt płatności",
+        "total": "Cena całkowita",
+        "discount": "W tym rabat"
+      }
+    },
+    "checkout": {
+      "payNow": "Zapłać teraz",
+      "cancel": "Anuluj"
     }
   }
 }

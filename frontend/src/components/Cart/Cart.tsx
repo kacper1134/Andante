@@ -6,6 +6,7 @@ import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 import CartForms from './CartForms';
 import CartConfirmation from './CartConfirmation';
+import { useTranslation } from 'react-i18next';
 
 
 export interface CartProps {
@@ -26,12 +27,12 @@ const Cart: React.FC<CartProps> = ({startCartStep}) => {
         md: "18px",
         lg: "20px",
     })!;
-    
+    const {t} = useTranslation();
     return <Tabs colorScheme="primary" index={currentCartStep}>
         <TabList justifyContent="center" textStyle="p">
-            <Tab fontSize={tabsFontSize} w="300px" onClick={() => setCurrentCartStep(0)} isDisabled={currentCartStep===2}>YOUR CART</Tab>
-            <Tab fontSize={tabsFontSize} w="300px" isDisabled={currentCartStep < 1 || currentCartStep===2} onClick={() => setCurrentCartStep(1)}>PLACE ORDER</Tab>
-            <Tab fontSize={tabsFontSize} w="300px" isDisabled={currentCartStep < 2}>CONFIRMATION</Tab>
+            <Tab fontSize={tabsFontSize} w="300px" onClick={() => setCurrentCartStep(0)} isDisabled={currentCartStep===2}>{t("orderPage.steps.first")}</Tab>
+            <Tab fontSize={tabsFontSize} w="300px" isDisabled={currentCartStep < 1 || currentCartStep===2} onClick={() => setCurrentCartStep(1)}>{t("orderPage.steps.second")}</Tab>
+            <Tab fontSize={tabsFontSize} w="300px" isDisabled={currentCartStep < 2}>{t("orderPage.steps.third")}</Tab>
         </TabList>
         <TabPanels>
             <TabPanel>

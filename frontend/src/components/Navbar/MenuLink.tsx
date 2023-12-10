@@ -43,7 +43,9 @@ const MenuLink: React.FC<MenuLinkProps> = ({ link }) => {
     setIsHovered(false);
     setIsDropdownHovered(false);
   }, [location.pathname]);
-
+  
+  const isBlogPage = (location.pathname?.startsWith("/review") || location.pathname?.startsWith("/recommended") || location.pathname?.startsWith("/music")) && link.text === "blog"
+  
   return (
     <Box
       h="inherit"
@@ -56,7 +58,7 @@ const MenuLink: React.FC<MenuLinkProps> = ({ link }) => {
         as="span"
         textStyle="h3"
         fontSize={linkSize}
-        color={isHovered ? "primary.700" : "primary.300"}
+        color={(location.pathname.startsWith(link.path!) || isBlogPage) ? hoverColor : basicColor}
         cursor={link.path ? "pointer" : "default"}
         userSelect="none"
         onClick={link.path ? () => navigate(link.path || "") : () => {}}

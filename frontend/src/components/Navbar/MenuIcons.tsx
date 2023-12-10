@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 export interface IconDescription {
   label: string,
   icon: ReactElement<any, string | JSXElementConstructor<any>>
+  isCart?: boolean,
 };
 
 const iconColor = "purple.500";
@@ -50,25 +51,28 @@ const MenuIcons: React.FC<{ isDropdown: boolean }> = ({ isDropdown }) => {
   const icons: IconDescription[] = [
     {
       label: "Go to user settings",
-      icon: <Icon as={MdOutlinePersonOutline} boxSize={iconSize} onClick={profileHandler} />
+      icon: <Icon as={MdOutlinePersonOutline} boxSize={iconSize} onClick={profileHandler} />,
+      isCart: false,
     },
     {
       label: "Go to your cart",
-      icon: <Icon as={MdShoppingCart} boxSize={iconSize} onClick={cartHandler} />
+      icon: <Icon as={MdShoppingCart} boxSize={iconSize} onClick={cartHandler} />,
+      isCart: true,
     },
     {
       label: "Check user messages",
       icon: <Icon as={language === "pl" ? US : PL} boxSize={iconSize} onClick={() => {
         i18n.changeLanguage(language);
         dispatch(authActions.changeLanguage())
-      }} />
+      }} />,
+      isCart: false,
     },
   ];
 
 
   return (
     <HStack>
-      {icons.map(icon => <MenuIcon key={icon.label} label={icon.label} icon={icon.icon} iconColor={iconColor} hoverColor={hoverColor} />)}
+      {icons.map(icon => <MenuIcon key={icon.label} label={icon.label} icon={icon.icon} iconColor={iconColor} hoverColor={hoverColor} isCart={icon.isCart!} />)}
       {isDropdown && <DropdownMenu iconSize={iconSize} />}
     </HStack>
   );
