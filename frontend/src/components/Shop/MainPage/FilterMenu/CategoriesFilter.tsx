@@ -9,6 +9,7 @@ import { ConnectivityTechnology } from "../../../../store/api/result/dto/product
 import { ConstructionType } from "../../../../store/api/result/dto/product/base/HeadphonesOutputDTO";
 import { MicrophoneType } from "../../../../store/api/result/dto/product/base/MicrophonesOutputDTO";
 import { SubwooferType } from "../../../../store/api/result/dto/product/base/SubwoofersOutputDTO";
+import { useTranslation } from "react-i18next";
 
 const headingSize = {
   base: "22px",
@@ -61,10 +62,11 @@ const productHierarchy: Category[] = [
 ]
 
 const CategoriesFilter = () => {
+  const {t} = useTranslation();
   return (
     <Flex direction="column" p="5%">
       <Text fontSize={headingSize} pb="3" textStyle="h1">
-        Categories
+        {t("shopPage.filterMenu.categories.title")}
       </Text>
       {productHierarchy.map((category, index) => (
         <ProductCategory key={index} category={category} />

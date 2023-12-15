@@ -2,6 +2,7 @@ import { HStack, Icon, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { useChangeObservationStatusMutation } from "../../../../store/api/productSlice";
+import { useTranslation } from "react-i18next";
 
 const tooltipSize = {
   base: "11px",
@@ -43,12 +44,12 @@ const ProductLikeButton = ({
       .then(() => setIsLiked(!isLiked)); 
     }
   }
-  
+  const {t} = useTranslation();
   return (
     <Tooltip
       hasArrow
       fontSize={tooltipSize}
-      label={isLiked ? "Remove from favourite" : "Add to favourite"}
+      label={isLiked ? t("shopPage.productPage.unlike") : t("shopPage.productPage.like")}
       textStyle="p"
       bg="secondary.400"
       color="white"

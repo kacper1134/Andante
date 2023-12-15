@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../../store";
 import { CommentOutputDTO } from "../../../../store/api/result/dto/product/CommentOutputDTO";
+import { useTranslation } from "react-i18next";
 
 type ProductCommentHeaderProps = {
   comment: CommentOutputDTO;
@@ -39,7 +40,7 @@ const ProductCommentHeader = ({
   const userDetails = useSelector((state: RootState) => state.auth.userDetails);
   const isCurrentUserAuthor =
     userDetails?.personal.username === comment.username;
-
+  const {t} = useTranslation();
   return (
     <HStack width="95%">
       {avatarUrl ? (
@@ -105,7 +106,7 @@ const ProductCommentHeader = ({
               >
                 <Icon as={AiFillEdit} color="orange" />
                 <Text color="primary.600" textStyle="h1">
-                  Edit
+                  {t("shopPage.productPage.commentsSection.edit")}
                 </Text>
               </HStack>
             </HStack>

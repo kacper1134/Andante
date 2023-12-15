@@ -7,6 +7,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { Category } from "./ProductCategory";
+import { useTranslation } from "react-i18next";
 
 type SubcategoriesFilterProps = {
   category: Category;
@@ -28,6 +29,7 @@ const SubcategoriesFilter = ({
     lg: "16px",
     xl: "18px",
   });
+  const {t} = useTranslation();
 
   return (
     <Collapse in={isOpen} animateOpacity>
@@ -44,7 +46,7 @@ const SubcategoriesFilter = ({
                 setCheckedItems(checks.slice());
               }}
             />
-            <Text fontSize={fontSize} textStyle="p">{subcategory.label}</Text>
+            <Text fontSize={fontSize} textStyle="p">{t(subcategory.label)}</Text>
           </HStack>
         ))}
       </VStack>

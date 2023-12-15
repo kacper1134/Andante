@@ -5,6 +5,7 @@ import Results from "../components/Shop/ResultsPage/Results";
 import PageSelector from "../components/Shop/ResultsPage/PageSelector";
 import { useState } from "react";
 import { ProductSortingOrder, useGetByFilterState } from "../store/api/productSlice";
+import { useTranslation } from "react-i18next";
 
 export interface ShopMainPageProps {
   menuHeight: string,
@@ -13,9 +14,10 @@ export interface ShopMainPageProps {
 const ShopMainPage: React.FC<ShopMainPageProps> = ({menuHeight}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [sortingOrder, setSortingOrder] = useState(ProductSortingOrder.ALPHABETICAL);
+  const {t} = useTranslation();
   const result = useGetByFilterState(currentPage, 20, sortingOrder);
   const offset = result.pageable.offset;
-  const resultRange = `${offset + 1} to ${offset + result.numberOfElements}`;
+  const resultRange = `${offset + 1} ${t("shopPage.searchComponents.to")} ${offset + result.numberOfElements}`;
   const totalCount = result.totalElements;
   const isMobile = useBreakpointValue({
     base: true,

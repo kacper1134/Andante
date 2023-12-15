@@ -6,6 +6,7 @@ import { ProductSortingOrder } from "../../../store/api/productSlice";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { innerActions } from "../../../store/inner/innerSlice";
+import { useTranslation } from "react-i18next";
 
 function toDisplayValue(sortingOption: ProductSortingOrder): string {
     return sortingOption.split("_")
@@ -44,14 +45,14 @@ const ResultsBar: React.FC<ResultsBarProps> = ({setSortingOrder, resultRange, to
         xl: 14,
         '2xl': 16,
     })!;
-  
+    const {t} = useTranslation();
     return (
         <Flex bg='purple.50' px={`${px}px`} py={`${px / 2}px`}>
-            <Text alignSelf="center" textStyle="h2" color="primary.400" fontSize={`${fontSize}px`}>Results {resultRange} from {totalCount}</Text>
+            <Text alignSelf="center" textStyle="h2" color="primary.400" fontSize={`${fontSize}px`}>{t("shopPage.searchComponents.results")} {resultRange} {t("shopPage.searchComponents.from")} {totalCount}</Text>
             <Spacer />
             <InputGroup w="300px" px="8px" borderColor="primary.300">
                 <InputLeftElement pointerEvents="none" children={<SearchIcon color="primary.100" />}/>
-                <Input placeholder="What do you want to buy?" color="primary.300" focusBorderColor="primary.300" value={query} onChange={(e) => setQuery(e.target.value)} />
+                <Input placeholder={t("shopPage.searchComponents.searchPlaceholder")} color="primary.300" focusBorderColor="primary.300" value={query} onChange={(e) => setQuery(e.target.value)} />
             </InputGroup>
             <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />} 
@@ -60,10 +61,10 @@ const ResultsBar: React.FC<ResultsBarProps> = ({setSortingOrder, resultRange, to
                 fontSize={`${fontSize}px`}
                 _hover={{backgroundColor: "purple.200"}} 
                 _active={{backgroundColor: "purple.200"}}>
-                    Sort By
+                    {t("shopPage.searchComponents.sort")}
                 </MenuButton>
                 <MenuList color="primary.800" bgColor="purple.100">
-                    {Object.values(ProductSortingOrder).map((value, index) => <MenuItem key={index} onClick={() => setSortingOrder(value)} _hover={{backgroundColor: "purple.200"}} _active={{backgroundColor: "purple.200"}}>{toDisplayValue(value)}</MenuItem>)}
+                    {Object.values(ProductSortingOrder).map((value, index) => <MenuItem key={index} onClick={() => setSortingOrder(value)} _hover={{backgroundColor: "purple.200"}} _active={{backgroundColor: "purple.200"}}>{t(toDisplayValue(value))}</MenuItem>)}
                 </MenuList>
             </Menu>
         </Flex>

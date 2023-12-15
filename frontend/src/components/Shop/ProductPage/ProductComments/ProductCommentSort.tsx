@@ -1,6 +1,7 @@
 import { Select, useToken } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
 import { CommentSortingOrder } from "../../../../store/api/productSlice";
+import { useTranslation } from "react-i18next";
 
 const options = [
   { value: CommentSortingOrder.NEWEST_FIRST, text: "Newest First" },
@@ -17,6 +18,7 @@ export interface ProductCommentSortProps {
 const ProductCommentSort: React.FC<ProductCommentSortProps> = ({sortingOrder, setSortingOrder}) => {
   const optionStyle = { fontWeight: "bold" };
   const color = useToken("colors", "primary.400");
+  const {t} = useTranslation();
   return (
       <Select
         variant="filled"
@@ -41,7 +43,7 @@ const ProductCommentSort: React.FC<ProductCommentSortProps> = ({sortingOrder, se
       >
         {options.map((option, index) => (
           <option key={index} value={option.value} style={optionStyle}>
-            {option.text}
+            {t(option.text)}
           </option>
         ))}
       </Select>

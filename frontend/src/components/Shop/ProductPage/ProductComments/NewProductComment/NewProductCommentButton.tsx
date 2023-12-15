@@ -1,4 +1,5 @@
 import { Button, Icon } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { MdOutlineAddComment } from "react-icons/md";
 
 type NewProductCommentButtonProps = {
@@ -6,6 +7,7 @@ type NewProductCommentButtonProps = {
 }
 
 const NewProductCommentButton = ({setIsOpen} : NewProductCommentButtonProps) => {
+  const {t} = useTranslation();
   return (
       <Button
         alignSelf="start"
@@ -23,7 +25,7 @@ const NewProductCommentButton = ({setIsOpen} : NewProductCommentButtonProps) => 
         onClick={() => setIsOpen(prevValue => !prevValue)}
         textStyle="p"
       >
-        Add new comment<Icon as={MdOutlineAddComment} ml="3" /> 
+        {t("shopPage.productPage.commentsSection.newCommentButton")}<Icon as={MdOutlineAddComment} ml="3" /> 
       </Button>
   );
 };

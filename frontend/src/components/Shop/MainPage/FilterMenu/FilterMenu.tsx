@@ -12,13 +12,13 @@ import { useEffect, useState } from "react";
 import AverageCustomerReview from "./AverageCustomerReview";
 import CategoriesFilter from "./CategoriesFilter";
 import PriceSlider from "./PriceSlider";
-import ProductStateFilter from "./ProductStateFilter";
 import { AiOutlineSearch } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { innerActions } from "../../../../store/inner/innerSlice";
 import { RootState } from "../../../../store";
+import { useTranslation } from "react-i18next";
 
 export interface FilterMenuProps {
   width: string,
@@ -56,7 +56,7 @@ const FilterMenu = ({ width, hasBoxShadow, shouldFillAvailableSpace, menuHeight 
   "0px 0px 50px rgba(0, 0, 0, 0.023)" : "none";
   
   const border = hasBoxShadow ? "none" : `1px solid ${borderColor}`;
-
+  const {t} = useTranslation();
   useEffect(() => {
     dispatch(innerActions.setPriceRange({min: priceRange[0], max: priceRange[1]}));
   }, [priceRange, dispatch]);
@@ -75,13 +75,6 @@ const FilterMenu = ({ width, hasBoxShadow, shouldFillAvailableSpace, menuHeight 
       borderRight={border}
       rounded={hasBoxShadow ? "lg" : ""}
     >
-      <CategoriesFilter />
-      <AverageCustomerReview rating={rating} setRating={setRating} />
-      <PriceSlider
-        priceRange={priceRange}
-        setPriceRange={setPriceRange}
-      />
-      {shouldFillAvailableSpace && <Spacer />}
       {hasBoxShadow && <Button
         mt="12px"
         as={motion.button}
@@ -106,9 +99,15 @@ const FilterMenu = ({ width, hasBoxShadow, shouldFillAvailableSpace, menuHeight 
           }}
         >
           <Icon as={AiOutlineSearch}></Icon>
-          <Text textStyle="p">Search</Text>
+          <Text textStyle="p">{t("shopPage.filterMenu.search")}</Text>
         </HStack>
       </Button>}
+      <CategoriesFilter />
+      <AverageCustomerReview rating={rating} setRating={setRating} />
+      <PriceSlider
+        priceRange={priceRange}
+        setPriceRange={setPriceRange}
+      />
     </Flex>
   );
 };
