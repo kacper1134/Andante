@@ -6,6 +6,7 @@ import { Route, Routes, useSearchParams } from "react-router-dom";
 import { Fragment, useEffect } from "react";
 import ShopProductPage from "./ShopProductPage";
 import HighestRatingProducts from "../components/Shop/MainPage/Products/HighestRatingProducts";
+import useAuthentication from "../hooks/useAuthentication";
 
 const ShopMainPage = () => {
   const filterMenuWidth = useBreakpointValue({
@@ -48,7 +49,7 @@ const ShopMainPage = () => {
       }
     }
   }, [payment_intent, redirect_status, toast]);
-
+  
   return (
     <Routes>
       <Route

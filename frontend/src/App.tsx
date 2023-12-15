@@ -15,8 +15,10 @@ import ChatPage from "./pages/ChatPage";
 import BlogMainPage from "./pages/BlogMainPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import FAQPage from "./pages/FAQPage";
+import useAuthentication from "./hooks/useAuthentication";
 
 const App = () => {
+  useAuthentication("/home");
   const location = useLocation();
   const isLarge = useBreakpointValue({ base: false, lg: true })!;
   const menuHeight = useBreakpointValue({

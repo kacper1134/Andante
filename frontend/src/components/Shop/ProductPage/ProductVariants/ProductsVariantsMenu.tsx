@@ -1,6 +1,7 @@
 import { HStack, Text, useBreakpointValue, useRadioGroup, VStack } from "@chakra-ui/react";
 import { imageHeight } from "../ProductBasicInfo/ProductDimensions";
 import RadioCard from "../ProductBasicInfo/RadioCard";
+import { useTranslation } from "react-i18next";
 
 export interface VariantsGroup {
     name: string,
@@ -41,10 +42,11 @@ const ProductsVariantsStack: React.FC<ProductsVariantsStackProps> = ({variantGro
     });
 
     const group = getRootProps();
-
+    const {t} = useTranslation();
+    
     return (
         <HStack {...group} alignSelf="start">
-            <Text color="primary.300" fontWeight="bold" fontSize={{base: "12px", sm: "14px", md: "16px", lg: "18px"}}>{variantGroup.name}</Text>
+            <Text color="primary.300" fontWeight="bold" fontSize={{base: "12px", sm: "14px", md: "16px", lg: "18px"}}>{t(variantGroup.name)}</Text>
             {variantGroup.options.map((value) => {
                 const radio = {...getRadioProps({ value })};
 

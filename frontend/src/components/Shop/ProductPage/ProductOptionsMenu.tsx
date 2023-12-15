@@ -8,7 +8,7 @@ import {
   VStack,
   Icon,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { BsTools } from "react-icons/bs";
 import { FaComments } from "react-icons/fa";
 import { ProductOutputDTO } from "../../../store/api/result/dto/product/base/ProductOutputDTO";
@@ -16,10 +16,13 @@ import { imageHeight } from "./ProductBasicInfo/ProductDimensions";
 import ProductComments from "./ProductComments/ProductComments";
 import ProductFeatures from "./ProductFeatures";
 import { extractFeatures } from "../../../utils/Utils";
+import { useTranslation } from "react-i18next";
 
 type ProductOptionsMenuProps = {
   product: ProductOutputDTO,
   selectedVariantId: number,
+  areFeaturesOpen: boolean,
+  setAreFeaturesOpen: Dispatch<SetStateAction<boolean>>
 };
 
 const buttonFontSize = {
@@ -40,7 +43,7 @@ const ProductMenuHeight = {
   "2xl": "50px",
 };
 
-const ProductOptionsMenu: React.FC<ProductOptionsMenuProps> = ({product, selectedVariantId}) => {
+const ProductOptionsMenu: React.FC<ProductOptionsMenuProps> = ({product, selectedVariantId, areFeaturesOpen, setAreFeaturesOpen}) => {
   const imageWidth = parseInt(useBreakpointValue(imageHeight)!) * 1.5;
   const width = {
     base: imageWidth,
@@ -49,10 +52,9 @@ const ProductOptionsMenu: React.FC<ProductOptionsMenuProps> = ({product, selecte
     "2xl": 560 + imageWidth,
   };
 
-  const [areFeaturesOpen, setAreFeaturesOpen] = useState(true);
   const [featuresAnimationEnd, setFeaturesAnimationEnd] = useState(false);
   const [commentsAnimationEnd, setCommentsAnimationEnd] = useState(true);
-
+  const {t} = useTranslation();
   return (
     <>
       <VStack width={width} height={ProductMenuHeight}>
@@ -70,7 +72,7 @@ const ProductOptionsMenu: React.FC<ProductOptionsMenuProps> = ({product, selecte
             >
               <HStack>
                 <Icon as={BsTools} />
-                <Text textStyle="h1">Features</Text>
+                <Text textStyle="h1">{t("shopPage.productPage.features")}</Text>
               </HStack>
             </Button>
             <Spacer />
@@ -86,7 +88,7 @@ const ProductOptionsMenu: React.FC<ProductOptionsMenuProps> = ({product, selecte
             >
               <HStack>
                 <Icon as={FaComments} />
-                <Text textStyle="h1">Comments</Text>
+                <Text textStyle="h1">{t("shopPage.productPage.comments")}</Text>
               </HStack>
             </Button>
           </Flex>

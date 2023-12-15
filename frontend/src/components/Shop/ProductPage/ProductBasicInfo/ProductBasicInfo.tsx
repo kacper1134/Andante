@@ -8,7 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useKeycloak } from "@react-keycloak/web";
-import { SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductOutputDTO } from "../../../../store/api/result/dto/product/base/ProductOutputDTO";
 import ProductAverageRating from "./ProductAverageRating";
@@ -24,6 +24,7 @@ import useUserProfile from "../../../../hooks/useUserProfile";
 import { RootState } from "../../../../store";
 import { useNavigate } from "react-router-dom";
 import BuyNowModal from "../../MainPage/Products/BuyNowModal";
+import { useTranslation } from "react-i18next";
 
 const headerSize = {
   base: "14px",
@@ -55,11 +56,15 @@ const fontSize = {
 export interface ProductBasicInfoProps {
   data: ProductOutputDTO;
   selectedVariant?: ProductVariantOutputDTO;
+  setAreFeaturesOpen: Dispatch<SetStateAction<boolean>>;
+  areFeaturesOpen: boolean;
 }
 
 const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
   data,
   selectedVariant,
+  setAreFeaturesOpen,
+  areFeaturesOpen,
 }) => {
   const { keycloak } = useKeycloak();
   const horizontalWidth = parseInt(useBreakpointValue(imageHeight)!) * 1.5;
@@ -69,7 +74,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
   const [isLiked, setIsLiked] = useState(false);
   const dispatch = useDispatch();
   const toast = useToast();
-
+  const {t} = useTranslation();  
   const width = {
     base: horizontalWidth,
     lg: "320px",
@@ -100,8 +105,8 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
       );
       add_interaction(userProfile?.username!, data.id, InteractionType.CART);
       toast({
-        title: "Cart updated",
-        description: `Product ${data.name} have been successfully added to your cart`,
+        title: t("shopPage.productPage.addToCart.modal.title"),
+        description: `${t("shopPage.productPage.addToCart.modal.contentFirst")} ${data.name} ${t("shopPage.productPage.addToCart.modal.contentSecond")}`,
         status: "success",
         duration: 9000,
         isClosable: true,
@@ -139,7 +144,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
   const alternativeVersionOfInterface = useSelector(
     (state: RootState) => state.auth.alternativeVersionOfInterface
   );
-
+  
   return (
     <VStack
       alignItems="flex-start"
@@ -152,7 +157,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
       </Text>
       <HStack>
         <Text fontSize={headerSize} mb="2%" textStyle="h1">
-          {data.productType}
+          {t(data.productType)}
         </Text>
         {keycloak.authenticated && (
           <ProductLikeButton
@@ -168,6 +173,8 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
         product={data}
         fontSize={priceFontSize}
         starSize={starSize}
+        areFeaturesOpen={areFeaturesOpen}
+        setAreFeaturesOpen={setAreFeaturesOpen}
       />
       <HStack fontSize={priceFontSize} pt="1%" spacing={6}>
         <Text textStyle="p" fontWeight="bold">
@@ -190,7 +197,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
             disabled={!canAddToCart}
             onClick={addToCart}
           >
-            Add to cart
+            {t("shopPage.productPage.addToCart.button")}
           </Button>
           {alternativeVersionOfInterface && (
             <Button
@@ -203,7 +210,7 @@ const ProductBasicInfo: React.FC<ProductBasicInfoProps> = ({
               disabled={!canAddToCart}
               onClick={() => openConfirmationModal()}
             >
-              Buy now!
+              {t("shopPage.productPage.buyNow.button")}
             </Button>
           )}
         </HStack>

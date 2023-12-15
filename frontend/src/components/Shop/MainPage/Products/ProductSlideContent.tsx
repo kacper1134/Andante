@@ -23,6 +23,7 @@ import add_interaction, {
 } from "../../../../functions/recommendation-functions";
 import { RootState } from "../../../../store";
 import BuyNowModal from "./BuyNowModal";
+import { useTranslation } from "react-i18next";
 
 type ProductSlideContentProps = {
   product: ProductOutputDTO;
@@ -47,7 +48,7 @@ const ProductSlideContent = ({
   const userProfile = useUserProfile();
   const dispatch = useDispatch();
   const toast = useToast();
-
+  const {t} = useTranslation();
   useEffect(() => {
     const fetchImage = async () => {
       if (product.variants.length > 0) {
@@ -93,8 +94,8 @@ const ProductSlideContent = ({
     );
     add_interaction(userProfile?.username!, product.id, InteractionType.CART);
     toast({
-      title: "Cart updated",
-      description: `Product ${product.name} have been successfully added to your cart`,
+      title: t("shopPage.carousel.addToCart.modal.title"),
+      description: `${t("shopPage.carousel.addToCart.modal.contentFirst")} ${product.name} ${t("shopPage.carousel.addToCart.modal.contentSecond")}`,
       status: "success",
       duration: 9000,
       isClosable: true,
@@ -205,7 +206,7 @@ const ProductSlideContent = ({
                   disabled={!canAddToCart}
                   onClick={() => openConfirmationModal()}
                 >
-                  Buy now!
+                  {t("shopPage.carousel.buyNow.button")}
                 </Button>
               )}
               {!alternativeVersionOfInterface && (
@@ -226,7 +227,7 @@ const ProductSlideContent = ({
                   disabled={!canAddToCart}
                   onClick={addToCart}
                 >
-                  Add to cart
+                  {t("shopPage.carousel.addToCart.button")}
                 </Button>
               )}
             </>

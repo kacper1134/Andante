@@ -563,5 +563,123 @@
       "payNow": "Pay now",
       "cancel": "Cancel"
     }
-  }
+  },
+  "shopPage": {
+    "filterMenu": {
+      "search": "Search",
+      "categories": {
+        "title": "Categories"
+      },
+      "review": {
+        "title": "Average customer review",
+        "additional": "& Up"
+      },
+      "price": {
+        "title": "Price"
+      }
+    },
+    "carousel": {
+      "first": "RECENTLY ADDED",
+      "second": "HIGHEST RATING",
+      "addToCart": {
+        "button": "Add to cart",
+        "modal": {
+          "title": "Cart updated",
+          "contentFirst": "Product",
+          "contentSecond": "have been successfully added to your cart"
+        }
+      },
+      "buyNow": {
+        "button": "Buy now!"
+      }
+    },
+    "searchComponents": {
+      "searchPlaceholder": "What do you want to buy?",
+      "sort": "Sort By",
+      "results": "Results",
+      "to": "to",
+      "from": "from"
+    },
+    "productPage": {
+      "addToCart": {
+        "button": "Add to cart",
+        "modal": {
+          "title": "Cart updated",
+          "contentFirst": "Product",
+          "contentSecond": "have been successfully added to your cart"
+        }
+      },
+      "buyNow": {
+        "button": "Buy now!"
+      },
+      "features": "Features",
+      "comments": "Comments",
+      "like": "Add to favourite",
+      "unlike": "Remove from favourite",
+      "commentsSection": {
+        "empty": "It appears that noone have placed a comment yet. Be first to start a discussion.",
+        "newCommentButton": "Add new comment",
+        "form": {
+          "rating": "Your rating",
+          "title": "Your amazing title",
+          "saveButton": "Save your comment",
+          "editButton": "Edit your comment"
+        },
+        "validate": {
+          "title": "Could not save your comment",
+          "titleValidation": "Title must be at least 3 characters long",
+          "personalValidation": "Your personal details are not available right now"
+        },
+        "success": {
+          "title": "Comment successfully saved",
+          "content": "Your comment was successfully saved within Andante"
+        },
+        "edit": "Edit"
+      }
+    }
+  },
+  "Amplifiers": "Amplifiers",
+  "Gramophones": "Gramophones",
+  "Headphones": "Headphones",
+  "Microphones": "Microphones",
+  "Speakers": "Speakers",
+  "Subwoofers": "Subwoofers",
+  "Current": "Current",
+  "Voltage": "Voltage",
+  "Transconductance": "Transconductance",
+  "Transresistance": "Transresistance",
+  "Power": "Power",
+  "Operational": "Operational",
+  "Vacuum Tube": "Vacuum Tube",
+  "Distributed": "Distributed",
+  "Auxiliary": "Auxiliary",
+  "Bluetooth": "Bluetooth",
+  "Usb": "Usb",
+  "Wired": "Wired",
+  "Opened": "Opened",
+  "Semi-Opened": "Semi-Opened",
+  "Closed": "Closed",
+  "Dynamic": "Dynamic",
+  "Large-Condenser": "Large-Condenser",
+  "Small-Condenser": "Small-Condenser",
+  "Ribbon": "Ribbon",
+  "Wireless": "Wireless",
+  "Active": "Active",
+  "Passive": "Passive",
+  "Ported": "Ported",
+  "Sealed-Cabinet": "Sealed-Cabinet",
+  "Passive-Radiator": "Passive-Radiator",
+  "Bandpass": "Bandpass",
+  "Horn-Loaded": "Horn-Loaded",
+  "Price Ascending": "Price Ascending",
+  "Price Descending": "Price Descending",
+  "Recently Added": "Recently Added",
+  "Alphabetical": "Alphabetical",
+  "Impedance": "Impedance",
+  "Loudness": "Loudness",
+  "Color": "Color",
+  "Newest First": "Newest First",
+  "Oldest First": "Oldest First",
+  "Rating: Highest First": "Rating: Highest First",
+  "Rating: Lowest First": "Rating: Lowest First"
 }

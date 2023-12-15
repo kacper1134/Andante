@@ -9,6 +9,7 @@ import {
   RangeSliderTrack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MdGraphicEq } from "react-icons/md";
 
 const fontSize = {
@@ -43,10 +44,10 @@ const PriceSlider = ({
       setPriceRange(newPriceRange);
     }
   };
-
+  const {t} = useTranslation();
   return (
     <Flex direction="column" p="5%" fontSize={fontSize}>
-      <Text fontWeight="bold" textStyle="h1">Price</Text>
+      <Text fontWeight="bold" textStyle="h1">{t("shopPage.filterMenu.price.title")}</Text>
       <RangeSlider
         defaultValue={priceRange}
         min={0}

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Rating } from "react-simple-star-rating";
 import { innerActions } from "../../../../store/inner/innerSlice";
+import { useTranslation } from "react-i18next";
 
 const fontSize = {
   base: "13px",
@@ -44,10 +45,10 @@ const AverageCustomerReview = ({
   useEffect(() => {
     dispatch(innerActions.setRatingState(rating));
   }, [rating, dispatch]);
-
+  const { t } = useTranslation();
   return (
     <Flex direction="column" p="5%" fontSize={fontSize}>
-      <Text fontWeight="bold" textStyle="h1">Average customer review</Text>
+      <Text fontWeight="bold" textStyle="h1">{t("shopPage.filterMenu.review.title")}</Text>
       <HStack>
         <Rating
           key={rating}
@@ -62,7 +63,7 @@ const AverageCustomerReview = ({
           allowFraction
           transition
         />
-        <Text fontWeight="bold" pt={1} textStyle="h1">& Up</Text>
+        <Text fontWeight="bold" pt={1} textStyle="h1">{t("shopPage.filterMenu.review.additional")}</Text>
       </HStack>
     </Flex>
   );

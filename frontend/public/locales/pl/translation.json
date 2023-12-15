@@ -563,5 +563,123 @@
       "payNow": "Zapłać teraz",
       "cancel": "Anuluj"
     }
-  }
+  },
+  "shopPage": {
+    "filterMenu": {
+      "search": "Wyszukaj",
+      "categories": {
+        "title": "Kategorie"
+      },
+      "review": {
+        "title": "Średnia opinia klientów",
+        "additional": "& Wyżej"
+      },
+      "price": {
+        "title": "Cena"
+      }
+    },
+    "carousel": {
+      "first": "NIEDAWNO DODANE",
+      "second": "NAJWYŻSZE OCENY",
+      "addToCart": {
+        "button": "Dodaj do koszyka",
+        "modal": {
+          "title": "Koszyk zaktualizowano",
+          "contentFirst": "Produkt",
+          "contentSecond": "został pomyślnie dodany do koszyka"
+        }
+      },
+      "buyNow": {
+        "button": "Kup teraz!"
+      }
+    },
+    "searchComponents": {
+      "searchPlaceholder": "Co chciałbyś kupić?",
+      "sort": "Sortuj według",
+      "results": "Wyniki",
+      "to": "do",
+      "from": "z"
+    },
+    "productPage": {
+      "addToCart": {
+        "button": "Dodaj do koszyka",
+        "modal": {
+          "title": "Koszyk zaktualizowany",
+          "contentFirst": "Produkt",
+          "contentSecond": "został pomyślnie dodany do koszyka"
+        }
+      },
+      "buyNow": {
+        "button": "Kup teraz!"
+      },
+      "features": "Cechy",
+      "comments": "Komentarze",
+      "like": "Dodaj do ulubionych",
+      "unlike": "Usuń z ulubionych",
+      "commentsSection": {
+        "empty": "Wygląda na to, że nikt jeszcze nie umieścił komentarza. Rozpocznij dyskusję jako pierwszy.",
+        "newCommentButton": "Dodaj komentarz",
+        "form": {
+          "rating": "Twoja ocena",
+          "title": "Twój wspaniały tytuł",
+          "saveButton": "Zapisz komentarz",
+          "editButton": "Edytuj komentarz"
+        },
+        "validate": {
+          "title": "Nie można zapisać komentarza",
+          "titleValidation": "Tytuł musi zawierać co najmniej 3 znaki",
+          "personalValidation": "Twoje dane osobowe nie są teraz dostępne"
+        },
+        "success": {
+          "title": "Pomyślnie zapisano komentarz",
+          "content": "Twój komentarz został pomyślnie zapisany w Andante"
+        },
+        "edit": "Edytuj"
+      }
+    }
+  },
+  "Amplifiers": "Wzmacniacze",
+  "Gramophones": "Gramofony",
+  "Headphones": "Słuchawki",
+  "Microphones": "Mikrofony",
+  "Speakers": "Głośniki",
+  "Subwoofers": "Subwoofery",
+  "Current": "Prąd",
+  "Voltage": "Napięcie",
+  "Transconductance": "Transkonduktancja",
+  "Transresistance": "Transrezystancja",
+  "Power": "Moc",
+  "Operational": "Operacyjne",
+  "Vacuum Tube": "Przewód próżniowy",
+  "Distributed": "Rozproszone",
+  "Auxiliary": "Pomocnicze",
+  "Bluetooth": "Bluetooth",
+  "Usb": "Usb",
+  "Wired": "Przewodowy",
+  "Opened": "Otwarty",
+  "Semi-Opened": "Półotwarty",
+  "Closed": "Zamknięty",
+  "Dynamic": "Dynamiczny",
+  "Large-Condenser": "Duży kondensator",
+  "Small-Condenser": "Mały kondensator",
+  "Ribbon": "Taśma",
+  "Wireless": "Bezprzewodowy",
+  "Active": "Aktywny",
+  "Passive": "Pasywny",
+  "Ported": "Przeniesiony",
+  "Sealed-Cabinet": "Zamknięta obudowa",
+  "Passive-Radiator": "Radiator pasywny",
+  "Bandpass": "Bandpass",
+  "Horn-Loaded": "Ostry ładunek",
+  "Price Ascending": "Cena rosnąco",
+  "Price Descending": "Cena malejąco",
+  "Recently Added": "Ostatnio dodane",
+  "Alphabetical": "Alfabetycznie",
+  "Impedance": "Impedancja",
+  "Loudness": "Głośność",
+  "Color": "Kolor",
+  "Newest First": "Najpierw najnowsze",
+  "Oldest First": "Najpierws najstarsze",
+  "Rating: Highest First": "Ocena: Najwyższa Pierwsza",
+  "Rating: Lowest First": "Ocena: Najniższa pierwsza"
 }

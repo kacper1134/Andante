@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLazyGetBestRatedProductsQuery } from "../../../../store/api/productSlice";
 import { isProductOutputDTOArray, ProductOutputDTO } from "../../../../store/api/result/dto/product/base/ProductOutputDTO";
 import ProductsCarousel from "./ProductsCarousel";
+import { useTranslation } from "react-i18next";
 
 type HighestRatingProductsProps = {
   filterMenuWidth: string;
@@ -49,12 +50,12 @@ const HighestRatingProducts = ({
         isClosable: true, 
     }));   
  }, [errorMessages, toast]);
-
+  const {t} = useTranslation();
   return (
     <Box width="100%" pt="15px" overflow="hidden">
       <Center>
         <Text color="primary.500" fontWeight="semibold" fontSize={headerSize} textStyle="h1">
-          HIGHEST RATING
+          {t("shopPage.carousel.second")}
         </Text>
       </Center>
       <ProductsCarousel products={highestRatingProducts} filterMenuWidth={filterMenuWidth} />

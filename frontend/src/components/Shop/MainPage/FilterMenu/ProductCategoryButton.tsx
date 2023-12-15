@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { Checkbox, HStack, Icon, Text } from "@chakra-ui/react";
 import { Category } from "./ProductCategory";
+import { useTranslation } from "react-i18next";
 
 type ProductCategoryButtonProps = {
   category: Category;
@@ -27,6 +28,7 @@ const ProductCategoryButton = ({
   toggleOpen,
   setCheckedItems,
 }: ProductCategoryButtonProps) => {
+  const {t} = useTranslation();
   return (
     <HStack fontSize={fontSize}>
       <Checkbox
@@ -40,7 +42,7 @@ const ProductCategoryButton = ({
       <HStack>
         <Icon as={category.icon} />
         <Text cursor="default" textStyle="p">
-          {category.type}
+          {t(category.type)}
           {!isOpen && (
             <ChevronDownIcon
               cursor="pointer"

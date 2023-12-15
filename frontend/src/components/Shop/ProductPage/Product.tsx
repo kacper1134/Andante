@@ -18,6 +18,7 @@ export interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({ data }) => {
   const flexDirection = useBreakpointValue({ base: "column", lg: "row" });
+  const [areFeaturesOpen, setAreFeaturesOpen] = useState(true);
   const [image, setImage] = useState<string>();
   const { keycloak, initialized } = useKeycloak();
   const variantSelectorResult = useVariantGroups(data);
@@ -77,12 +78,16 @@ const Product: React.FC<ProductProps> = ({ data }) => {
         <ProductBasicInfo
           data={data}
           selectedVariant={variantSelectorResult.selectedVariant}
+          areFeaturesOpen={areFeaturesOpen}
+          setAreFeaturesOpen={setAreFeaturesOpen}
         />
       </Flex>
       <ProductsVariantsMenu variantsGroups={variantSelectorResult.variantGroups} />
       <ProductOptionsMenu
         product={data}
         selectedVariantId={variantSelectorResult.selectedVariant?.id ?? 0}
+        areFeaturesOpen={areFeaturesOpen}
+        setAreFeaturesOpen={setAreFeaturesOpen}
       />
     </VStack>
   );

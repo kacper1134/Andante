@@ -31,6 +31,7 @@ import { getUserDetails } from "../../../../../utils/KeycloakUtils";
 import add_interaction, {
   InteractionType,
 } from "../../../../../functions/recommendation-functions";
+import { useTranslation } from "react-i18next";
 
 type NewProductCommentFormProps = {
   isOpen: boolean;
@@ -67,7 +68,7 @@ const NewProductCommentForm = ({
   const [createComment] = useCreateCommentMutation();
   const [editComment] = useEditCommentMutation();
   const { keycloak } = useKeycloak();
-
+  const {t} = useTranslation();
   useEffect(() => {
     if (keycloak.idTokenParsed) {
       const userDetails = getUserDetails(keycloak.idTokenParsed);
@@ -100,10 +101,10 @@ const NewProductCommentForm = ({
 
   const saveComment = () => {
     const errorMessage = validateComment();
-
+    
     if (errorMessage) {
       toast({
-        title: "Could not save your comment",
+        title: t("shopPage.productPage.commentsSection.validate.title"),
         description: errorMessage,
         status: "error",
         duration: 9000,
@@ -125,8 +126,8 @@ const NewProductCommentForm = ({
         clearInput();
         add_interaction(username!, productId, InteractionType.RATING, rating);
         toast({
-          title: "Comment successfully saved",
-          description: "Your comment was successfully saved within Andante",
+          title: t("shopPage.productPage.commentsSection.success.title"),
+          description: t("shopPage.productPage.commentsSection.success.content"),
           status: "success",
           duration: 9000,
           isClosable: true,
@@ -140,7 +141,7 @@ const NewProductCommentForm = ({
 
     if (errorMessage) {
       toast({
-        title: "Could not save your comment",
+        title: t("shopPage.productPage.commentsSection.validate.title"),
         description: errorMessage,
         status: "error",
         duration: 9000,
@@ -179,11 +180,11 @@ const NewProductCommentForm = ({
 
   const validateComment = () => {
     if (title.length < 3) {
-      return "Title must be at least 3 characters long";
+      return t("shopPage.productPage.commentsSection.validate.titleValidation");
     }
 
     if (!username) {
-      return "Your personal details are not available right now";
+      return t("shopPage.productPage.commentsSection.validate.personalValidation");
     }
   };
 
@@ -208,7 +209,7 @@ const NewProductCommentForm = ({
       >
         <HStack mb={labelMargin}>
           <Text fontSize={headerSize} textStyle="p">
-            Your rating
+            {t("shopPage.productPage.commentsSection.form.rating")}
           </Text>
           <Rating
             key={rating}
@@ -222,7 +223,7 @@ const NewProductCommentForm = ({
         </HStack>
         <Box mt={spacing}>
           <Input
-            placeholder="Your amazing title"
+            placeholder={t("shopPage.productPage.commentsSection.form.title")}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fontSize={headerInputFontSize}
@@ -249,9 +250,9 @@ const NewProductCommentForm = ({
         >
           <HStack onClick={isEdit ? editCommentHandler : saveComment}>
             {isEdit ? (
-              <Text>Edit your comment</Text>
+              <Text>{t("shopPage.productPage.commentsSection.form.editButton")}</Text>
             ) : (
-              <Text>Save your comment</Text>
+              <Text>{t("shopPage.productPage.commentsSection.form.saveButton")}</Text>
             )}
             <Icon as={BiCommentCheck} />
           </HStack>

@@ -14,6 +14,7 @@ import noprofile from "../../../../static/noprofile.png";
 import { getDownloadURL, ref } from "firebase/storage";
 import storage from "../../../../config/firebase-config";
 import { UserProfileImage } from "../../../Blog/BlogPostPage/PostComments/PostComments";
+import { useTranslation } from "react-i18next";
 
 type ProductFeaturesProps = {
   product: ProductOutputDTO,
@@ -117,7 +118,7 @@ const ProductComments = ({
       isClosable: true,
     }))
   }, [errorMessages]);
-
+  const {t} = useTranslation();
   return (
     <VStack
       as={Collapse}
@@ -129,6 +130,7 @@ const ProductComments = ({
       justifyContent="center"
       pb="16px"
       rounded="2xl"
+      id="shop-comments"
       animateOpacity
       onAnimationComplete={(definion: any) =>
         setAnimationEnd(definion === "exit")
@@ -147,7 +149,7 @@ const ProductComments = ({
           />
         ))}
       {numberOfPages > 0 ? <PageChanger page={page} setPage={setPage} numberOfPages={numberOfPages} /> : 
-      <Text textStyle="h2" fontSize={fontSize} color="primary.500" textAlign="start" px="16px">It appears that noone have placed a comment yet. Be first to start a discussion.</Text>}
+      <Text textStyle="h2" fontSize={fontSize} color="primary.500" textAlign="start" px="16px">{t("shopPage.productPage.commentsSection.empty")}</Text>}
     </VStack>
   );
 };

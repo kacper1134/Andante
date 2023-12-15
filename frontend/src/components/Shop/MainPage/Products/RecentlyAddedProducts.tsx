@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { ProductSortingOrder } from "../../../../store/api/productSlice";
 import { useGetByQuery } from "../../../../store/api/result/dto/product/base/ProductOutputDTO";
 import ProductsCarousel from "./ProductsCarousel";
+import { useTranslation } from "react-i18next";
 
 type RecentlyAddedProductsProps = {
   filterMenuWidth: string;
@@ -19,12 +20,12 @@ const RecentlyAddedProducts = ({
     pageSize: 8,
     sortingOrder: ProductSortingOrder.RECENTLY_ADDED,
   }}, []), 0);
-
+  const {t} = useTranslation();
   return (
     <Box width="100%" pt="15px" overflow="hidden">
       <Center>
         <Text color="primary.500" fontWeight="semibold" fontSize={headerSize} textStyle="h1">
-          RECENTLY ADDED
+        {t("shopPage.carousel.first")}
         </Text>
       </Center>
       <ProductsCarousel products={productPage.content} filterMenuWidth={filterMenuWidth} />
