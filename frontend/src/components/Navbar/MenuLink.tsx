@@ -1,9 +1,8 @@
-import { Box, Text, VStack, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useToken } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import path from "path";
 
 export interface Link {
   text: string;
@@ -43,9 +42,13 @@ const MenuLink: React.FC<MenuLinkProps> = ({ link }) => {
     setIsHovered(false);
     setIsDropdownHovered(false);
   }, [location.pathname]);
-  
-  const isBlogPage = (location.pathname?.startsWith("/review") || location.pathname?.startsWith("/recommended") || location.pathname?.startsWith("/music")) && link.text === "blog"
-  
+
+  const isBlogPage =
+    (location.pathname?.startsWith("/review") ||
+      location.pathname?.startsWith("/recommended") ||
+      location.pathname?.startsWith("/music")) &&
+    link.text === "blog";
+
   return (
     <Box
       h="inherit"
@@ -61,9 +64,19 @@ const MenuLink: React.FC<MenuLinkProps> = ({ link }) => {
         color={(location.pathname.startsWith(link.path!) || isBlogPage) ? hoverColor : basicColor}
         cursor={link.path ? "pointer" : "default"}
         userSelect="none"
-        onClick={link.path ? () => navigate(link.path || "") : () => {}}
+        onClick={link.path ? () => navigate(link.path || "") : () => { }}
+        _hover={{
+          color: hoverColor,
+        }}
       >
         {t(link.text).toUpperCase()}
+        {link.submenu && (
+          <Box as="span" ml="0" display="inline-block">
+            <Text fontSize={linkSize} color="primary.300" display="inline">
+              &#x25BC;
+            </Text>
+          </Box>
+        )}
       </Text>
       {(isHovered || isDropdownHovered) && link.submenu && (
         <Box
@@ -97,6 +110,5 @@ const MenuLink: React.FC<MenuLinkProps> = ({ link }) => {
     </Box>
   );
 };
-
 
 export default MenuLink;

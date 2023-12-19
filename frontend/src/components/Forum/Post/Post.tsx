@@ -7,6 +7,7 @@ import {
   Box,
   Icon,
   Button,
+  Tooltip,
 } from "@chakra-ui/react";
 import {
   buttonTextFontSize,
@@ -41,6 +42,15 @@ export type PostType = {
   topicId: number;
   numberOfLikes: number;
   likes: PostResponseLikeDTO[];
+};
+
+const tooltipSize = {
+  base: "11px",
+  sm: "12px",
+  md: "13px",
+  lg: "14px",
+  xl: "15px",
+  "2xl": "16px",
 };
 
 type PostProps = {
@@ -133,29 +143,55 @@ const Post = ({ post, setIsOpen, setReloadPost }: PostProps) => {
           fontSize={postHeaderFontSize}
         >
           {isCurrentUserAuthor && (
-            <HStack w="100%" onClick={() => setIsEdit((prev) => !prev)}>
-              <Spacer />
-              <Icon as={AiFillEdit} color="orange" />
-              <Text>{t("forum-section.post-edit")}</Text>
-            </HStack>
+
+            <Tooltip
+              hasArrow
+              fontSize={tooltipSize}
+              label={t("forum-section.edit-label")}
+              textStyle="p"
+              bg="secondary.400"
+              color="white">
+              <HStack w="100%" onClick={() => setIsEdit((prev) => !prev)}>
+                <Spacer />
+                <Icon as={AiFillEdit} color="orange" />
+                <Text>{t("forum-section.post-edit")}</Text>
+              </HStack>
+            </Tooltip>
           )}
           {isCurrentUserAuthor && (
-            <HStack w="100%" onClick={() => setIsDeleteModalOpen(true)}>
-              <Spacer />
-              <Icon as={AiFillDelete} color="red" />
-              <Text>{t("forum-section.post-delete")}</Text>
-            </HStack>
+
+            <Tooltip
+              hasArrow
+              fontSize={tooltipSize}
+              label={t("forum-section.delete-label")}
+              textStyle="p"
+              bg="secondary.400"
+              color="white">
+              <HStack w="100%" onClick={() => setIsDeleteModalOpen(true)}>
+                <Spacer />
+                <Icon as={AiFillDelete} color="red" />
+                <Text>{t("forum-section.post-delete")}</Text>
+              </HStack>
+            </Tooltip>
           )}
           <Spacer />
-          <Button
-            h="fit-content"
-            colorScheme="primary"
-            py="5px"
-            fontSize={buttonTextFontSize}
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            {t("forum-section.post-reply")} <Icon ml="10px" as={FaReply} />
-          </Button>
+          <Tooltip
+            hasArrow
+            fontSize={tooltipSize}
+            label={t("forum-section.reply-label")}
+            textStyle="p"
+            bg="secondary.400"
+            color="white">
+            <Button
+              h="fit-content"
+              colorScheme="primary"
+              py="5px"
+              fontSize={buttonTextFontSize}
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              {t("forum-section.post-reply")} <Icon ml="10px" as={FaReply} />
+            </Button>
+          </Tooltip>
         </VStack>
       </HStack>
       <DeletePostModal

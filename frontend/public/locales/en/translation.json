@@ -389,7 +389,13 @@
     "new-button": "New",
     "posts": "Posts",
     "no-posts": "There are no posts within this topic yet. Be the first person to write something!",
-    "show-more": "Show More"
+    "show-more": "Show More",
+    "reply-label": "Click here to start editing reply to this post.",
+    "save-label": "Click here to save your reply to this post.",
+    "edit-label": "Click here to edit your post.",
+    "delete-label": "Click here to delete your post.",
+    "save-edit": "Click this button to save changes.",
+    "save-save": "Click this button to publish your comment."
   },
   "blog-section": {
     "delete-blog-post": "Are you sure you want to delete blog post with title",

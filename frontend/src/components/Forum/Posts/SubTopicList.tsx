@@ -83,7 +83,7 @@ const SubTopicList = React.forwardRef<HTMLDivElement>((_, ref) => {
     const { t } = useTranslation();
 
     return (
-        <VStack ref={ref} width="fit-content">
+        <VStack ref={ref} width="100%">
             <Box
                 w={"100%"}>
                 <InputGroup

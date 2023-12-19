@@ -6,6 +6,7 @@ import {
   Box,
   Avatar,
   Icon,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import {
@@ -34,6 +35,15 @@ export type ReplyType = {
   content: string;
   likes: PostResponseLikeDTO[];
   numberOfLikes: number;
+};
+
+const tooltipSize = {
+  base: "11px",
+  sm: "12px",
+  md: "13px",
+  lg: "14px",
+  xl: "15px",
+  "2xl": "16px",
 };
 
 type ReplyProps = {
@@ -125,10 +135,19 @@ const Reply = ({ reply, index, setReloadReplies }: ReplyProps) => {
         >
           <Spacer />
           <Icon as={AiFillEdit} color="orange" />
-          <Text>{t("forum-section.post-edit")}</Text>
+          <Tooltip
+            hasArrow
+            fontSize={tooltipSize}
+            label={t("forum-section.edit-label")}
+            textStyle="p"
+            bg="secondary.400"
+            color="white">
+            <Text>{t("forum-section.post-edit")}</Text>
+          </Tooltip>
         </HStack>
-      )}
-    </HStack>
+      )
+      }
+    </HStack >
   );
 };
 

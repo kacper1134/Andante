@@ -389,7 +389,13 @@
     "new-button": "Dodaj",
     "posts": "Posty",
     "no-posts": "Nie ma jeszcze postów na ten temat. Bądź pierwszą osobą, która coś napisze!",
-    "show-more": "Pokaż więcej"
+    "show-more": "Pokaż więcej",
+    "reply-label": "Kliknij tutaj, żeby zacząć odpowiadać na ten wpis.",
+    "save-label": "Klikni tutaj, żeby zapisać swoją odpowiedź na ten wpis.",
+    "edit-label": "Kliknij tutaj, żeby edytować ten wpis.",
+    "delete-label": "Kliknij tutaj, żeby usunąć ten wpis.",
+    "save-edit": "Kliknij ten przycisk, żeby zapisać zmiany.",
+    "save-save": "Kliknij ten przycisk, żeby opublikować komentarz."
   },
   "blog-section": {
     "delete-blog-post": "Czy jesteś pewny, że chcesz usunąć z bloga wpis o tytule",

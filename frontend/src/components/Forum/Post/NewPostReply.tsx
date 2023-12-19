@@ -9,6 +9,7 @@ import {
   VStack,
   useToast,
   Spinner,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { BiCommentAdd } from "react-icons/bi";
@@ -26,6 +27,15 @@ import {
   slideTextFontSize,
 } from "../common/ForumDimensions";
 import { useTranslation } from "react-i18next";
+
+const tooltipSize = {
+  base: "11px",
+  sm: "12px",
+  md: "13px",
+  lg: "14px",
+  xl: "15px",
+  "2xl": "16px",
+};
 
 type NewPostReplyProps = {
   isOpen: boolean;
@@ -178,22 +188,30 @@ const NewPostReply = ({
 
       <HStack w="100%" px="2.5%" py="10px">
         <Spacer />
-        <Button
-          h="fit-content"
-          py="5px"
-          colorScheme="primary"
-          fontSize={postDescriptionFontSize}
-          onClick={isEdit ? replyEditHandler : replySubmitHandler}
-          disabled={saving}
-        >
-          {saving && <Spinner />}
-          {!saving && (
-            <>
-              {isEdit ? t("forum-section.post-edit") : t("forum-section.post-save")}
-              <Icon ml="10px" as={BiCommentAdd} />
-            </>
-          )}
-        </Button>
+        <Tooltip
+          hasArrow
+          fontSize={tooltipSize}
+          label={isEdit ? t("forum-section.save-edit") : t("forum-section.save-save")}
+          textStyle="p"
+          bg="secondary.400"
+          color="white">
+          <Button
+            h="fit-content"
+            py="5px"
+            colorScheme="primary"
+            fontSize={postDescriptionFontSize}
+            onClick={isEdit ? replyEditHandler : replySubmitHandler}
+            disabled={saving}
+          >
+            {saving && <Spinner />}
+            {!saving && (
+              <>
+                {isEdit ? t("forum-section.post-edit") : t("forum-section.post-save")}
+                <Icon ml="10px" as={BiCommentAdd} />
+              </>
+            )}
+          </Button>
+        </Tooltip>
       </HStack>
     </VStack>
   );
