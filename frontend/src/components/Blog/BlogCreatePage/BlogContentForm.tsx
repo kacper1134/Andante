@@ -21,6 +21,7 @@ import BlogCreateModal from "./BlogCreateModal";
 import { readClient } from "../../../client";
 import { useParams } from "react-router-dom";
 import { AiOutlineClear } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 type BlogContentFormProps = {
   topic: string;
@@ -89,11 +90,13 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
     setContent(post.body);
   };
 
+  const {t} = useTranslation();
+
   return (
     <VStack my="5px" w="1200px" color="primary.600" spacing={3} textStyle="p">
       <FormControl>
         <FormLabel fontSize={inputSize} fontWeight="semibold">
-          Title*
+          {t("blog-section.title")}
         </FormLabel>
         <Input
           name="title"
@@ -105,7 +108,7 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
       </FormControl>
       <FormControl>
         <FormLabel fontSize={inputSize} fontWeight="semibold">
-          Picture*
+        {t("blog-section.picture")}
         </FormLabel>
         <Input
           name="picture"
@@ -124,7 +127,7 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
             }}
             colorScheme="primary"
           >
-            Upload a picture <Icon as={RiImageAddFill} ml="10px" />
+            {t("blog-section.upload")} <Icon as={RiImageAddFill} ml="10px" />
           </Button>
           <Text>{picture?.name}</Text>
         </HStack>
@@ -133,7 +136,7 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
         <FormLabel>
           <HStack>
             <Text fontSize={inputSize} fontWeight="semibold">
-              Preview picture
+            {t("blog-section.preview")}
             </Text>
             <Icon
               fontSize={inputSize}
@@ -153,7 +156,7 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
       </FormControl>
       <FormControl>
         <FormLabel fontSize={inputSize} fontWeight="semibold">
-          Description*
+        {t("blog-section.description")}
         </FormLabel>
         <UserTextEditor
           setContent={setDescription}
@@ -163,7 +166,7 @@ const BlogContentForm = ({ topic, mode }: BlogContentFormProps) => {
       </FormControl>
       <FormControl>
         <FormLabel fontSize={inputSize} fontWeight="semibold">
-          Content*
+        {t("blog-section.content")}
         </FormLabel>
         <BlogContentEditor
           setContent={setContent}

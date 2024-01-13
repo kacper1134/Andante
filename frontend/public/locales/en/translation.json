@@ -413,7 +413,13 @@
     "add-comment": "Add your comment",
     "send-comment": "Send",
     "post-create": "Create post",
-    "post-edit": "Edit your post"
+    "post-edit": "Edit your post",
+    "title": "Title*",
+    "picture": "Picture*",
+    "upload": "Upload a picture",
+    "preview": "Preview picture",
+    "description": "Description*",
+    "content": "Content*"
   },
   "faqPage": {
     "title": "FAQ",

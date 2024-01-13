@@ -413,7 +413,13 @@
     "add-comment": "Dodaj swój komentarz",
     "send-comment": "Wyślij",
     "post-create": "Stwórz wpis",
-    "post-edit": "Edytuj swój wpis"
+    "post-edit": "Edytuj swój wpis",
+    "title": "Tytuł*",
+    "picture": "Zdjęcie*",
+    "upload": "Prześlij obraz",
+    "preview": "Podgląd zdjęcia",
+    "description": "Opis*",
+    "content": "Treść*"
   },
   "faqPage": {
     "title": "CZP",

@@ -26,6 +26,9 @@ const BuyNowModal = ({ isOpen, setIsOpen, buyNow }: BuyNowModalProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if(!isOpen){
+      dispatch(cartActions.clearCart());
+    }
     if (arePersonalDetailsMissing(orderPreferences.orderDetails) && isOpen) {
       toast({
         title: "Missing Personal Details  In Order Preferences",
