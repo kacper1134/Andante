@@ -16,9 +16,14 @@ import BlogMainPage from "./pages/BlogMainPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import FAQPage from "./pages/FAQPage";
 import useAuthentication from "./hooks/useAuthentication";
+import { RootState } from "./store";
+import { useSelector } from "react-redux";
+import i18n from "./i18n";
 
 const App = () => {
   useAuthentication("/home");
+  const language = useSelector((state: RootState) => state.auth.language);
+  i18n.changeLanguage(language === "pl" ? "en" : "pl");
   const location = useLocation();
   const isLarge = useBreakpointValue({ base: false, lg: true })!;
   const menuHeight = useBreakpointValue({
